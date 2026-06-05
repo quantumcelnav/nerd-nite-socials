@@ -114,7 +114,7 @@ export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
       </section>
 
       <footer className="footer">
-        <p>Nerd Nite Fort Collins &mdash; Be there and be square</p>
+        <p>Nerd Nite Fort Collins &mdash; Be there and be square &mdash; {new Date().getFullYear()}</p>
       </footer>
     </>
   )
