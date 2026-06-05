@@ -8,6 +8,7 @@
       "speaker": "Joel Bacon",
       "questions": [
         {
+          "difficulty": 1,
           "question": "How does a pipe organ produce sound?",
           "options": [
             "Vibrating strings struck by hammers",
@@ -18,24 +19,26 @@
           "answer": 1
         },
         {
-          "question": "The largest pipe in a typical pipe organ can be how long?",
-          "options": [
-            "4 feet",
-            "8 feet",
-            "32 feet",
-            "64 feet"
-          ],
-          "answer": 2
-        },
-        {
+          "difficulty": 2,
           "question": "What is the name for the keyboard played with the feet on a pipe organ?",
           "options": [
-            "Pedalboard",
-            "Footboard",
+            "Treadle",
             "Bass manual",
-            "Treadle"
+            "Footboard",
+            "Pedalboard"
           ],
-          "answer": 0
+          "answer": 3
+        },
+        {
+          "difficulty": 3,
+          "question": "A pipe organ's \"wind chest\" does what?",
+          "options": [
+            "Amplifies sound through a resonance chamber",
+            "Distributes pressurized air to selected pipes when keys are pressed",
+            "Stores the organ's MIDI data for playback",
+            "Regulates temperature to keep pipes in tune"
+          ],
+          "answer": 1
         }
       ]
     },
@@ -45,32 +48,35 @@
       "speaker": "Dr. Sam Rivera",
       "questions": [
         {
-          "question": "What percentage of U.S. electricity currently comes from renewable sources?",
-          "options": [
-            "About 5%",
-            "About 12%",
-            "About 21%",
-            "About 40%"
-          ],
-          "answer": 2
-        },
-        {
-          "question": "What is the main challenge of integrating solar and wind into the power grid?",
+          "difficulty": 1,
+          "question": "What is the main challenge of adding solar and wind to the power grid?",
           "options": [
             "They produce too much electricity",
-            "Their output is intermittent and hard to predict",
-            "They require water cooling",
-            "They can only operate in warm climates"
+            "Their output is intermittent — sun and wind aren't always available",
+            "They require nuclear backup",
+            "They only work in warm climates"
           ],
           "answer": 1
         },
         {
-          "question": "What does \"peak demand\" refer to in electrical grid management?",
+          "difficulty": 2,
+          "question": "What does \"peak demand\" mean in grid management?",
           "options": [
             "The maximum voltage the grid can carry",
-            "The highest power consumption period of the day",
             "The efficiency rating of a power plant",
-            "The distance electricity can travel without loss"
+            "The period of highest electricity consumption in a day",
+            "The distance power can travel without loss"
+          ],
+          "answer": 2
+        },
+        {
+          "difficulty": 3,
+          "question": "What is \"duck curve\" in grid management?",
+          "options": [
+            "A safety protocol for utility workers near water",
+            "A graph showing excess midday solar generation creating a steep evening ramp demand",
+            "The efficiency loss curve of aging transmission lines",
+            "A model for predicting weather-related outages"
           ],
           "answer": 1
         }
@@ -82,34 +88,37 @@
       "speaker": "Dr. Maya Chen",
       "questions": [
         {
+          "difficulty": 1,
           "question": "What is the \"Wood Wide Web\"?",
           "options": [
             "A logging industry database",
-            "Underground fungal networks connecting tree root systems",
             "A type of bark beetle communication system",
+            "Underground fungal networks connecting tree root systems",
             "An old-growth forest conservation program"
+          ],
+          "answer": 2
+        },
+        {
+          "difficulty": 2,
+          "question": "Mycelium is which part of a fungus?",
+          "options": [
+            "The fruiting body (mushroom cap)",
+            "The network of thread-like root structures",
+            "The spores",
+            "The cell wall"
           ],
           "answer": 1
         },
         {
-          "question": "Mycelium is the term for which part of a fungus?",
+          "difficulty": 3,
+          "question": "What term describes trees that use fungal networks to preferentially send carbon to their own offspring seedlings?",
           "options": [
-            "The fruiting body (mushroom cap)",
-            "The spores",
-            "The network of thread-like root structures",
-            "The cell wall"
+            "Allelopathy",
+            "Kin recognition signaling",
+            "Mycorrhizal favoritism",
+            "Root exclusion"
           ],
-          "answer": 2
-        },
-        {
-          "question": "What do trees share through fungal networks?",
-          "options": [
-            "Only water",
-            "Only genetic information",
-            "Carbon, nutrients, and chemical signals",
-            "Oxygen and nitrogen only"
-          ],
-          "answer": 2
+          "answer": 1
         }
       ]
     }

@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import edition from '../data/edition.json'
 import { correctGifs, wrongGifs, pickRandom } from '../data/reactions'
+import { POINTS, DIFFICULTY_LABEL, calcMaxScore } from '../data/scoring'
 import ReactionGif from './ReactionGif'
 import '../game.css'
-
-const POINTS_PER_QUESTION = 100
 
 export default function Game({ onComplete }) {
   const [phase, setPhase] = useState('origin')
@@ -32,7 +31,7 @@ export default function Game({ onComplete }) {
     setSelected(idx)
     setIsCorrect(correct)
     setReactionGif(pickRandom(correct ? correctGifs : wrongGifs))
-    if (correct) setScore(s => s + POINTS_PER_QUESTION)
+    if (correct) setScore(s => s + POINTS[question.difficulty])
     setPhase('result')
   }
 
@@ -61,13 +60,15 @@ export default function Game({ onComplete }) {
     setPhase(outro ? 'outro' : 'done')
   }
 
+  const maxScore = calcMaxScore(edition.talks)
+
   if (phase === 'outro') {
     return (
       <OriginCard
         text={edition.originStory[edition.talks.length].text}
         label="— Nerd Nite —"
         btnLabel="See My Score"
-        onNext={() => onComplete(score)}
+        onNext={() => onComplete(score, maxScore)}
       />
     )
   }
@@ -103,7 +104,10 @@ export default function Game({ onComplete }) {
 
       <div className="question-card">
         <div className="question-meta">
-          Q{questionIdx + 1} of {talk.questions.length}
+          <span>Q{questionIdx + 1} of {talk.questions.length}</span>
+          <span className={`difficulty-badge diff-${question.difficulty}`}>
+            {DIFFICULTY_LABEL[question.difficulty]}
+          </span>
         </div>
         <p className="question-text">{question.question}</p>
       </div>
@@ -134,7 +138,7 @@ export default function Game({ onComplete }) {
           <ReactionGif src={reactionGif} isCorrect={isCorrect} />
           <div className="result-bar">
             <span className={isCorrect ? 'result-correct' : 'result-wrong'}>
-              {isCorrect ? `✓ Correct! +${POINTS_PER_QUESTION} pts` : `✗ Not quite!`}
+              {isCorrect ? `✓ Correct! +${POINTS[question.difficulty]} pts` : `✗ Not quite!`}
             </span>
             <button className="next-btn" onClick={handleNext}>
               {questionIdx < talk.questions.length - 1

@@ -7,9 +7,11 @@ import Leaderboard from './components/Leaderboard'
 export default function App() {
   const [screen, setScreen] = useState('home')
   const [finalScore, setFinalScore] = useState(0)
+  const [maxScore, setMaxScore] = useState(0)
 
-  function handleGameComplete(score) {
+  function handleGameComplete(score, max) {
     setFinalScore(score)
+    setMaxScore(max)
     setScreen('submit')
   }
 
@@ -25,7 +27,7 @@ export default function App() {
         <Game onComplete={handleGameComplete} />
       )}
       {screen === 'submit' && (
-        <ScoreSubmit score={finalScore} onDone={() => setScreen('leaderboard')} />
+        <ScoreSubmit score={finalScore} maxScore={maxScore} onDone={() => setScreen('leaderboard')} />
       )}
       {screen === 'leaderboard' && (
         <Leaderboard onHome={() => setScreen('home')} />
