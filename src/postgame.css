@@ -1,0 +1,208 @@
+/* ── Post-game screen ──────────────────────────────────── */
+.postgame-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg);
+  padding: 40px 24px;
+}
+
+.postgame-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.postgame-eyebrow {
+  font-family: var(--font);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--orange);
+  opacity: 0.8;
+}
+
+.postgame-heading {
+  font-family: var(--font);
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--white);
+  text-align: center;
+  line-height: 1.15;
+}
+
+.postgame-sub {
+  font-family: var(--font);
+  font-size: 0.95rem;
+  color: var(--white);
+  opacity: 0.65;
+  text-align: center;
+  line-height: 1.6;
+  max-width: 360px;
+  margin-bottom: 8px;
+}
+
+.postgame-sig {
+  font-family: var(--font);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--cyan);
+  text-align: center;
+  opacity: 0.8;
+}
+
+.postgame-continue {
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: bold;
+  background: var(--cyan);
+  color: var(--dark-text);
+  border: none;
+  padding: 18px 32px;
+  min-height: 60px;
+  width: 100%;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.postgame-continue:hover { background: #00d4f5; }
+.postgame-continue:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.postgame-skip {
+  font-family: var(--font);
+  font-size: 0.85rem;
+  background: none;
+  border: none;
+  color: var(--white);
+  opacity: 0.45;
+  cursor: pointer;
+  padding: 8px;
+  text-decoration: underline;
+  transition: opacity 0.2s;
+}
+.postgame-skip:hover { opacity: 0.8; }
+
+/* ── Socials CTA list ──────────────────────────────────── */
+.social-cta-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 8px 0;
+}
+
+.social-cta-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 2px solid var(--cta-color, var(--cyan));
+  color: var(--white);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.social-cta-item:hover {
+  background: var(--cta-color, var(--cyan));
+  color: var(--dark-text);
+}
+
+.social-cta-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.social-cta-action {
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: bold;
+}
+
+.social-cta-sub {
+  font-family: var(--font);
+  font-size: 0.75rem;
+  opacity: 0.65;
+}
+
+.social-cta-arrow {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  color: var(--cta-color, var(--cyan));
+  transition: color 0.15s;
+}
+
+.social-cta-item:hover .social-cta-arrow { color: var(--dark-text); }
+
+/* ── Email form ────────────────────────────────────────── */
+.email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.email-label {
+  font-family: var(--font);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--white);
+  opacity: 0.55;
+}
+
+.email-input {
+  font-family: var(--font);
+  font-size: 1.1rem;
+  background: rgba(255,255,255,0.08);
+  border: 2px solid rgba(255,255,255,0.2);
+  color: var(--white);
+  padding: 16px 20px;
+  min-height: 56px;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.email-input:focus { border-color: var(--cyan); }
+.email-input::placeholder { color: rgba(245,245,240,0.3); }
+
+.email-checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  color: var(--white);
+  opacity: 0.75;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.email-checkbox-row input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  accent-color: var(--cyan);
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+/* ── Desktop ───────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .postgame-heading { font-size: 2.5rem; }
+
+  .social-cta-item { padding: 18px 24px; }
+
+  .social-cta-action { font-size: 1rem; }
+}

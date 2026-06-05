@@ -3,6 +3,7 @@ import Home from './components/Home'
 import Game from './components/Game'
 import OntologyGame from './components/OntologyGame'
 import ScoreSubmit from './components/ScoreSubmit'
+import PostGame from './components/PostGame'
 import Leaderboard from './components/Leaderboard'
 
 export default function App() {
@@ -45,8 +46,13 @@ export default function App() {
             score={finalScore}
             maxScore={maxScore}
             mode={gameMode}
-            onDone={() => setScreen('leaderboard')}
+            onDone={() => setScreen('postgame')}
           />
+        </div>
+      )}
+      {screen === 'postgame' && (
+        <div className="screen-enter" key="postgame">
+          <PostGame onDone={() => setScreen('leaderboard')} />
         </div>
       )}
       {screen === 'leaderboard' && (
