@@ -5,9 +5,11 @@ import OntologyGame from './components/OntologyGame'
 import ScoreSubmit from './components/ScoreSubmit'
 import PostGame from './components/PostGame'
 import Leaderboard from './components/Leaderboard'
+import { useNonce } from './hooks/useNonce'
 
 export default function App() {
   const [screen, setScreen] = useState('home')
+  const isLiveMode = useNonce()
   const [finalScore, setFinalScore] = useState(0)
   const [maxScore, setMaxScore] = useState(0)
   const [gameMode, setGameMode] = useState('trivia') // 'trivia' | 'ontology'
@@ -27,7 +29,7 @@ export default function App() {
     <div className="app-root">
       {screen === 'home' && (
         <div className="screen-enter" key="home">
-          <Home onPlay={handlePlay} onLeaderboard={() => setScreen('leaderboard')} />
+          <Home onPlay={handlePlay} onLeaderboard={() => setScreen('leaderboard')} isLiveMode={isLiveMode} />
         </div>
       )}
       {screen === 'game' && gameMode === 'trivia' && (
@@ -46,6 +48,7 @@ export default function App() {
             score={finalScore}
             maxScore={maxScore}
             mode={gameMode}
+            isLiveMode={isLiveMode}
             onDone={() => setScreen('postgame')}
           />
         </div>

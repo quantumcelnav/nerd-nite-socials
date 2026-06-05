@@ -28,7 +28,7 @@ function fireConfetti() {
   setTimeout(() => confetti({ particleCount: 80, angle: 120, spread: 60, origin: { x: 1 }, colors }), 600)
 }
 
-export default function ScoreSubmit({ score, maxScore, mode, onDone }) {
+export default function ScoreSubmit({ score, maxScore, mode, isLiveMode, onDone }) {
   const [name, setName] = useState('')
   const [shareFeedback, setShareFeedback] = useState(null)
   const [meterWidth, setMeterWidth] = useState(0)
@@ -77,22 +77,32 @@ export default function ScoreSubmit({ score, maxScore, mode, onDone }) {
           <p className="submit-boss-msg">You are the real deal. 🎓</p>
         )}
 
-        <p className="submit-subtext">Enter your name for the leaderboard.</p>
-        <form className="submit-form" onSubmit={handleSubmit}>
-          <input
-            className="submit-input"
-            type="text"
-            placeholder="Your name or handle"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            maxLength={24}
-            autoFocus
-            aria-label="Your name or handle"
-          />
-          <button className="submit-btn" type="submit" disabled={!name.trim()}>
-            Submit Score
-          </button>
-        </form>
+        {isLiveMode ? (
+          <>
+            <p className="submit-subtext">Enter your name for the leaderboard.</p>
+            <form className="submit-form" onSubmit={handleSubmit}>
+              <input
+                className="submit-input"
+                type="text"
+                placeholder="Your name or handle"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                maxLength={24}
+                autoFocus
+                aria-label="Your name or handle"
+              />
+              <button className="submit-btn" type="submit" disabled={!name.trim()}>
+                Submit Score
+              </button>
+            </form>
+          </>
+        ) : (
+          <p className="submit-practice-msg">
+            You're in practice mode &mdash; scores don't count tonight.
+            <br />
+            <span>Come to Nerd Nite and scan the QR code to get on the leaderboard.</span>
+          </p>
+        )}
         <ShareCard pct={pct} tier={tier} mode={mode}
           onShare={(type) => {
             setShareFeedback(type === 'copied' ? 'Copied to clipboard!' : null)

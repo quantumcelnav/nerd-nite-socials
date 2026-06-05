@@ -8,7 +8,7 @@ const PLACEHOLDER_SCORES = [
   { rank: 3, name: 'R. Feynman', score: 700 },
 ]
 
-export default function Home({ onPlay, onLeaderboard }) {
+export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
   return (
     <>
       <header className="header">
@@ -16,6 +16,11 @@ export default function Home({ onPlay, onLeaderboard }) {
           <h1>Nerdometer</h1>
           <span className="tagline">How nerdy are you, really?</span>
         </div>
+        {isLiveMode && (
+          <div className="live-badge" aria-label="Live show mode active">
+            LIVE TONIGHT
+          </div>
+        )}
         <div className="header-credit">
           Presented by <strong>Justin Fritz</strong><br />
           <em>Nerd Nite Fort Collins Boss</em>

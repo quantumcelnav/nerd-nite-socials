@@ -68,6 +68,42 @@
   flex-shrink: 0;
 }
 
+/* Live mode badge — only shown when nonce matches */
+.live-badge {
+  font-family: var(--font);
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: var(--bg);
+  background: var(--orange);
+  padding: 4px 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+
+/* Practice mode message on score submit */
+.submit-practice-msg {
+  font-family: var(--font);
+  font-size: 0.95rem;
+  color: rgba(245,245,240,0.6);
+  text-align: center;
+  margin: 16px 0;
+  line-height: 1.6;
+  padding: 16px;
+  border: 1px dashed rgba(245,245,240,0.2);
+  border-radius: 4px;
+}
+.submit-practice-msg span {
+  color: var(--cyan);
+  font-size: 0.85rem;
+}
+
 .header-credit strong { color: rgba(245,245,240,0.7); }
 .header-credit em { font-style: italic; }
 
