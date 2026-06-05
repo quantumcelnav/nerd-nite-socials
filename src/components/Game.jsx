@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import edition from '../data/edition.json'
+import { correctGifs, wrongGifs, pickRandom } from '../data/reactions'
+import ReactionGif from './ReactionGif'
 import '../game.css'
 
 const POINTS_PER_QUESTION = 100
@@ -11,6 +13,7 @@ export default function Game({ onComplete }) {
   const [score, setScore] = useState(0)
   const [selected, setSelected] = useState(null)
   const [isCorrect, setIsCorrect] = useState(false)
+  const [reactionGif, setReactionGif] = useState(null)
 
   const talk = edition.talks[talkIdx]
   const question = talk?.questions[questionIdx]
@@ -28,6 +31,7 @@ export default function Game({ onComplete }) {
     const correct = idx === question.answer
     setSelected(idx)
     setIsCorrect(correct)
+    setReactionGif(pickRandom(correct ? correctGifs : wrongGifs))
     if (correct) setScore(s => s + POINTS_PER_QUESTION)
     setPhase('result')
   }
@@ -126,18 +130,21 @@ export default function Game({ onComplete }) {
       </div>
 
       {phase === 'result' && (
-        <div className="result-bar">
-          <span className={isCorrect ? 'result-correct' : 'result-wrong'}>
-            {isCorrect ? `✓ Correct! +${POINTS_PER_QUESTION} pts` : `✗ Not quite!`}
-          </span>
-          <button className="next-btn" onClick={handleNext}>
-            {questionIdx < talk.questions.length - 1
-              ? 'Next Question →'
-              : talkIdx < edition.talks.length - 1
-              ? 'Next Round →'
-              : 'Finish →'}
-          </button>
-        </div>
+        <>
+          <ReactionGif src={reactionGif} isCorrect={isCorrect} />
+          <div className="result-bar">
+            <span className={isCorrect ? 'result-correct' : 'result-wrong'}>
+              {isCorrect ? `✓ Correct! +${POINTS_PER_QUESTION} pts` : `✗ Not quite!`}
+            </span>
+            <button className="next-btn" onClick={handleNext}>
+              {questionIdx < talk.questions.length - 1
+                ? 'Next Question →'
+                : talkIdx < edition.talks.length - 1
+                ? 'Next Round →'
+                : 'Finish →'}
+            </button>
+          </div>
+        </>
       )}
     </div>
   )
