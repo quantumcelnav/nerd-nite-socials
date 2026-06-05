@@ -1,0 +1,131 @@
+{
+  "edition": "Demo Edition",
+  "date": "2026",
+  "talks": [
+    {
+      "id": 1,
+      "title": "Let's Build a Pipe Organ!",
+      "speaker": "Joel Bacon",
+      "questions": [
+        {
+          "question": "How does a pipe organ produce sound?",
+          "options": [
+            "Vibrating strings struck by hammers",
+            "Air forced through pipes by a wind system",
+            "Electronic oscillators amplified through speakers",
+            "Reeds struck by rotating discs"
+          ],
+          "answer": 1
+        },
+        {
+          "question": "The largest pipe in a typical pipe organ can be how long?",
+          "options": [
+            "4 feet",
+            "8 feet",
+            "32 feet",
+            "64 feet"
+          ],
+          "answer": 2
+        },
+        {
+          "question": "What is the name for the keyboard played with the feet on a pipe organ?",
+          "options": [
+            "Pedalboard",
+            "Footboard",
+            "Bass manual",
+            "Treadle"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "The Grid's Growing Pains",
+      "speaker": "Dr. Sam Rivera",
+      "questions": [
+        {
+          "question": "What percentage of U.S. electricity currently comes from renewable sources?",
+          "options": [
+            "About 5%",
+            "About 12%",
+            "About 21%",
+            "About 40%"
+          ],
+          "answer": 2
+        },
+        {
+          "question": "What is the main challenge of integrating solar and wind into the power grid?",
+          "options": [
+            "They produce too much electricity",
+            "Their output is intermittent and hard to predict",
+            "They require water cooling",
+            "They can only operate in warm climates"
+          ],
+          "answer": 1
+        },
+        {
+          "question": "What does \"peak demand\" refer to in electrical grid management?",
+          "options": [
+            "The maximum voltage the grid can carry",
+            "The highest power consumption period of the day",
+            "The efficiency rating of a power plant",
+            "The distance electricity can travel without loss"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Fungi: The Internet of the Forest",
+      "speaker": "Dr. Maya Chen",
+      "questions": [
+        {
+          "question": "What is the \"Wood Wide Web\"?",
+          "options": [
+            "A logging industry database",
+            "Underground fungal networks connecting tree root systems",
+            "A type of bark beetle communication system",
+            "An old-growth forest conservation program"
+          ],
+          "answer": 1
+        },
+        {
+          "question": "Mycelium is the term for which part of a fungus?",
+          "options": [
+            "The fruiting body (mushroom cap)",
+            "The spores",
+            "The network of thread-like root structures",
+            "The cell wall"
+          ],
+          "answer": 2
+        },
+        {
+          "question": "What do trees share through fungal networks?",
+          "options": [
+            "Only water",
+            "Only genetic information",
+            "Carbon, nutrients, and chemical signals",
+            "Oxygen and nitrogen only"
+          ],
+          "answer": 2
+        }
+      ]
+    }
+  ],
+  "originStory": [
+    {
+      "text": "Hi. I'm Justin Fritz — and I'm a Nerd Nite Boss.\n\nThat's a real title. The Nerd Nite organization gave it to me, and I take it very seriously.\n\nNerd Nite started in Boston in 2003. A guy named Matt Wasowski talked a bar into letting scientists give talks between band sets. It spread to over 100 cities. And it came to Fort Collins because of me and one other very important person.\n\nHis name is Senne Van Loon.\n\nBut first: trivia."
+    },
+    {
+      "text": "Senne and I started Nerd Nite Fort Collins together.\n\nSenne is the kind of person who hears \"let's put on a nerdy event at a bar\" and immediately says yes — no hesitation, full commitment. That energy is rare and it matters. You can't build something like this alone.\n\nOur early events were scrappy. We found speakers by pestering our networks, borrowed equipment, and hoped the venue's Wi-Fi held up for the slide decks. Sometimes it didn't.\n\nIt didn't matter. The talks were great. That's always been the thing."
+    },
+    {
+      "text": "We didn't stay a two-person operation for long.\n\nJamie Fritz and Hannah Bauer joined us — and the whole thing leveled up. More hands, better events, a real team.\n\nFor a while, Mary Beth Arcodia hosted. She was brilliant at it — warm, sharp, funny in exactly the right way for a room full of nerds on their third drink. She held the stage like she was born for it.\n\nMary Beth eventually left for a faculty position in Miami. We were sad to lose her and proud of her in equal measure. That's the Nerd Nite family."
+    },
+    {
+      "text": "You just played Nerdometer.\n\nEvery edition is built around a real Nerd Nite Fort Collins event — the actual talks, the actual speakers, the actual obsessions people brought to a bar and shared with strangers.\n\nSenne, Jamie, Hannah, Mary Beth — and everyone who has ever stood up at a Nerd Nite and trusted a room full of people with the thing they love most.\n\nThat's what this is. Come be part of it.\n\n— Justin Fritz, Nerd Nite Fort Collins Boss"
+    }
+  ]
+}
