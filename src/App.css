@@ -1,9 +1,29 @@
-/* Header */
+/* ── App shell ─────────────────────────────────────────── */
+.app-root {
+  min-height: 100vh;
+}
+
+/* Screen fade-in */
+.screen-enter {
+  animation: screenFade 0.25s ease;
+}
+
+@keyframes screenFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-enter { animation: none; }
+}
+
+/* ── Header ────────────────────────────────────────────── */
 .header {
   background: var(--bg);
   padding: 20px 24px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 16px;
   border-bottom: 4px solid var(--cyan);
 }
@@ -38,6 +58,69 @@
   }
 }
 
+/* Header credit */
+.header-credit {
+  font-family: var(--font);
+  font-size: 0.75rem;
+  color: rgba(245,245,240,0.45);
+  text-align: right;
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+
+.header-credit strong { color: rgba(245,245,240,0.7); }
+.header-credit em { font-style: italic; }
+
+/* ── Mode selector ─────────────────────────────────────── */
+.mode-select {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.mode-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 32px 24px;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  min-height: 140px;
+  transition: filter 0.15s;
+}
+
+.mode-btn:hover { filter: brightness(1.08); }
+.mode-btn:active { filter: brightness(0.95); }
+
+.mode-trivia   { background: var(--cyan); }
+.mode-ontology { background: var(--orange); }
+
+.mode-icon  { font-size: 2rem; }
+.mode-label {
+  font-family: var(--font);
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--dark-text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mode-desc {
+  font-family: var(--font);
+  font-size: 0.85rem;
+  color: var(--dark-text);
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+@media (min-width: 600px) {
+  .mode-select { grid-template-columns: 1fr 1fr; }
+  .mode-btn { min-height: 180px; padding: 40px 32px; }
+}
+
+/* ── Home extras ───────────────────────────────────────── */
 /* Hero */
 .hero {
   display: flex;

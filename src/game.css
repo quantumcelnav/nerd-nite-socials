@@ -260,6 +260,26 @@
   }
 }
 
+/* ── Answer letter ─────────────────────────────────────── */
+.answer-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.answer-letter {
+  font-weight: bold;
+  color: var(--cyan);
+  flex-shrink: 0;
+  min-width: 20px;
+}
+
+.answer-btn.correct .answer-letter,
+.answer-btn.wrong   .answer-letter,
+.answer-btn.dimmed  .answer-letter { color: inherit; opacity: 0.7; }
+
+.answer-text { flex: 1; }
+
 /* ── Origin story ──────────────────────────────────────── */
 .origin-screen {
   display: flex;
@@ -315,6 +335,29 @@
 .origin-btn:hover {
   background: var(--orange);
   color: var(--white);
+}
+
+.origin-signature {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(26,47,58,0.3);
+}
+
+.origin-sig-name {
+  font-family: var(--font);
+  font-weight: bold;
+  color: var(--dark-text);
+  font-size: 0.9rem;
+}
+
+.origin-sig-title {
+  font-family: var(--font);
+  font-style: italic;
+  color: var(--dark-text);
+  opacity: 0.6;
+  font-size: 0.8rem;
 }
 
 @media (min-width: 768px) {
@@ -390,12 +433,42 @@
   transition: width 1s ease;
 }
 
+.submit-mode-tag {
+  font-family: var(--font);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
+  padding: 4px 12px;
+  align-self: center;
+}
+
 .submit-score-raw {
   font-family: var(--font);
   font-size: 0.85rem;
   color: var(--white);
   opacity: 0.45;
   margin-bottom: 24px;
+}
+
+.submit-boss-msg {
+  font-family: var(--font);
+  font-size: 1rem;
+  font-style: italic;
+  color: #f5c518;
+  text-align: center;
+  margin: 0 0 8px;
+  animation: bossGlow 1.5s ease infinite alternate;
+}
+
+@keyframes bossGlow {
+  from { opacity: 0.8; }
+  to   { opacity: 1; text-shadow: 0 0 20px rgba(245,197,24,0.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submit-boss-msg { animation: none; }
 }
 
 .submit-subtext {
@@ -455,6 +528,36 @@
 .submit-btn:disabled {
   opacity: 0.4;
   cursor: default;
+}
+
+.share-btn {
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: bold;
+  background: none;
+  border: 2px solid var(--white);
+  color: var(--white);
+  padding: 14px 24px;
+  min-height: 52px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  transition: background 0.2s, color 0.2s;
+}
+
+.share-btn:hover {
+  background: var(--white);
+  color: var(--dark-text);
+}
+
+.share-feedback {
+  font-family: var(--font);
+  font-size: 0.85rem;
+  color: #2ecc71;
+  text-align: center;
+  margin: 0;
+  animation: fadeIn 0.2s ease;
 }
 
 .skip-btn {

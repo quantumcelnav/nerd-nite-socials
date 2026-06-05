@@ -1,0 +1,143 @@
+{
+  "intro": "Everything that exists is *some kind* of thing. But what kinds are there? Philosophers have been arguing about this for 2,500 years. This is your chance to find out where your intuitions land.",
+  "categories": {
+    "physical": { "label": "Physical Thing", "icon": "🪨", "description": "Has mass, occupies space, exists independently of minds." },
+    "living":   { "label": "Living Thing",   "icon": "🌿", "description": "Biological organism — grows, metabolizes, reproduces." },
+    "abstract": { "label": "Abstract Idea",  "icon": "💭", "description": "Exists in minds or logic — no physical location." },
+    "event":    { "label": "Event or Process","icon": "⚡", "description": "Something that happens over time, not a stable object." },
+    "relation": { "label": "Relationship",   "icon": "🔗", "description": "Exists between two or more things, not in either alone." },
+    "social":   { "label": "Social Construct","icon": "🏛️", "description": "Real only because humans collectively agree it is." }
+  },
+  "concepts": [
+    {
+      "concept": "Tuesday",
+      "category": "abstract",
+      "hook": "You've lived through hundreds of them. But have you ever seen one?",
+      "clues": [
+        { "statement": "You can touch it.", "answer": false },
+        { "statement": "It would exist even if all humans disappeared.", "answer": false },
+        { "statement": "It exists in a specific physical location.", "answer": false },
+        { "statement": "It is a shared human convention for organizing time.", "answer": true }
+      ],
+      "explanation": "Tuesday doesn't exist anywhere in space. You can't point to it. It exists because billions of people tacitly agree to call a certain rotation of Earth by that name. Remove the humans, and Tuesday vanishes — not the day itself, but the concept of 'Tuesday.' That makes it an abstract idea: real in effect, nowhere in space.",
+      "funFact": "Philosopher W.V.O. Quine argued that abstract objects like days of the week are just as 'real' as tables and chairs — they're just different in kind. Others disagree vigorously. Ontology has no referees."
+    },
+    {
+      "concept": "The Number Zero",
+      "category": "abstract",
+      "hook": "It took humanity over a thousand years to invent it. What exactly did we invent?",
+      "clues": [
+        { "statement": "You can hold it.", "answer": false },
+        { "statement": "It was discovered, like a continent.", "answer": false },
+        { "statement": "It would be true that 0 + 0 = 0 even without mathematicians.", "answer": true },
+        { "statement": "It has a location in space.", "answer": false }
+      ],
+      "explanation": "Zero is one of philosophy's great puzzles. It's the number that represents nothing — but it's definitely something. Mathematical Platonists say zero exists in an abstract realm independent of minds. Nominalists say it's just a symbol humans invented. Either way, you can't stub your toe on it.",
+      "funFact": "The Babylonians and Mayans both invented placeholder zeros independently. It took until the 7th century AD for Indian mathematicians to treat zero as a number in its own right — one you could calculate with."
+    },
+    {
+      "concept": "Pain",
+      "category": "abstract",
+      "hook": "You know exactly what it is. Can you explain where it lives?",
+      "clues": [
+        { "statement": "Pain has a precise physical location in space.", "answer": false },
+        { "statement": "Pain requires a mind to exist.", "answer": true },
+        { "statement": "A brain scan can show pain directly.", "answer": false },
+        { "statement": "Two people can feel the exact same pain.", "answer": false }
+      ],
+      "explanation": "Pain is a qualia — a subjective, first-person experience. Brain scans show neural correlates of pain, not pain itself. Your pain is utterly private. No one else can feel your toothache, no matter how good their neuroscience is. This is the 'hard problem of consciousness': physical brain states don't obviously explain why anything feels like anything.",
+      "funFact": "Philosopher Thomas Nagel asked: 'What is it like to be a bat?' His point: even if we map every neuron in a bat's brain, we can't know what echolocation *feels* like from the inside. Pain raises the same question for humans."
+    },
+    {
+      "concept": "Gravity",
+      "category": "relation",
+      "hook": "It shapes the entire universe. But it doesn't exist in any one place.",
+      "clues": [
+        { "statement": "Gravity exists inside the Sun.", "answer": false },
+        { "statement": "Gravity exists between the Sun and Earth.", "answer": true },
+        { "statement": "If there were only one object in the universe, gravity would still exist.", "answer": false },
+        { "statement": "Gravity requires at least two things with mass.", "answer": true }
+      ],
+      "explanation": "Gravity is a relationship — specifically, a curvature in spacetime that exists *between* massive objects. A single lonely proton in an otherwise empty universe doesn't 'have' gravity in any meaningful sense. Gravity is what happens between things, not something any one thing possesses.",
+      "funFact": "Einstein's general relativity reframed gravity not as a force but as the geometry of spacetime — mass curves space, and objects follow that curvature. Gravity is literally the shape of the universe responding to stuff in it."
+    },
+    {
+      "concept": "Money",
+      "category": "social",
+      "hook": "The most powerful force in human civilization. But it only works if we all believe in it.",
+      "clues": [
+        { "statement": "A $100 bill has intrinsic physical value.", "answer": false },
+        { "statement": "Money would still be money if everyone stopped believing in it.", "answer": false },
+        { "statement": "Money requires a community that agrees on its value.", "answer": true },
+        { "statement": "Bitcoin and gold coins are different kinds of things.", "answer": false }
+      ],
+      "explanation": "Money is pure social construction. A dollar bill is cotton and linen worth almost nothing on its own. What makes it money is collective agreement — enforced by laws, habits, and trust. Remove the agreement and you have colorful paper. This is why hyperinflation is so catastrophic: it's not the paper that collapses, it's the shared belief.",
+      "funFact": "Philosopher John Searle calls money an example of 'institutional reality' — things that exist only because humans have collectively assigned them a function. Marriage, borders, and property rights work the same way."
+    },
+    {
+      "concept": "A Virus",
+      "category": "living",
+      "hook": "This one is genuinely contested. Biologists still argue about it.",
+      "clues": [
+        { "statement": "A virus can reproduce on its own.", "answer": false },
+        { "statement": "A virus contains genetic material (DNA or RNA).", "answer": true },
+        { "statement": "A virus evolves by natural selection.", "answer": true },
+        { "statement": "A virus is considered alive by most biologists.", "answer": false }
+      ],
+      "explanation": "Viruses break biology's categories. They have genes, they evolve, they interact with living systems — but they can't reproduce without hijacking a host cell. Most biologists say they're not technically alive. But they're clearly not inert matter either. They sit at the haunted border between chemistry and life — which is exactly what makes them philosophically interesting.",
+      "funFact": "The COVID-19 virus, SARS-CoV-2, is about 100 nanometers across. It's so small that 800 of them could sit side-by-side across the width of a human hair. And yet it reorganized human civilization."
+    },
+    {
+      "concept": "An Explosion",
+      "category": "event",
+      "hook": "It's dramatic, it's real — but where is it, exactly?",
+      "clues": [
+        { "statement": "An explosion is a stable object.", "answer": false },
+        { "statement": "An explosion happens over time.", "answer": true },
+        { "statement": "You can put an explosion in a box.", "answer": false },
+        { "statement": "After an explosion is over, it still exists somewhere.", "answer": false }
+      ],
+      "explanation": "An explosion is an event — a rapid process of energy release over time. Events are a peculiar category: they're real, they have causes and effects, they can be early or late, they can be loud — but they're not objects. You can't point to where an explosion 'is' after it's over. Events exist in time more than in space.",
+      "funFact": "Philosopher Donald Davidson argued that events are as real as physical objects and deserve their own place in our ontology. Every action you take is an event — a thing that happens, irreversible and unrepeatable."
+    },
+    {
+      "concept": "Friendship",
+      "category": "relation",
+      "hook": "It's one of the most valuable things in human life. It lives nowhere.",
+      "clues": [
+        { "statement": "Friendship exists inside one person.", "answer": false },
+        { "statement": "Friendship requires at least two people.", "answer": true },
+        { "statement": "You could put friendship in a jar.", "answer": false },
+        { "statement": "Friendship is just a feeling inside your head.", "answer": false }
+      ],
+      "explanation": "Friendship is a relationship — it exists between people, not inside any one of them. It's not just a feeling (that would make it a mental state), and it's not a social agreement like money. Friendship is a genuine bond, with real structure: mutual care, shared history, reciprocity. It lives in the *between*.",
+      "funFact": "Aristotle wrote three books on friendship (philia) in his Nicomachean Ethics. He distinguished three kinds: friendships of utility, of pleasure, and of virtue. Only the last, he argued, is true friendship — and it requires both people to be good."
+    },
+    {
+      "concept": "Darkness",
+      "category": "abstract",
+      "hook": "You've been afraid of it. But here's a question: does it exist?",
+      "clues": [
+        { "statement": "Darkness is a physical thing that travels through space.", "answer": false },
+        { "statement": "Darkness has mass or energy.", "answer": false },
+        { "statement": "Darkness is the absence of light, not a thing in itself.", "answer": true },
+        { "statement": "You can create darkness by adding something to a room.", "answer": false }
+      ],
+      "explanation": "Darkness is a privation — an absence, not a presence. There are no 'dark particles.' You can't beam darkness at something. When we talk about darkness, we're really talking about the absence of photons. This matters philosophically: many things we talk about as if they're real are actually just the lack of something else. Silence, cold, shadow — all privations.",
+      "funFact": "The same logic applies to cold. Cold isn't a thing — it's the absence of heat (molecular kinetic energy). We experience absences so vividly that we give them names and treat them as things. Language shapes ontology."
+    },
+    {
+      "concept": "The Internet",
+      "category": "social",
+      "hook": "Trick question. This one genuinely belongs to more than one category.",
+      "clues": [
+        { "statement": "The internet has physical components (cables, servers, routers).", "answer": true },
+        { "statement": "The internet is just its physical components.", "answer": false },
+        { "statement": "The internet requires human social agreement to function as 'the internet.'", "answer": true },
+        { "statement": "If all the servers disappeared, the idea of the internet would too.", "answer": true }
+      ],
+      "explanation": "The internet is a boundary-crossing object — it has a physical layer (fiber optic cables, data centers, devices) AND a social layer (protocols, domain names, shared conventions). The physical stuff without the social agreement is just metal and glass. The social agreement without the physical infrastructure is just a wish. It takes both. Ontology doesn't always give you clean answers.",
+      "funFact": "The word 'internet' is short for 'internetwork' — a network of networks. The physical internet spans over 1.2 million kilometers of undersea cable. Most of it is privately owned, running through shark-infested waters, keeping civilization running."
+    }
+  ]
+}

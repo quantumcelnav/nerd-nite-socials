@@ -25,3 +25,22 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+
+:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--cyan);
+  color: var(--dark-text);
+  padding: 12px 24px;
+  font-family: var(--font);
+  font-weight: bold;
+  text-decoration: none;
+  z-index: 9999;
+}
+.skip-link:focus { top: 0; }

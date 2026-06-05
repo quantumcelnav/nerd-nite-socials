@@ -15,23 +15,25 @@ export default function Home({ onPlay, onLeaderboard }) {
           <h1>Nerdometer</h1>
           <span className="tagline">How nerdy are you, really?</span>
         </div>
+        <div className="header-credit">
+          Presented by <strong>Justin Fritz</strong><br />
+          <em>Nerd Nite Fort Collins Boss</em>
+        </div>
       </header>
 
-      <section className="hero">
-        <div className="hero-image">
-          <span className="hero-image-placeholder">🧠</span>
-        </div>
-        <div className="hero-text">
-          <div>
-            <h2>Edition: {edition.edition}</h2>
-            <p>
-              Trivia built around tonight's Nerd Nite Fort Collins talks.
-              Answer questions, unlock the Nerd Nite origin story, and
-              climb the leaderboard.
-            </p>
-          </div>
-          <button className="play-btn" onClick={onPlay}>Play Now</button>
-        </div>
+      <section className="mode-select">
+        <button className="mode-btn mode-trivia" onClick={() => onPlay('trivia')}
+          aria-label="Play Trivia — test your knowledge of tonight's talks">
+          <span className="mode-icon">🧠</span>
+          <span className="mode-label">Trivia</span>
+          <span className="mode-desc">Test your knowledge of tonight's talks</span>
+        </button>
+        <button className="mode-btn mode-ontology" onClick={() => onPlay('ontology')}
+          aria-label="What Is It? — explore the nature of things">
+          <span className="mode-icon">💭</span>
+          <span className="mode-label">What Is It?</span>
+          <span className="mode-desc">Explore the nature of things</span>
+        </button>
       </section>
 
       <section className="info-strip">
@@ -53,7 +55,8 @@ export default function Home({ onPlay, onLeaderboard }) {
               <span className="score">{row.score}</span>
             </div>
           ))}
-          <button className="view-all-btn" onClick={onLeaderboard}>
+          <button className="view-all-btn" onClick={onLeaderboard}
+            aria-label="View full leaderboard">
             View Full Leaderboard
           </button>
         </div>
@@ -62,9 +65,30 @@ export default function Home({ onPlay, onLeaderboard }) {
       <section className="social-section">
         <h3>Find Us Online</h3>
         <div className="social-links">
-          <a className="social-link" href="#" aria-label="Facebook">Facebook</a>
-          <a className="social-link" href="#" aria-label="Instagram">Instagram</a>
-          <a className="social-link" href="#" aria-label="Meetup">Meetup</a>
+          <a className="social-link"
+            href="https://www.facebook.com/profile.php?id=100093506363610"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="Nerd Nite Fort Collins on Facebook">
+            Fort Collins
+          </a>
+          <a className="social-link"
+            href="https://www.facebook.com/nerdnite"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="Nerd Nite Global on Facebook">
+            Facebook
+          </a>
+          <a className="social-link"
+            href="https://www.instagram.com/nerdnitereal"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="Nerd Nite on Instagram">
+            Instagram
+          </a>
+          <a className="social-link"
+            href="https://www.amazon.com/dp/1250288347?tag=macmillan-20&tag=SMPbkhowtowinfriendssandinfluefungilpgb-20"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="How to Win Friends and Influence Fungi — the Nerd Nite book">
+            The Book 📗
+          </a>
         </div>
       </section>
 

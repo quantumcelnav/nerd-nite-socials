@@ -1,0 +1,343 @@
+/* ── Ontology Game ─────────────────────────────────────── */
+
+/* Intro screen */
+.onto-intro {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 24px;
+}
+
+.onto-intro-card {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.onto-kicker {
+  font-family: var(--font);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--orange);
+}
+
+.onto-intro-title {
+  font-family: var(--font);
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: bold;
+  color: var(--white);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.onto-intro-text {
+  font-family: var(--font);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: rgba(245, 245, 240, 0.8);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.onto-categories-preview {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+@media (min-width: 480px) {
+  .onto-categories-preview {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.onto-cat-preview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  color: rgba(245, 245, 240, 0.6);
+  padding: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.onto-cat-icon { font-size: 1.1rem; }
+.onto-cat-label { font-size: 0.8rem; }
+
+.onto-start-btn {
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: bold;
+  background: var(--cyan);
+  color: var(--dark-text);
+  border: none;
+  padding: 18px 24px;
+  min-height: 60px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: background 0.2s;
+}
+
+.onto-start-btn:hover { background: #00d4f5; }
+
+.onto-credit {
+  font-family: var(--font);
+  font-size: 0.8rem;
+  color: rgba(245,245,240,0.35);
+  text-align: center;
+}
+
+/* Guess screen */
+.onto-guess {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 32px;
+  gap: 24px;
+}
+
+.onto-progress {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.onto-pip {
+  height: 6px;
+  flex: 1;
+  min-width: 20px;
+  background: rgba(255,255,255,0.1);
+  transition: background 0.3s;
+}
+.pip-correct { background: #2ecc71; }
+.pip-wrong   { background: #e74c3c; }
+.pip-current { background: var(--cyan); }
+
+.onto-concept-card {
+  background: rgba(255,255,255,0.04);
+  border-left: 4px solid var(--orange);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.onto-concept-hook {
+  font-family: var(--font);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: rgba(245,245,240,0.55);
+  line-height: 1.5;
+}
+
+.onto-concept-name {
+  font-family: var(--font);
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-weight: bold;
+  color: var(--white);
+  line-height: 1.1;
+}
+
+.onto-question {
+  font-family: var(--font);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--cyan);
+}
+
+.onto-category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 480px) {
+  .onto-category-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.onto-cat-btn {
+  font-family: var(--font);
+  background: rgba(255,255,255,0.05);
+  border: 2px solid rgba(255,255,255,0.12);
+  color: var(--white);
+  padding: 16px 8px;
+  min-height: 80px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.onto-cat-btn:hover {
+  background: rgba(0,184,217,0.12);
+  border-color: var(--cyan);
+}
+
+.onto-cat-btn-icon { font-size: 1.5rem; }
+.onto-cat-btn-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Reveal screen */
+.onto-reveal {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 40px;
+  gap: 20px;
+}
+
+.onto-verdict {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  border-left: 4px solid;
+}
+
+.onto-verdict.verdict-correct {
+  border-color: #2ecc71;
+  background: rgba(46,204,113,0.07);
+}
+
+.onto-verdict.verdict-wrong {
+  border-color: #e74c3c;
+  background: rgba(231,76,60,0.07);
+}
+
+.verdict-icon {
+  font-size: 1.4rem;
+  font-family: var(--font);
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.onto-verdict.verdict-correct .verdict-icon { color: #2ecc71; }
+.onto-verdict.verdict-wrong  .verdict-icon { color: #e74c3c; }
+
+.verdict-text {
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--white);
+  line-height: 1.4;
+}
+
+/* Clues */
+.onto-clues { display: flex; flex-direction: column; gap: 2px; }
+
+.onto-clues-label {
+  font-family: var(--font);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(245,245,240,0.4);
+  margin-bottom: 8px;
+}
+
+.onto-clue {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  animation: clueSlide 0.3s ease;
+}
+
+@keyframes clueSlide {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.onto-clue.clue-true  { background: rgba(46,204,113,0.08); }
+.onto-clue.clue-false { background: rgba(231,76,60,0.08); }
+
+.clue-mark {
+  font-weight: bold;
+  flex-shrink: 0;
+  width: 20px;
+}
+.onto-clue.clue-true  .clue-mark { color: #2ecc71; }
+.onto-clue.clue-false .clue-mark { color: #e74c3c; }
+
+.clue-text { color: var(--white); line-height: 1.4; }
+
+/* Explanation */
+.onto-explanation {
+  font-family: var(--font);
+  font-size: 0.95rem;
+  color: rgba(245,245,240,0.85);
+  line-height: 1.75;
+  padding: 20px;
+  background: rgba(0,184,217,0.06);
+  border-left: 3px solid var(--cyan);
+}
+
+.onto-funfact {
+  font-family: var(--font);
+  font-size: 0.85rem;
+  color: rgba(245,245,240,0.55);
+  line-height: 1.6;
+  padding: 16px;
+  border-left: 3px solid var(--orange);
+  font-style: italic;
+}
+
+.funfact-label {
+  display: block;
+  font-style: normal;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+
+/* Buttons */
+.onto-next-clue-btn,
+.onto-continue-btn {
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  padding: 16px 24px;
+  min-height: 56px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background 0.2s;
+}
+
+.onto-next-clue-btn {
+  background: rgba(255,255,255,0.08);
+  color: var(--white);
+  border: 2px solid rgba(255,255,255,0.2);
+}
+
+.onto-next-clue-btn:hover {
+  background: rgba(255,255,255,0.14);
+}
+
+.onto-continue-btn {
+  background: var(--cyan);
+  color: var(--dark-text);
+}
+
+.onto-continue-btn:hover { background: #00d4f5; }
+
+/* ── prefers-reduced-motion ────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .onto-clue { animation: none; }
+}
