@@ -107,6 +107,72 @@
 .header-credit strong { color: rgba(245,245,240,0.7); }
 .header-credit em { font-style: italic; }
 
+/* ── QR Slide — projector / screen display ─────────────── */
+.qr-slide {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 40px 24px;
+  text-align: center;
+}
+.qr-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.qr-nite {
+  font-family: var(--font);
+  font-size: 1rem;
+  letter-spacing: 4px;
+  color: var(--orange);
+  font-weight: bold;
+}
+.qr-edition {
+  font-family: var(--font);
+  font-size: 2rem;
+  color: var(--cyan);
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+.qr-cta {
+  font-family: var(--font);
+  font-size: 1.4rem;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+.qr-code-wrap {
+  padding: 20px;
+  background: var(--bg);
+  border: 3px solid var(--cyan);
+  border-radius: 8px;
+}
+.qr-url {
+  font-family: var(--font);
+  font-size: 1rem;
+  color: rgba(245,245,240,0.5);
+  letter-spacing: 1px;
+}
+.qr-tagline {
+  font-family: var(--font);
+  font-size: 0.9rem;
+  color: rgba(245,245,240,0.3);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+.qr-missing {
+  font-family: var(--font);
+  font-size: 0.9rem;
+  color: var(--orange);
+  border: 1px dashed var(--orange);
+  padding: 16px 24px;
+  border-radius: 4px;
+}
+
 /* ── Mode selector ─────────────────────────────────────── */
 .mode-select {
   display: grid;

@@ -5,11 +5,16 @@ import OntologyGame from './components/OntologyGame'
 import ScoreSubmit from './components/ScoreSubmit'
 import PostGame from './components/PostGame'
 import Leaderboard from './components/Leaderboard'
+import QRSlide from './components/QRSlide'
 import { useNonce } from './hooks/useNonce'
 
 export default function App() {
   const [screen, setScreen] = useState('home')
   const isLiveMode = useNonce()
+
+  // Projector mode: ?qr=1 shows the full-screen QR slide only
+  const isQRMode = new URLSearchParams(window.location.search).get('qr') === '1'
+  if (isQRMode) return <QRSlide />
   const [finalScore, setFinalScore] = useState(0)
   const [maxScore, setMaxScore] = useState(0)
   const [gameMode, setGameMode] = useState('trivia') // 'trivia' | 'ontology'
