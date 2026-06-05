@@ -1,48 +1,48 @@
 {
-  "edition": "S2026E06",
-  "nonce": "4hxqp7",
-  "date": "Thursday, June 18, 2026",
+  "edition": "S2026E07",
+  "nonce": "bb1a09",
+  "date": "Thursday, August 20, 2026",
   "venue": "Wolverine Farm Publick House",
   "doorsOpen": "6:30pm",
   "talksStart": "7:00pm",
   "admission": "$8 · Students $4",
-  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2026e06",
+  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2026e07",
   "talks": [
     {
       "id": 1,
-      "title": "Let's Build a Pipe Organ!",
-      "speaker": "Joel Bacon",
+      "title": "Why Your Brain Lies to You",
+      "speaker": "Dr. Sarah Okonkwo",
       "questions": [
         {
           "difficulty": 1,
-          "question": "How does a pipe organ produce sound?",
+          "question": "What is the name for the brain's tendency to seek patterns even in random data?",
           "options": [
-            "Vibrating strings struck by hammers",
-            "Air forced through pipes by a wind system",
-            "Electronic oscillators amplified through speakers",
-            "Reeds struck by rotating discs"
+            "Apophenia",
+            "Pareidolia",
+            "Confabulation",
+            "Priming"
+          ],
+          "answer": 0
+        },
+        {
+          "difficulty": 2,
+          "question": "The 'change blindness' phenomenon shows that humans often fail to notice large changes in a scene when?",
+          "options": [
+            "The scene is in low light",
+            "The change happens during a brief visual interruption",
+            "The observer is tired",
+            "The changed object is small"
           ],
           "answer": 1
         },
         {
-          "difficulty": 2,
-          "question": "What is the name for the keyboard played with the feet on a pipe organ?",
-          "options": [
-            "Treadle",
-            "Bass manual",
-            "Footboard",
-            "Pedalboard"
-          ],
-          "answer": 3
-        },
-        {
           "difficulty": 3,
-          "question": "A pipe organ's \"wind chest\" does what?",
+          "question": "What does the 'misinformation effect' in memory research demonstrate?",
           "options": [
-            "Amplifies sound through a resonance chamber",
-            "Distributes pressurized air to selected pipes when keys are pressed",
-            "Stores the organ's MIDI data for playback",
-            "Regulates temperature to keep pipes in tune"
+            "People remember traumatic events more accurately than mundane ones",
+            "Post-event information can alter a person's memory of the original event",
+            "Eyewitness testimony is reliable when given immediately after an event",
+            "False memories are only created under hypnosis"
           ],
           "answer": 1
         }
@@ -50,81 +50,81 @@
     },
     {
       "id": 2,
-      "title": "The Grid's Growing Pains",
-      "speaker": "Evan Wilson",
+      "title": "The Secret Life of Soil",
+      "speaker": "Marcus Webb",
       "questions": [
         {
           "difficulty": 1,
-          "question": "What is the main challenge of adding solar and wind to the power grid?",
+          "question": "Approximately how many bacterial cells live in one teaspoon of healthy soil?",
           "options": [
-            "They produce too much electricity",
-            "Their output is intermittent — sun and wind aren't always available",
-            "They require nuclear backup",
-            "They only work in warm climates"
-          ],
-          "answer": 1
-        },
-        {
-          "difficulty": 2,
-          "question": "What does \"peak demand\" mean in grid management?",
-          "options": [
-            "The maximum voltage the grid can carry",
-            "The efficiency rating of a power plant",
-            "The period of highest electricity consumption in a day",
-            "The distance power can travel without loss"
+            "A few hundred",
+            "About a million",
+            "Up to a billion",
+            "Around ten thousand"
           ],
           "answer": 2
         },
         {
-          "difficulty": 3,
-          "question": "What is the \"duck curve\" in grid management?",
+          "difficulty": 2,
+          "question": "What is mycorrhizae?",
           "options": [
-            "A safety protocol for utility workers near water",
-            "A graph showing excess midday solar generation creating a steep evening ramp demand",
-            "The efficiency loss curve of aging transmission lines",
-            "A model for predicting weather-related outages"
+            "A soil-borne plant disease caused by bacteria",
+            "A symbiotic fungal network that connects plant roots and exchanges nutrients",
+            "The top layer of organic matter in a forest floor",
+            "A chemical process that converts nitrogen into plant-usable form"
           ],
           "answer": 1
+        },
+        {
+          "difficulty": 3,
+          "question": "What percentage of the world's food production depends on healthy topsoil?",
+          "options": [
+            "Around 25%",
+            "About 50%",
+            "Roughly 70%",
+            "Over 95%"
+          ],
+          "answer": 3
         }
       ]
     },
     {
       "id": 3,
-      "title": "Nerd Nite Fort Collins",
-      "speaker": "Justin Fritz",
+      "title": "Rockets Are Hard: A Love Letter to Failure",
+      "speaker": "Priya Nair",
       "questions": [
         {
           "difficulty": 1,
-          "question": "Where does Nerd Nite Fort Collins hold most of its shows?",
+          "question": "What is the Tsiolkovsky rocket equation used to calculate?",
           "options": [
-            "Gilded Goat Brewing",
-            "The Forge Publick House",
-            "Wolverine Farm Publick House",
-            "Odell Brewing"
+            "The maximum altitude a rocket can reach",
+            "The relationship between a rocket's mass, exhaust velocity, and delta-v",
+            "The structural stress on a rocket during re-entry",
+            "The fuel combustion temperature needed for orbit"
           ],
-          "answer": 2
+          "answer": 1
         },
         {
           "difficulty": 2,
-          "question": "In what city was Nerd Nite founded?",
+          "question": "Why is getting to orbit so much harder than simply reaching space (100km altitude)?",
           "options": [
-            "New York",
-            "Boston",
-            "London",
-            "Austin"
+            "Orbital mechanics require far more fuel due to air resistance above 100km",
+            "You must reach orbital velocity (~7.8 km/s sideways), not just altitude",
+            "Space agencies add unnecessary safety margins to fuel calculations",
+            "The Van Allen belts require special shielding that adds mass"
           ],
           "answer": 1
         },
         {
           "difficulty": 3,
-          "question": "What is the official Nerd Nite Fort Collins tagline?",
+          "question": "What is 'specific impulse' and why do rocket engineers care about it?",
           "options": [
-            "Science after dark",
-            "Smart people, strong drinks",
-            "Be there and be square",
-            "Knowledge is power — drink responsibly"
+            "The thrust-to-weight ratio of an engine at sea level",
+            "A measure of how efficiently a rocket engine uses propellant — higher is better",
+            "The maximum g-force a rocket structure can withstand during launch",
+            "The time delay between ignition and full thrust development"
           ],
-          "answer": 2
+          "answer": 1
         }
       ]
     }
