@@ -12,11 +12,11 @@ const SOCIALS = [
     color: 'var(--cyan)',
   },
   {
-    id: 'instagram',
-    label: '@nerdnitereal',
-    cta: 'Follow on Instagram',
-    sub: 'Photos, stories, and nerd culture',
-    href: 'https://www.instagram.com/nerdnitereal',
+    id: 'book',
+    label: 'How to Win Friends & Influence Fungi',
+    cta: 'Read the book',
+    sub: 'The official Nerd Nite book — Amazon',
+    href: 'https://www.amazon.com/dp/1250288347?tag=macmillan-20&tag=SMPbkhowtowinfriendssandinfluefungilpgb-20',
     color: 'var(--orange)',
   },
   {
@@ -28,11 +28,11 @@ const SOCIALS = [
     color: 'var(--cyan)',
   },
   {
-    id: 'book',
-    label: 'How to Win Friends & Influence Fungi',
-    cta: 'Read the book',
-    sub: 'The official Nerd Nite book — Amazon',
-    href: 'https://www.amazon.com/dp/1250288347?tag=macmillan-20&tag=SMPbkhowtowinfriendssandinfluefungilpgb-20',
+    id: 'instagram',
+    label: '@nerdnitereal',
+    cta: 'Follow on Instagram',
+    sub: 'Photos, stories, and nerd culture',
+    href: 'https://www.instagram.com/nerdnitereal',
     color: 'var(--orange)',
   },
 ]
