@@ -39,12 +39,23 @@ export default function Home({ onPlay, onLeaderboard }) {
       <section className="info-strip">
         <div className="info-text">
           <h3>Tonight's Talks</h3>
+          <div className="event-meta">
+            <span>{edition.date}</span>
+            <span>{edition.venue}</span>
+            <span>Doors {edition.doorsOpen} &middot; Talks {edition.talksStart}</span>
+            <span>{edition.admission}</span>
+          </div>
           {edition.talks.map(t => (
             <div key={t.id} className="talk-row">
               <strong>{t.title}</strong>
               <em>{t.speaker}</em>
             </div>
           ))}
+          {edition.ticketUrl && (
+            <a className="ticket-link" href={edition.ticketUrl} target="_blank" rel="noopener noreferrer">
+              Get Tickets →
+            </a>
+          )}
         </div>
         <div className="leaderboard-panel">
           <h3>Top Scores</h3>

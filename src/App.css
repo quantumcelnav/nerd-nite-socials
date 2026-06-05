@@ -357,6 +357,75 @@
   }
 }
 
+/* Event meta (venue/date/time/admission) */
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font);
+  font-size: 0.8rem;
+  color: var(--dark-text);
+  opacity: 0.75;
+  margin-bottom: 16px;
+}
+
+/* Talk rows */
+.talk-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,42,55,0.15);
+  font-family: var(--font);
+}
+
+.talk-row strong { font-size: 0.95rem; color: var(--dark-text); }
+.talk-row em { font-size: 0.85rem; color: var(--dark-text); opacity: 0.7; }
+
+/* Ticket link */
+.ticket-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--dark-text);
+  background: transparent;
+  border: 2px solid var(--dark-text);
+  padding: 10px 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.ticket-link:hover {
+  background: var(--dark-text);
+  color: var(--orange);
+}
+
+/* View all leaderboard button */
+.view-all-btn {
+  margin-top: 16px;
+  background: transparent;
+  border: 2px solid var(--cyan);
+  color: var(--cyan);
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 10px 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background 0.15s, color 0.15s;
+  min-height: 44px;
+}
+
+.view-all-btn:hover {
+  background: var(--cyan);
+  color: var(--dark-text);
+}
+
 /* Footer */
 .footer {
   background: var(--bg);

@@ -1,6 +1,11 @@
 {
-  "edition": "Demo Edition",
-  "date": "2026",
+  "edition": "S2026E06",
+  "date": "Thursday, June 18, 2026",
+  "venue": "Wolverine Farm Publick House",
+  "doorsOpen": "6:30pm",
+  "talksStart": "7:00pm",
+  "admission": "$8 · Students $4",
+  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2026e06",
   "talks": [
     {
       "id": 1,
@@ -45,7 +50,7 @@
     {
       "id": 2,
       "title": "The Grid's Growing Pains",
-      "speaker": "Dr. Sam Rivera",
+      "speaker": "Evan Wilson",
       "questions": [
         {
           "difficulty": 1,
@@ -71,7 +76,7 @@
         },
         {
           "difficulty": 3,
-          "question": "What is \"duck curve\" in grid management?",
+          "question": "What is the \"duck curve\" in grid management?",
           "options": [
             "A safety protocol for utility workers near water",
             "A graph showing excess midday solar generation creating a steep evening ramp demand",
@@ -84,41 +89,41 @@
     },
     {
       "id": 3,
-      "title": "Fungi: The Internet of the Forest",
-      "speaker": "Dr. Maya Chen",
+      "title": "Nerd Nite Fort Collins",
+      "speaker": "Justin Fritz",
       "questions": [
         {
           "difficulty": 1,
-          "question": "What is the \"Wood Wide Web\"?",
+          "question": "Where does Nerd Nite Fort Collins hold most of its shows?",
           "options": [
-            "A logging industry database",
-            "A type of bark beetle communication system",
-            "Underground fungal networks connecting tree root systems",
-            "An old-growth forest conservation program"
+            "Gilded Goat Brewing",
+            "The Forge Publick House",
+            "Wolverine Farm Publick House",
+            "Odell Brewing"
           ],
           "answer": 2
         },
         {
           "difficulty": 2,
-          "question": "Mycelium is which part of a fungus?",
+          "question": "In what city was Nerd Nite founded?",
           "options": [
-            "The fruiting body (mushroom cap)",
-            "The network of thread-like root structures",
-            "The spores",
-            "The cell wall"
+            "New York",
+            "Boston",
+            "London",
+            "Austin"
           ],
           "answer": 1
         },
         {
           "difficulty": 3,
-          "question": "What term describes trees that use fungal networks to preferentially send carbon to their own offspring seedlings?",
+          "question": "What is the official Nerd Nite Fort Collins tagline?",
           "options": [
-            "Allelopathy",
-            "Kin recognition signaling",
-            "Mycorrhizal favoritism",
-            "Root exclusion"
+            "Science after dark",
+            "Smart people, strong drinks",
+            "Be there and be square",
+            "Knowledge is power — drink responsibly"
           ],
-          "answer": 1
+          "answer": 2
         }
       ]
     }
