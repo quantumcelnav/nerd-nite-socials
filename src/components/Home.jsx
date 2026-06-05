@@ -1,4 +1,5 @@
 import edition from '../data/edition.json'
+import posterImg from '../assets/poster_s2026e06.jpg'
 import '../App.css'
 
 const PLACEHOLDER_SCORES = [
@@ -35,6 +36,10 @@ export default function Home({ onPlay, onLeaderboard }) {
           <span className="mode-desc">Explore the nature of things</span>
         </button>
       </section>
+
+      <div className="hero-poster">
+        <img src={posterImg} alt={`Nerd Nite Fort Collins ${edition.edition} poster`} />
+      </div>
 
       <section className="info-strip">
         <div className="info-text">
