@@ -1,21 +1,18 @@
 import { useMemo } from 'react'
+import edition from '../data/edition.json'
 
-// Nonce is set via VITE_SHOW_NONCE environment variable in Vercel dashboard.
-// Never committed to the repo — the public source code cannot reveal the show code.
-// Other Nerd Nites: fork repo, set VITE_SHOW_NONCE in your own Vercel project.
-const SHOW_NONCE = import.meta.env.VITE_SHOW_NONCE
-
-// Returns true when the URL contains ?n=<VITE_SHOW_NONCE>
+// Nonce lives in edition.json alongside the show info.
+// Update it each show with: openssl rand -hex 3
+// QR code URL: https://your-site.com/?n=<nonce>
 export function useNonce() {
   return useMemo(() => {
-    if (!SHOW_NONCE) return false
+    if (!edition.nonce) return false
     const params = new URLSearchParams(window.location.search)
-    return params.get('n') === SHOW_NONCE
+    return params.get('n') === edition.nonce
   }, [])
 }
 
-// Exported for the QR slide — builds the full live audience URL
 export function getLiveUrl() {
-  if (!SHOW_NONCE) return null
-  return `${window.location.origin}/?n=${SHOW_NONCE}`
+  if (!edition.nonce) return null
+  return `${window.location.origin}/?n=${edition.nonce}`
 }
