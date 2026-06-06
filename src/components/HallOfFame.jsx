@@ -12,6 +12,7 @@ export default function HallOfFame() {
     supabase
       .from('scores')
       .select('edition, name, score')
+      .neq('hidden', true)
       .order('score', { ascending: false })
       .then(({ data }) => {
         // Keep highest score per edition, sort newest edition first

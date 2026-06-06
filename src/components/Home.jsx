@@ -47,6 +47,7 @@ export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
       .from('scores')
       .select('name, score')
       .eq('edition', edition.edition)
+      .neq('hidden', true)
       .order('score', { ascending: false })
       .limit(3)
       .then(({ data }) => setTopScores(data ?? []))

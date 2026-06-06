@@ -7,6 +7,7 @@ import ScoreSubmit from './components/ScoreSubmit'
 import PostGame from './components/PostGame'
 import Leaderboard from './components/Leaderboard'
 import HallOfFame from './components/HallOfFame'
+import AdminPanel from './components/AdminPanel'
 import QRSlide from './components/QRSlide'
 import ErrorBoundary from './components/ErrorBoundary'
 import { useNonce } from './hooks/useNonce'
@@ -93,6 +94,15 @@ function AppInner() {
 export default function App() {
   const params = new URLSearchParams(window.location.search)
   if (params.get('hof') === '1') return <HallOfFame />
+
+  const adminToken = params.get('admin')
+  if (adminToken) return (
+    <ErrorBoundary>
+      <EditionProvider slug={getEditionSlug()}>
+        <AdminPanel token={adminToken} />
+      </EditionProvider>
+    </ErrorBoundary>
+  )
 
   return (
     <ErrorBoundary>

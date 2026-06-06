@@ -21,6 +21,7 @@ export default function Leaderboard({ onHome }) {
       .from('scores')
       .select('name, score, mode')
       .eq('edition', edition.edition)
+      .neq('hidden', true)
       .order('score', { ascending: false })
       .limit(10)
       .then(({ data }) => {
@@ -39,6 +40,7 @@ export default function Leaderboard({ onHome }) {
             .from('scores')
             .select('name, score, mode')
             .eq('edition', edition.edition)
+            .neq('hidden', true)
             .order('score', { ascending: false })
             .limit(10)
             .then(({ data }) => setScores(data ?? []))

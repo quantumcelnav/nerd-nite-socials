@@ -4,6 +4,7 @@ import { getTier } from '../data/scoring'
 import ShareCard from './ShareCard'
 import { supabase, supabaseReady } from '../lib/supabase'
 import { useEdition } from '../contexts/EditionContext'
+import { isBlocked } from '../data/blocklist'
 import '../game.css'
 
 function useCountUp(target, duration = 1200) {
@@ -57,6 +58,10 @@ export default function ScoreSubmit({ score, maxScore, mode, isLiveMode, onDone 
   async function handleSubmit(e) {
     e.preventDefault()
     if (!name.trim() || submitting) return
+    if (isBlocked(name)) {
+      setSubmitError('That name isn\'t going to fly. Try something else.')
+      return
+    }
     setSubmitting(true)
     setSubmitError(null)
     if (supabaseReady) {
