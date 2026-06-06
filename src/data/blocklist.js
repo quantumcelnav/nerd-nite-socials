@@ -14,20 +14,15 @@ const BLOCKED = new Set([
   'gook',
   'zipperhead',
   'towelhead', 'raghead',
-  'cracker', // context-dependent but flagged
   'beaner',
-  'coon',
   'jigaboo',
-  'porch monkey', // normalized: porchmonkey
   'porchmonkey',
   'sambo',
   'darkie',
-  'jungle bunny', // junglebunny
   'junglebunny',
 
   // LGBTQ+ slurs
   'faggot', 'faget', 'fagot',
-  'dyke',
   'tranny',
   'shemale',
 
