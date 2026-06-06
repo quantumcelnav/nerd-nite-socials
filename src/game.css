@@ -713,3 +713,30 @@
   background: var(--orange);
   color: var(--white);
 }
+
+/* ── Leaderboard — live states ──────────────────────────── */
+.lb-loading, .lb-empty {
+  font-family: var(--font);
+  color: rgba(245,245,240,0.45);
+  text-align: center;
+  padding: 40px 0;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+.lb-mode {
+  font-family: var(--font);
+  font-size: 0.7rem;
+  color: rgba(245,245,240,0.35);
+  letter-spacing: 1px;
+  flex: 1;
+  text-align: center;
+}
+
+/* ── Score submit — error state ─────────────────────────── */
+.submit-error {
+  font-family: var(--font);
+  font-size: 0.85rem;
+  color: var(--orange);
+  text-align: center;
+  margin: 8px 0 0;
+}

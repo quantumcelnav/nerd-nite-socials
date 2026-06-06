@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 import confetti from 'canvas-confetti'
 import { getTier } from '../data/scoring'
 import ShareCard from './ShareCard'
+import { supabase } from '../lib/supabase'
+import edition from '../data/edition.json'
 import '../game.css'
 
 function useCountUp(target, duration = 1200) {
@@ -30,6 +32,8 @@ function fireConfetti() {
 
 export default function ScoreSubmit({ score, maxScore, mode, isLiveMode, onDone }) {
   const [name, setName] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState(null)
   const [shareFeedback, setShareFeedback] = useState(null)
   const [meterWidth, setMeterWidth] = useState(0)
   const pct = maxScore > 0 ? Math.round((score / maxScore) * 100) : 0
@@ -49,10 +53,23 @@ export default function ScoreSubmit({ score, maxScore, mode, isLiveMode, onDone 
     }
   }, [tier.label])
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
-    if (!name.trim()) return
-    // Supabase submission will go here
+    if (!name.trim() || submitting) return
+    setSubmitting(true)
+    setSubmitError(null)
+    const { error } = await supabase.from('scores').insert({
+      edition: edition.edition,
+      name: name.trim(),
+      score,
+      max_score: maxScore,
+      mode,
+    })
+    if (error) {
+      setSubmitError('Could not save score — try again.')
+      setSubmitting(false)
+      return
+    }
     onDone()
   }
 
@@ -91,8 +108,9 @@ export default function ScoreSubmit({ score, maxScore, mode, isLiveMode, onDone 
                 autoFocus
                 aria-label="Your name or handle"
               />
-              <button className="submit-btn" type="submit" disabled={!name.trim()}>
-                Submit Score
+              {submitError && <p className="submit-error">{submitError}</p>}
+              <button className="submit-btn" type="submit" disabled={!name.trim() || submitting}>
+                {submitting ? 'Saving…' : 'Submit Score'}
               </button>
             </form>
           </>

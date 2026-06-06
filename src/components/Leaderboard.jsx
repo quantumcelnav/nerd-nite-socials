@@ -1,18 +1,50 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { supabase } from '../lib/supabase'
 import edition from '../data/edition.json'
 import '../game.css'
 
-const MOCK_SCORES = [
-  { rank: 1, name: 'N. Tesla',    score: 900 },
-  { rank: 2, name: 'A. Lovelace', score: 800 },
-  { rank: 3, name: 'R. Feynman',  score: 700 },
-  { rank: 4, name: 'M. Curie',    score: 600 },
-  { rank: 5, name: 'C. Sagan',    score: 500 },
-]
+const MODE_LABEL = { trivia: 'Trivia', ontology: 'What Is It?' }
 
 export default function Leaderboard({ onHome }) {
+  const [scores, setScores] = useState([])
+  const [loading, setLoading] = useState(true)
   const homeRef = useRef(null)
+
   useEffect(() => { homeRef.current?.focus() }, [])
+
+  useEffect(() => {
+    // Initial fetch
+    supabase
+      .from('scores')
+      .select('name, score, mode')
+      .eq('edition', edition.edition)
+      .order('score', { ascending: false })
+      .limit(10)
+      .then(({ data }) => {
+        setScores(data ?? [])
+        setLoading(false)
+      })
+
+    // Real-time: new score submitted anywhere → refresh the top 10 live
+    const channel = supabase
+      .channel('scores-live')
+      .on('postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'scores',
+          filter: `edition=eq.${edition.edition}` },
+        () => {
+          supabase
+            .from('scores')
+            .select('name, score, mode')
+            .eq('edition', edition.edition)
+            .order('score', { ascending: false })
+            .limit(10)
+            .then(({ data }) => setScores(data ?? []))
+        }
+      )
+      .subscribe()
+
+    return () => supabase.removeChannel(channel)
+  }, [])
 
   return (
     <div className="leaderboard-screen screen-enter" role="main">
@@ -20,16 +52,25 @@ export default function Leaderboard({ onHome }) {
         <h1 className="leaderboard-title">Leaderboard</h1>
         <p className="leaderboard-edition">{edition.edition}</p>
       </div>
-      <ol className="leaderboard-list" aria-label="Top scores">
-        {MOCK_SCORES.map(row => (
-          <li key={row.rank} className={`lb-row ${row.rank === 1 ? 'lb-top' : ''}`}
-            aria-label={`Rank ${row.rank}: ${row.name}, ${row.score} points`}>
-            <span className="lb-rank" aria-hidden="true">#{row.rank}</span>
-            <span className="lb-name">{row.name}</span>
-            <span className="lb-score" aria-hidden="true">{row.score}</span>
-          </li>
-        ))}
-      </ol>
+
+      {loading ? (
+        <p className="lb-loading">Loading scores…</p>
+      ) : scores.length === 0 ? (
+        <p className="lb-empty">No scores yet — be the first!</p>
+      ) : (
+        <ol className="leaderboard-list" aria-label="Top scores">
+          {scores.map((row, i) => (
+            <li key={i} className={`lb-row ${i === 0 ? 'lb-top' : ''}`}
+              aria-label={`Rank ${i + 1}: ${row.name}, ${row.score} points`}>
+              <span className="lb-rank" aria-hidden="true">#{i + 1}</span>
+              <span className="lb-name">{row.name}</span>
+              <span className="lb-mode">{MODE_LABEL[row.mode] ?? row.mode}</span>
+              <span className="lb-score" aria-hidden="true">{row.score}</span>
+            </li>
+          ))}
+        </ol>
+      )}
+
       <button className="lb-home-btn" onClick={onHome} ref={homeRef}
         aria-label="Back to home screen">
         ← Back to Home

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { POSTGAME_MODE } from '../data/config'
+import { supabase } from '../lib/supabase'
 import '../postgame.css'
 
 const SOCIALS = [
@@ -88,11 +89,15 @@ function EmailMode({ onDone }) {
   useEffect(() => { inputRef.current?.focus() }, [])
   useEffect(() => { if (done) doneRef.current?.focus() }, [done])
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     if (!email.trim()) return
-    // Supabase email capture goes here — same pattern as leaderboard
-    localStorage.setItem('nn_email_opted_in', JSON.stringify({ email: email.trim(), subscribed }))
+    // Upsert so repeat players don't get a duplicate error
+    await supabase.from('emails').upsert(
+      { email: email.trim(), subscribed },
+      { onConflict: 'email' }
+    )
+    localStorage.setItem('nn_email_opted_in', '1')
     setDone(true)
   }
 
