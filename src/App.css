@@ -3,6 +3,52 @@
   min-height: 100vh;
 }
 
+.app-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', monospace;
+  color: var(--cyan);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
+/* ── Episode switcher ──────────────────────────────────── */
+.episode-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.episode-switcher-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--off-white);
+  opacity: 0.5;
+  white-space: nowrap;
+}
+
+.episode-select {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  background: transparent;
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2313DAF9' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  padding-right: 1.8rem;
+}
+
 /* Screen fade-in */
 .screen-enter {
   animation: screenFade 0.25s ease;

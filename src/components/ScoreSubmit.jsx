@@ -3,7 +3,7 @@ import confetti from 'canvas-confetti'
 import { getTier } from '../data/scoring'
 import ShareCard from './ShareCard'
 import { supabase, supabaseReady } from '../lib/supabase'
-import edition from '../data/edition.json'
+import { useEdition } from '../contexts/EditionContext'
 import '../game.css'
 
 function useCountUp(target, duration = 1200) {
@@ -31,6 +31,7 @@ function fireConfetti() {
 }
 
 export default function ScoreSubmit({ score, maxScore, mode, isLiveMode, onDone }) {
+  const { edition } = useEdition()
   const [name, setName] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState(null)

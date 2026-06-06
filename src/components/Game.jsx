@@ -1,77 +1,75 @@
-import { useReducer, useEffect } from 'react'
-import edition from '../data/edition.json'
+import { useReducer, useEffect, useMemo } from 'react'
 import { correctGifs, wrongGifs, pickRandom } from '../data/reactions'
 import { POINTS, DIFFICULTY_LABEL, calcMaxScore } from '../data/scoring'
 import ReactionGif from './ReactionGif'
 import '../game.css'
 
-const MAX_SCORE = calcMaxScore(edition.talks)
-
-const initialState = {
-  phase: 'origin', // origin | question | result | outro | complete
-  talkIdx: 0,
-  questionIdx: 0,
-  score: 0,
-  selected: null,
-  isCorrect: false,
-  reactionGif: null,
-}
-
-function gameReducer(state, action) {
-  const talk = edition.talks[state.talkIdx]
-  const question = talk?.questions[state.questionIdx]
-
-  switch (action.type) {
-    case 'ANSWER': {
-      const correct = action.idx === question.answer
-      return {
-        ...state,
-        phase: 'result',
-        selected: action.idx,
-        isCorrect: correct,
-        reactionGif: action.gif,
-        score: correct ? state.score + POINTS[question.difficulty] : state.score,
-      }
-    }
-    case 'NEXT': {
-      const isLastQuestion = state.questionIdx >= talk.questions.length - 1
-      const isLastTalk = state.talkIdx >= edition.talks.length - 1
-
-      if (!isLastQuestion) {
-        return { ...state, phase: 'question', questionIdx: state.questionIdx + 1, selected: null }
-      }
-      if (!isLastTalk) {
-        const nextTalk = state.talkIdx + 1
-        return {
-          ...state,
-          phase: edition.originStory[nextTalk] ? 'origin' : 'question',
-          talkIdx: nextTalk,
-          questionIdx: 0,
-          selected: null,
-        }
-      }
-      return {
-        ...state,
-        phase: edition.originStory[edition.talks.length] ? 'outro' : 'complete',
-      }
-    }
-    case 'ORIGIN_NEXT':
-      return { ...state, phase: 'question' }
-    case 'OUTRO_NEXT':
-      return { ...state, phase: 'complete' }
-    default:
-      return state
-  }
-}
-
 function vibrate(pattern) {
   if (navigator.vibrate) navigator.vibrate(pattern)
 }
 
-export default function Game({ onComplete }) {
-  const [state, dispatch] = useReducer(gameReducer, initialState)
-  const { phase, talkIdx, questionIdx, score, selected, isCorrect, reactionGif } = state
+export default function Game({ edition, onComplete }) {
+  const MAX_SCORE = useMemo(() => calcMaxScore(edition.talks), [edition])
 
+  // Reducer defined inline so it can close over the edition prop
+  function gameReducer(state, action) {
+    const talk = edition.talks[state.talkIdx]
+    const question = talk?.questions[state.questionIdx]
+
+    switch (action.type) {
+      case 'ANSWER': {
+        const correct = action.idx === question.answer
+        return {
+          ...state,
+          phase: 'result',
+          selected: action.idx,
+          isCorrect: correct,
+          reactionGif: action.gif,
+          score: correct ? state.score + POINTS[question.difficulty] : state.score,
+        }
+      }
+      case 'NEXT': {
+        const isLastQuestion = state.questionIdx >= talk.questions.length - 1
+        const isLastTalk = state.talkIdx >= edition.talks.length - 1
+
+        if (!isLastQuestion) {
+          return { ...state, phase: 'question', questionIdx: state.questionIdx + 1, selected: null }
+        }
+        if (!isLastTalk) {
+          const nextTalk = state.talkIdx + 1
+          return {
+            ...state,
+            phase: edition.originStory[nextTalk] ? 'origin' : 'question',
+            talkIdx: nextTalk,
+            questionIdx: 0,
+            selected: null,
+          }
+        }
+        return {
+          ...state,
+          phase: edition.originStory[edition.talks.length] ? 'outro' : 'complete',
+        }
+      }
+      case 'ORIGIN_NEXT':
+        return { ...state, phase: 'question' }
+      case 'OUTRO_NEXT':
+        return { ...state, phase: 'complete' }
+      default:
+        return state
+    }
+  }
+
+  const [state, dispatch] = useReducer(gameReducer, {
+    phase: 'origin',
+    talkIdx: 0,
+    questionIdx: 0,
+    score: 0,
+    selected: null,
+    isCorrect: false,
+    reactionGif: null,
+  })
+
+  const { phase, talkIdx, questionIdx, score, selected, isCorrect, reactionGif } = state
   const talk = edition.talks[talkIdx]
   const question = talk?.questions[questionIdx]
   const totalQuestions = edition.talks.reduce((s, t) => s + t.questions.length, 0)

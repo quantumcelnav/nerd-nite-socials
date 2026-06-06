@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { EditionProvider, useEdition } from './contexts/EditionContext'
 import Home from './components/Home'
 import Game from './components/Game'
 import OntologyGame from './components/OntologyGame'
@@ -11,11 +12,19 @@ import ErrorBoundary from './components/ErrorBoundary'
 import { useNonce } from './hooks/useNonce'
 import { supabase, supabaseReady } from './lib/supabase'
 
-export default function App() {
+function getEditionSlug() {
+  const slug = window.location.pathname.slice(1).replace(/\/$/, '').toUpperCase()
+  return /^S\d{4}E\d{2}$/.test(slug) ? slug : null
+}
+
+function AppInner() {
+  const { edition, loading } = useEdition()
   const [screen, setScreen] = useState('home')
+  const [finalScore, setFinalScore] = useState(0)
+  const [maxScore, setMaxScore] = useState(0)
+  const [gameMode, setGameMode] = useState('trivia')
   const isLiveMode = useNonce()
 
-  // Wake Supabase on load — prevents 30s cold-start during a live show
   useEffect(() => {
     if (supabaseReady) {
       supabase.from('scores').select('count', { count: 'exact', head: true }).then(() => {})
@@ -24,10 +33,9 @@ export default function App() {
 
   const params = new URLSearchParams(window.location.search)
   if (params.get('qr') === '1') return <QRSlide />
-  if (params.get('hof') === '1') return <HallOfFame />
-  const [finalScore, setFinalScore] = useState(0)
-  const [maxScore, setMaxScore] = useState(0)
-  const [gameMode, setGameMode] = useState('trivia') // 'trivia' | 'ontology'
+
+  if (loading) return <div className="app-loading">Loading…</div>
+  if (!edition) return <div className="app-loading">Edition not found.</div>
 
   function handleGameComplete(score, max) {
     setFinalScore(score)
@@ -41,7 +49,6 @@ export default function App() {
   }
 
   return (
-    <ErrorBoundary>
     <div className="app-root">
       {screen === 'home' && (
         <div className="screen-enter" key="home">
@@ -50,7 +57,7 @@ export default function App() {
       )}
       {screen === 'game' && gameMode === 'trivia' && (
         <div className="screen-enter" key="game">
-          <Game onComplete={handleGameComplete} />
+          <Game edition={edition} onComplete={handleGameComplete} />
         </div>
       )}
       {screen === 'game' && gameMode === 'ontology' && (
@@ -80,6 +87,18 @@ export default function App() {
         </div>
       )}
     </div>
+  )
+}
+
+export default function App() {
+  const params = new URLSearchParams(window.location.search)
+  if (params.get('hof') === '1') return <HallOfFame />
+
+  return (
+    <ErrorBoundary>
+      <EditionProvider slug={getEditionSlug()}>
+        <AppInner />
+      </EditionProvider>
     </ErrorBoundary>
   )
 }

@@ -1,15 +1,16 @@
 import { QRCodeSVG } from 'qrcode.react'
+import { useEdition } from '../contexts/EditionContext'
 import { getLiveUrl } from '../hooks/useNonce'
-import edition from '../data/edition.json'
 
 export default function QRSlide() {
-  const liveUrl = getLiveUrl()
+  const { edition } = useEdition()
+  const liveUrl = getLiveUrl(edition)
 
   return (
     <div className="qr-slide">
       <div className="qr-header">
         <div className="qr-nite">NERD NITE FORT COLLINS</div>
-        <div className="qr-edition">{edition.edition}</div>
+        <div className="qr-edition">{edition?.edition}</div>
       </div>
 
       <div className="qr-cta">Play along &amp; get on the leaderboard</div>
@@ -29,7 +30,7 @@ export default function QRSlide() {
         </>
       ) : (
         <div className="qr-missing">
-          Set VITE_SHOW_NONCE in Vercel environment variables and redeploy.
+          Set a nonce in edition.json to enable the live leaderboard.
         </div>
       )}
 

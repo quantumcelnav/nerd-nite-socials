@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { supabase, supabaseReady } from '../lib/supabase'
-import edition from '../data/edition.json'
+import { useEdition } from '../contexts/EditionContext'
 import '../game.css'
 
 const MODE_LABEL = { trivia: 'Trivia', ontology: 'What Is It?' }
 
 export default function Leaderboard({ onHome }) {
+  const { edition } = useEdition()
   const [scores, setScores] = useState([])
   const [loading, setLoading] = useState(true)
   const homeRef = useRef(null)

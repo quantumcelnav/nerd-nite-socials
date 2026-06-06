@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/(S[0-9]+E[0-9]+)", "destination": "/index.html" }
+  ]
+}

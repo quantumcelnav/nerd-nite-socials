@@ -29,17 +29,15 @@ git checkout main && git pull
 git checkout -b staging
 ```
 
-### 3. Copy the template for your new show
+### 3. Create your edition file
 
 ```bash
-cp editions/TEMPLATE.json editions/S20XXE00.json
+cp editions/TEMPLATE.json public/editions/S2026E08.json
 ```
-
-Rename it to your actual show code: `S2026E08.json`, `S2027E01.json`, etc.
 
 ### 4. Fill in your show details
 
-Edit `editions/S2026E08.json`:
+Edit `public/editions/S2026E08.json`:
 
 - `edition` — your show code, e.g. `"S2026E08"`
 - `nonce` — generate with `openssl rand -hex 3`, e.g. `"f3a9c1"` (this is your secret live URL)
@@ -63,11 +61,16 @@ Edit `editions/S2026E08.json`:
 Max score per show (3 talks × 3 questions): 3,900 pts.
 "Nerd Nite Boss" tier = 97%+ = requires getting all 3 Deep Cut questions right.
 
-### 5. Copy the finished JSON to be the live edition
+### 5. Register the edition in the index
 
-```bash
-cp editions/S2026E08.json src/data/edition.json
+Open `public/editions/index.json` and prepend your new slug:
+
+```json
+["S2026E08", "S2026E07", "S2026E06"]
 ```
+
+The home screen always shows the first entry. Past shows stay in the list
+and are accessible at their permanent URLs.
 
 ### 6. Add your poster (optional)
 
@@ -78,7 +81,7 @@ No poster? Leave the field out — the app hides the section gracefully.
 ### 7. Push to staging and QA
 
 ```bash
-git add editions/S2026E08.json src/data/edition.json src/assets/poster_s2026e08.jpg
+git add public/editions/S2026E08.json public/editions/index.json src/assets/poster_s2026e08.jpg
 git commit -m "S2026E08 — [topic]"
 git push origin staging
 ```
@@ -132,11 +135,11 @@ Check the leaderboard live at your production URL.
 
 To lock the leaderboard so no new scores can be added:
 
-1. Remove the `nonce` field from `src/data/edition.json`
+1. Remove the `nonce` field from `public/editions/S2026E08.json`
 2. Push to main:
 
 ```bash
-git add src/data/edition.json
+git add public/editions/S2026E08.json
 git commit -m "S2026E08 post-show — freeze leaderboard"
 git push origin main
 ```

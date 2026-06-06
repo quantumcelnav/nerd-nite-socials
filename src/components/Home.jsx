@@ -1,19 +1,48 @@
 import { useEffect, useState } from 'react'
-import edition from '../data/edition.json'
+import { useEdition } from '../contexts/EditionContext'
 import { supabase, supabaseReady } from '../lib/supabase'
 import '../App.css'
 
-// Poster is optional — set "poster" field in edition.json to the asset filename.
-// If absent the section is hidden rather than breaking.
 const posters = import.meta.glob('../assets/poster_*.{jpg,png}', { eager: true })
-const posterImg = edition.poster
-  ? (posters[`../assets/${edition.poster}`]?.default ?? null)
-  : null
+
+function EpisodeDropdown({ currentSlug, allSlugs }) {
+  if (allSlugs.length <= 1) return null
+
+  function handleChange(e) {
+    const slug = e.target.value
+    window.location.href = slug === allSlugs[0] ? '/' : `/${slug}`
+  }
+
+  return (
+    <div className="episode-switcher">
+      <label className="episode-switcher-label" htmlFor="episode-select">Past episodes</label>
+      <select
+        id="episode-select"
+        className="episode-select"
+        value={currentSlug}
+        onChange={handleChange}
+        aria-label="Switch to a past episode"
+      >
+        {allSlugs.map((slug, i) => (
+          <option key={slug} value={slug}>
+            {slug}{i === 0 ? ' (Current)' : ''}
+          </option>
+        ))}
+      </select>
+    </div>
+  )
+}
 
 export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
+  const { edition, allSlugs } = useEdition()
   const [topScores, setTopScores] = useState([])
+
+  const posterImg = edition?.poster
+    ? (posters[`../assets/${edition.poster}`]?.default ?? null)
+    : null
+
   useEffect(() => {
-    if (!supabaseReady) return
+    if (!supabaseReady || !edition) return
     supabase
       .from('scores')
       .select('name, score')
@@ -21,7 +50,9 @@ export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
       .order('score', { ascending: false })
       .limit(3)
       .then(({ data }) => setTopScores(data ?? []))
-  }, [])
+  }, [edition])
+
+  if (!edition) return null
 
   return (
     <>
@@ -102,6 +133,8 @@ export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
           </button>
         </div>
       </section>
+
+      <EpisodeDropdown currentSlug={edition.edition} allSlugs={allSlugs} />
 
       <section className="social-section">
         <h3>Find Us Online</h3>
