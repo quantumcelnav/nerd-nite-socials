@@ -8,7 +8,7 @@ export function useNonce() {
   return useMemo(() => {
     if (!edition.nonce) return false
     const params = new URLSearchParams(window.location.search)
-    return params.get('n') === edition.nonce
+    return params.get('n')?.replace(/\W/g, '') === edition.nonce
   }, [])
 }
 
