@@ -40,6 +40,19 @@ export default function AdminPanel({ token }) {
     }
   }
 
+  async function deleteScore(row) {
+    if (!window.confirm(`Permanently delete "${row.name}"? This cannot be undone.`)) return
+    const { error } = await supabase
+      .from('scores')
+      .delete()
+      .eq('id', row.id)
+    if (!error) {
+      setScores(prev => prev.filter(s => s.id !== row.id))
+    } else {
+      alert('Delete failed — run this SQL in Supabase:\nCREATE POLICY "delete_hidden_scores" ON scores FOR DELETE TO anon USING (hidden = true);')
+    }
+  }
+
   const visible = scores.filter(s => !s.hidden)
   const hidden = scores.filter(s => s.hidden)
 
@@ -119,6 +132,11 @@ export default function AdminPanel({ token }) {
                       onClick={() => toggleHidden(row)}
                       aria-label={`Restore ${row.name}`}>
                       Restore
+                    </button>
+                    <button className="admin-action-btn admin-action-btn--delete"
+                      onClick={() => deleteScore(row)}
+                      aria-label={`Permanently delete ${row.name}`}>
+                      Delete
                     </button>
                   </li>
                 ))}

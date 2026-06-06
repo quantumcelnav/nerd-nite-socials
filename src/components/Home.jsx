@@ -169,6 +169,9 @@ export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
 
       <footer className="footer">
         <p>Nerd Nite Fort Collins &mdash; Be there and be square &mdash; {new Date().getFullYear()}</p>
+        <a className="hof-link" href="/?hof=1" aria-label="Hall of Fame — top scorer from every show">
+          🏆 Hall of Fame
+        </a>
       </footer>
     </>
   )

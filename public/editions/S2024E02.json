@@ -1,0 +1,105 @@
+{
+  "edition": "S2024E02",
+  "date": "Thursday, February 15, 2024",
+  "venue": "Wolverine Farm Publick House",
+  "doorsOpen": "6:30pm",
+  "talksStart": "7:00pm",
+  "admission": "$8 · Students $4",
+  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2024e02",
+  "talks": [
+    {
+      "id": 1,
+      "title": "From Wings to Wine",
+      "speaker": "James Blanchard",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "What does \"terroir\" refer to in winemaking?",
+          "options": [
+            "The specific grape variety and its genetic profile",
+            "The complete natural environment — soil, climate, topography — that gives a wine its character",
+            "The exact fermentation temperature profile",
+            "The age of the grapevines at harvest"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 2,
+          "question": "Colorado wine country is most concentrated in which geographic area?",
+          "options": [
+            "The San Luis Valley, due to its volcanic soil",
+            "The Front Range foothills near Fort Collins",
+            "The Grand Valley near Grand Junction, where the Western Slope climate suits viticulture",
+            "The San Juan Mountains, where altitude keeps temperatures low"
+          ],
+          "answer": 2
+        },
+        {
+          "difficulty": 3,
+          "question": "What military aviation skill translates directly to managing a vineyard's weather risk?",
+          "options": [
+            "Formation flying — grapes require precisely coordinated harvest teams",
+            "Low-altitude navigation — frost avoidance requires knowing local terrain cold-air drainage",
+            "Instrument flying — wine fermentation requires monitoring invisible chemical changes",
+            "Aerial refueling — irrigation timing is as precise as mid-air fuel transfer"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Mental Health Tech from Teletherapy to AI",
+      "speaker": "John Jurica, PhD",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "What does CBT stand for in the context of mental health treatment?",
+          "options": [
+            "Computer-Based Therapy",
+            "Cognitive Behavioral Therapy",
+            "Clinical Brain Treatment",
+            "Chronic Behavioral Testing"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 2,
+          "question": "Which type of technology is most widely deployed in \"digital therapeutics\" (DTx) for mental health?",
+          "options": [
+            "Virtual reality headsets",
+            "Implanted neural electrodes",
+            "Smartphone apps",
+            "Wearable EEG monitors"
+          ],
+          "answer": 2
+        },
+        {
+          "difficulty": 3,
+          "question": "For the FDA to authorize a prescription digital therapeutic (PDT), the product must demonstrate what?",
+          "options": [
+            "Equivalent outcomes to an in-person licensed therapist",
+            "Statistically significant clinical outcomes in randomized controlled trials",
+            "Insurance reimbursability in at least 20 U.S. states",
+            "CE marking approval in Europe first"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ],
+  "originStory": [
+    {
+      "text": "Hi. I'm Justin Fritz — and I'm a Nerd Nite Boss.\n\nThat's a real title. The Nerd Nite organization gave it to me, and I take it very seriously.\n\nNerd Nite started in Boston in 2003. Graduate student Chris Balakrishnan had been telling the same stories at his local bar — The Midway Cafe — about studying parasitic birds in Cameroon. The bartenders finally told him: just give a talk. One night. Slides. Get it out of your system.\n\nHe did. It worked.\n\nIn 2006, his roommate Matt Wasowski moved the concept to New York City, expanded it beyond science to any topic worth a drink and 20 minutes, and built it into a global brand — the \"Discovery Channel with beer\" — now in over 100 cities worldwide.\n\nIt came to Fort Collins because of me and one other very important person: Senne Van Loon.\n\nBut first — trivia."
+    },
+    {
+      "text": "Senne and I built this thing from scratch.\n\nSenne is the kind of person who hears \"let's put on a nerdy event at a bar\" and says yes immediately — full commitment, no hesitation. That energy is rare and it matters. You cannot build something like this alone.\n\nAs we grew, Jamie Fritz joined us. Jamie is the backbone — always behind the scenes, making everything work, never needing the spotlight. The kind of person every organization needs and rarely thanks enough.\n\nJamie has been onstage exactly once: to introduce Marybeth Arcodia. Which brings me to Marybeth."
+    },
+    {
+      "text": "Marybeth Arcodia was our host.\n\nShe was brilliant at it — warm, sharp, funny in exactly the right way for a room full of nerds on their third drink. She held the stage like she was born for it.\n\nMarybeth eventually left Fort Collins for a faculty position in Miami. We were sad to lose her and enormously proud of her.\n\nHannah Bauer stepped up as host after Marybeth — and she's been incredible.\n\nHere's the thing you need to understand about Nerd Nite: once you're a Boss, you're always a Boss. Marybeth is still a Boss. Distance doesn't change that."
+    },
+    {
+      "text": "You just played Nerdometer.\n\nEvery edition is built around a real Nerd Nite Fort Collins event — the actual talks, the actual speakers, the real nerdy obsessions people bring to a bar and share with strangers.\n\nSenne. Jamie. Marybeth. Hannah. Every speaker who ever trusted a room full of people with the thing they love most.\n\nAll Bosses. Always.\n\nCome be part of it.\n\n— Justin Fritz, Nerd Nite Fort Collins Boss"
+    }
+  ]
+}

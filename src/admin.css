@@ -98,6 +98,12 @@
   color: var(--cyan);
 }
 
+.admin-action-btn--delete {
+  border-color: #c94e12;
+  color: #c94e12;
+  opacity: 0.7;
+}
+
 .admin-hidden-list {
   opacity: 0.4;
 }

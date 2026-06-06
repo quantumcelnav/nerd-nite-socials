@@ -1,0 +1,105 @@
+{
+  "edition": "S2024E01",
+  "date": "Thursday, January 18, 2024",
+  "venue": "Wolverine Farm Publick House",
+  "doorsOpen": "6:30pm",
+  "talksStart": "7:00pm",
+  "admission": "$8 · Students $4",
+  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2024e01",
+  "talks": [
+    {
+      "id": 1,
+      "title": "The H in Computer Science Stands for Human",
+      "speaker": "Lucas Plabst",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "What does the field of Human-Computer Interaction (HCI) study?",
+          "options": [
+            "How to build faster computer processors",
+            "How people use, experience, and are frustrated by technology",
+            "How to secure networked systems from intrusion",
+            "How computers simulate human reasoning"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 2,
+          "question": "Hick's Law in UX design states that the time to make a decision does what as the number of choices increases?",
+          "options": [
+            "Decreases — more options makes choosing easier",
+            "Stays constant — humans are efficient decision-makers",
+            "Increases logarithmically — more choices means longer deliberation",
+            "Increases exponentially — overwhelming users past 5 options"
+          ],
+          "answer": 2
+        },
+        {
+          "difficulty": 3,
+          "question": "What principle explains why users often need 10 clicks to cancel a subscription they signed up for in 2?",
+          "options": [
+            "The Fogg Behavior Model — designers maximize persuasion on sign-up, minimize it on exit",
+            "Dark patterns — intentional design choices that mislead users into actions against their interest",
+            "Conway's Law — organizations build products that mirror their internal communication structure",
+            "Affordance theory — users expect complex tasks to require complex interfaces"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Unraveling the Art of AI-Generated Crochet Patterns",
+      "speaker": "Charlotte Connolly",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "Standard crochet patterns are written in what format?",
+          "options": [
+            "A grid-based color chart",
+            "Abbreviated written instructions using stitch codes (e.g., \"ch 3, sc in next st\")",
+            "Musical notation repurposed for stitch timing",
+            "Mathematical equations for generating curves"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 2,
+          "question": "When a large language model generates a crochet pattern, it does so by doing what?",
+          "options": [
+            "Simulating the physics of yarn tension and stitch geometry",
+            "Predicting the next most probable token based on patterns in training data",
+            "Retrieving the closest matching pattern from a structured database",
+            "Comparing aesthetic goals against a library of 3D crochet models"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 3,
+          "question": "Crochet is uniquely capable of modeling hyperbolic surfaces (like coral reefs or lettuce edges) because of what structural property?",
+          "options": [
+            "Each new row can be made longer than the previous row, creating exponential outward curvature",
+            "Crochet stitches are topologically equivalent to tori, enabling negative Gaussian curvature",
+            "The slip stitch can encode negative curvature at the individual stitch level",
+            "Double crochet creates a lattice that is isomorphic to hyperbolic tessellations"
+          ],
+          "answer": 0
+        }
+      ]
+    }
+  ],
+  "originStory": [
+    {
+      "text": "Hi. I'm Justin Fritz — and I'm a Nerd Nite Boss.\n\nThat's a real title. The Nerd Nite organization gave it to me, and I take it very seriously.\n\nNerd Nite started in Boston in 2003. Graduate student Chris Balakrishnan had been telling the same stories at his local bar — The Midway Cafe — about studying parasitic birds in Cameroon. The bartenders finally told him: just give a talk. One night. Slides. Get it out of your system.\n\nHe did. It worked.\n\nIn 2006, his roommate Matt Wasowski moved the concept to New York City, expanded it beyond science to any topic worth a drink and 20 minutes, and built it into a global brand — the \"Discovery Channel with beer\" — now in over 100 cities worldwide.\n\nIt came to Fort Collins because of me and one other very important person: Senne Van Loon.\n\nBut first — trivia."
+    },
+    {
+      "text": "Senne and I built this thing from scratch.\n\nSenne is the kind of person who hears \"let's put on a nerdy event at a bar\" and says yes immediately — full commitment, no hesitation. That energy is rare and it matters. You cannot build something like this alone.\n\nAs we grew, Jamie Fritz joined us. Jamie is the backbone — always behind the scenes, making everything work, never needing the spotlight. The kind of person every organization needs and rarely thanks enough.\n\nJamie has been onstage exactly once: to introduce Marybeth Arcodia. Which brings me to Marybeth."
+    },
+    {
+      "text": "Marybeth Arcodia was our host.\n\nShe was brilliant at it — warm, sharp, funny in exactly the right way for a room full of nerds on their third drink. She held the stage like she was born for it.\n\nMarybeth eventually left Fort Collins for a faculty position in Miami. We were sad to lose her and enormously proud of her.\n\nHannah Bauer stepped up as host after Marybeth — and she's been incredible.\n\nHere's the thing you need to understand about Nerd Nite: once you're a Boss, you're always a Boss. Marybeth is still a Boss. Distance doesn't change that."
+    },
+    {
+      "text": "You just played Nerdometer.\n\nEvery edition is built around a real Nerd Nite Fort Collins event — the actual talks, the actual speakers, the real nerdy obsessions people bring to a bar and share with strangers.\n\nSenne. Jamie. Marybeth. Hannah. Every speaker who ever trusted a room full of people with the thing they love most.\n\nAll Bosses. Always.\n\nCome be part of it.\n\n— Justin Fritz, Nerd Nite Fort Collins Boss"
+    }
+  ]
+}

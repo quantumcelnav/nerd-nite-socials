@@ -1,0 +1,105 @@
+{
+  "edition": "S2025E07",
+  "date": "Thursday, August 21, 2025",
+  "venue": "Wolverine Farm Publick House",
+  "doorsOpen": "6:30pm",
+  "talksStart": "7:00pm",
+  "admission": "$8 · Students $4",
+  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2025e07",
+  "talks": [
+    {
+      "id": 1,
+      "title": "Better Than Bill? Teaching Hands-On Science",
+      "speaker": "Scott Sieke",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "Bill Nye \"the Science Guy\" holds a degree in which field?",
+          "options": [
+            "Physics",
+            "Biology",
+            "Mechanical Engineering",
+            "Chemistry"
+          ],
+          "answer": 2
+        },
+        {
+          "difficulty": 2,
+          "question": "Research on experiential learning suggests that hands-on activities improve retention compared to passive lecture. What cognitive mechanism primarily explains this?",
+          "options": [
+            "Physical activity increases blood flow to the brain",
+            "Making and correcting errors generates stronger memory traces than passive observation",
+            "Hands-on tasks are always more enjoyable, reducing cortisol",
+            "Group work during labs socializes knowledge into long-term memory"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 3,
+          "question": "What is \"pedagogical content knowledge\" (PCK), as coined by Lee Shulman?",
+          "options": [
+            "A teacher's total knowledge of their subject area",
+            "A teacher's understanding of how students commonly misunderstand specific content — and how to address those misconceptions",
+            "A standardized curriculum that all science teachers must follow",
+            "The set of classroom management skills that enable effective instruction"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Intertwined: Fiber Arts and the Labor Movement",
+      "speaker": "Evelyn Maguire",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "The Luddites of early 19th-century England were workers in which industry who smashed machines to protest mechanization?",
+          "options": [
+            "Coal mining",
+            "Textile manufacturing",
+            "Railroad construction",
+            "Steel production"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 2,
+          "question": "The Jacquard loom (1804) is considered a conceptual ancestor of modern computing. Why?",
+          "options": [
+            "It used steam-powered pneumatic valves to automate weaving",
+            "It used punched cards to control weave patterns — a direct precursor to computer punch cards",
+            "It used electromagnetic relays to coordinate shuttle timing",
+            "It used clockwork gear sequences to automate the entire weaving cycle"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 3,
+          "question": "The Triangle Shirtwaist Factory fire of 1911 killed 146 garment workers. What was the leading cause of the high death toll?",
+          "options": [
+            "Inadequate fire suppression equipment in the building",
+            "Locked stairwell doors and insufficient fire escapes — workers could not escape",
+            "Workers wore flammable synthetic uniforms mandated by the factory",
+            "The building had no fire alarm system"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ],
+  "originStory": [
+    {
+      "text": "Hi. I'm Justin Fritz — and I'm a Nerd Nite Boss.\n\nThat's a real title. The Nerd Nite organization gave it to me, and I take it very seriously.\n\nNerd Nite started in Boston in 2003. Graduate student Chris Balakrishnan had been telling the same stories at his local bar — The Midway Cafe — about studying parasitic birds in Cameroon. The bartenders finally told him: just give a talk. One night. Slides. Get it out of your system.\n\nHe did. It worked.\n\nIn 2006, his roommate Matt Wasowski moved the concept to New York City, expanded it beyond science to any topic worth a drink and 20 minutes, and built it into a global brand — the \"Discovery Channel with beer\" — now in over 100 cities worldwide.\n\nIt came to Fort Collins because of me and one other very important person: Senne Van Loon.\n\nBut first — trivia."
+    },
+    {
+      "text": "Senne and I built this thing from scratch.\n\nSenne is the kind of person who hears \"let's put on a nerdy event at a bar\" and says yes immediately — full commitment, no hesitation. That energy is rare and it matters. You cannot build something like this alone.\n\nAs we grew, Jamie Fritz joined us. Jamie is the backbone — always behind the scenes, making everything work, never needing the spotlight. The kind of person every organization needs and rarely thanks enough.\n\nJamie has been onstage exactly once: to introduce Marybeth Arcodia. Which brings me to Marybeth."
+    },
+    {
+      "text": "Marybeth Arcodia was our host.\n\nShe was brilliant at it — warm, sharp, funny in exactly the right way for a room full of nerds on their third drink. She held the stage like she was born for it.\n\nMarybeth eventually left Fort Collins for a faculty position in Miami. We were sad to lose her and enormously proud of her.\n\nHannah Bauer stepped up as host after Marybeth — and she's been incredible.\n\nHere's the thing you need to understand about Nerd Nite: once you're a Boss, you're always a Boss. Marybeth is still a Boss. Distance doesn't change that."
+    },
+    {
+      "text": "You just played Nerdometer.\n\nEvery edition is built around a real Nerd Nite Fort Collins event — the actual talks, the actual speakers, the real nerdy obsessions people bring to a bar and share with strangers.\n\nSenne. Jamie. Marybeth. Hannah. Every speaker who ever trusted a room full of people with the thing they love most.\n\nAll Bosses. Always.\n\nCome be part of it.\n\n— Justin Fritz, Nerd Nite Fort Collins Boss"
+    }
+  ]
+}

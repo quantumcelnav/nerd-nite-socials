@@ -1,0 +1,105 @@
+{
+  "edition": "S2024E04",
+  "date": "Thursday, April 18, 2024",
+  "venue": "Wolverine Farm Publick House",
+  "doorsOpen": "6:30pm",
+  "talksStart": "7:00pm",
+  "admission": "$8 · Students $4",
+  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2024e04",
+  "talks": [
+    {
+      "id": 1,
+      "title": "The Art of the Process",
+      "speaker": "Robert Klose",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "Laser engravers and cutters work by doing what to material?",
+          "options": [
+            "Freezing the surface to make it brittle for mechanical scoring",
+            "Focusing enough light energy onto a tiny area to vaporize or melt the material",
+            "Etching with UV-reactive photopolymer chemistry",
+            "Mechanically milling with a rotating bit guided by a laser sensor"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 2,
+          "question": "What is \"projection mapping\" in the context of large-scale art installation?",
+          "options": [
+            "Scaling a digital design file to the physical size of the material",
+            "Projecting imagery precisely onto three-dimensional surfaces or objects to create an illusion",
+            "Mapping UV coordinates onto a 3D mesh before laser cutting",
+            "Calculating the material cost of a large artwork from a digital file"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 3,
+          "question": "For engraving a large solid filled area, a laser typically uses \"raster\" mode. Why is vector mode less efficient for fills?",
+          "options": [
+            "Vector paths are limited to 256 nodes by laser firmware",
+            "Vector tracing an outline can only produce a border — it can't fill an area without thousands of offset paths",
+            "Vector mode is only FDA-certified for cutting, not engraving",
+            "Vector mode requires reflective mirrors not present in CO₂ laser systems"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Hector Berlioz Was a Visionary Composer and also a Creepy Stalker",
+      "speaker": "Matt Browne",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "Which symphony did Hector Berlioz compose that was directly inspired by his obsessive infatuation with an actress?",
+          "options": [
+            "Symphony No. 9 in D minor",
+            "Symphonie Fantastique",
+            "The Unfinished Symphony",
+            "Eroica Symphony"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 2,
+          "question": "Who was the actress Berlioz became obsessed with after seeing her perform Shakespeare in Paris in 1827?",
+          "options": [
+            "Sarah Bernhardt",
+            "Mrs. Patrick Campbell",
+            "Harriet Smithson",
+            "Ellen Terry"
+          ],
+          "answer": 2
+        },
+        {
+          "difficulty": 3,
+          "question": "What musical device did Berlioz use in Symphonie Fantastique to represent his beloved throughout all five movements?",
+          "options": [
+            "A leitmotif — a short recurring theme",
+            "An idée fixe (\"fixed idea\") — a longer recurring melody that transforms with each movement",
+            "A cantus firmus — a slow-moving theme in the bass",
+            "A passacaglia — a theme repeated over a recurring bass progression"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ],
+  "originStory": [
+    {
+      "text": "Hi. I'm Justin Fritz — and I'm a Nerd Nite Boss.\n\nThat's a real title. The Nerd Nite organization gave it to me, and I take it very seriously.\n\nNerd Nite started in Boston in 2003. Graduate student Chris Balakrishnan had been telling the same stories at his local bar — The Midway Cafe — about studying parasitic birds in Cameroon. The bartenders finally told him: just give a talk. One night. Slides. Get it out of your system.\n\nHe did. It worked.\n\nIn 2006, his roommate Matt Wasowski moved the concept to New York City, expanded it beyond science to any topic worth a drink and 20 minutes, and built it into a global brand — the \"Discovery Channel with beer\" — now in over 100 cities worldwide.\n\nIt came to Fort Collins because of me and one other very important person: Senne Van Loon.\n\nBut first — trivia."
+    },
+    {
+      "text": "Senne and I built this thing from scratch.\n\nSenne is the kind of person who hears \"let's put on a nerdy event at a bar\" and says yes immediately — full commitment, no hesitation. That energy is rare and it matters. You cannot build something like this alone.\n\nAs we grew, Jamie Fritz joined us. Jamie is the backbone — always behind the scenes, making everything work, never needing the spotlight. The kind of person every organization needs and rarely thanks enough.\n\nJamie has been onstage exactly once: to introduce Marybeth Arcodia. Which brings me to Marybeth."
+    },
+    {
+      "text": "Marybeth Arcodia was our host.\n\nShe was brilliant at it — warm, sharp, funny in exactly the right way for a room full of nerds on their third drink. She held the stage like she was born for it.\n\nMarybeth eventually left Fort Collins for a faculty position in Miami. We were sad to lose her and enormously proud of her.\n\nHannah Bauer stepped up as host after Marybeth — and she's been incredible.\n\nHere's the thing you need to understand about Nerd Nite: once you're a Boss, you're always a Boss. Marybeth is still a Boss. Distance doesn't change that."
+    },
+    {
+      "text": "You just played Nerdometer.\n\nEvery edition is built around a real Nerd Nite Fort Collins event — the actual talks, the actual speakers, the real nerdy obsessions people bring to a bar and share with strangers.\n\nSenne. Jamie. Marybeth. Hannah. Every speaker who ever trusted a room full of people with the thing they love most.\n\nAll Bosses. Always.\n\nCome be part of it.\n\n— Justin Fritz, Nerd Nite Fort Collins Boss"
+    }
+  ]
+}

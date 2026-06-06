@@ -1,0 +1,145 @@
+{
+  "edition": "S2024E08",
+  "date": "Thursday, August 15, 2024",
+  "venue": "The Lyric",
+  "doorsOpen": "6:30pm",
+  "talksStart": "7:00pm",
+  "admission": "$8 · Students $4",
+  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2024e08",
+  "talks": [
+    {
+      "id": 1,
+      "title": "Faster-than-Light Travel in Science Fiction",
+      "speaker": "Erin Macdonald, PhD",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "Einstein's special relativity establishes a fundamental speed limit. What is it?",
+          "options": [
+            "The speed of sound in a vacuum",
+            "The speed of light in a vacuum (~300,000 km/s)",
+            "The escape velocity of a black hole",
+            "The Planck velocity — the fastest physically meaningful speed"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 2,
+          "question": "What is an Alcubierre drive, a speculative FTL concept from theoretical physics?",
+          "options": [
+            "A fusion rocket that accelerates to near-light speed over decades",
+            "A warp bubble that compresses space ahead and expands it behind, carrying a ship without the ship itself exceeding c",
+            "A wormhole generator that folds space between two points",
+            "A tachyon beam that propels a ship through faster-than-light particles"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 3,
+          "question": "The main physical objection to Alcubierre warp drives is that they require what?",
+          "options": [
+            "Temperatures exceeding those at the Big Bang",
+            "Exotic matter with negative energy density — a substance not confirmed to exist",
+            "A spinning black hole at each endpoint",
+            "More energy than the entire observable universe contains"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "To Seek Out New Life: The Astrobiology of Star Trek",
+      "speaker": "Michael Wong",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "What does astrobiology study?",
+          "options": [
+            "The psychology of astronauts on long-duration missions",
+            "The origin, evolution, distribution, and future of life in the universe",
+            "How stars form and die",
+            "The geology of planets and moons in our solar system"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 2,
+          "question": "Which moon in our solar system is considered one of the best candidates for extraterrestrial microbial life, due to a subsurface liquid water ocean?",
+          "options": [
+            "Earth's Moon",
+            "Titan (Saturn's moon)",
+            "Europa (Jupiter's moon)",
+            "Deimos (Mars's moon)"
+          ],
+          "answer": 2
+        },
+        {
+          "difficulty": 3,
+          "question": "The \"biosignature gas\" approach to detecting life on distant exoplanets looks for what?",
+          "options": [
+            "Radio signals from technological civilizations",
+            "Atmospheric gases that can only be sustained by active biological processes — like oxygen alongside methane",
+            "Infrared heat signatures from urban heat islands",
+            "Optical flickers caused by orbital megastructures"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Metanavigation",
+      "speaker": "Justin Fritz",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "What does \"navigation\" mean in the context of complex technological and social systems — beyond just maps and GPS?",
+          "options": [
+            "Finding the shortest physical path between two points",
+            "Understanding where you are, where you're going, and how to adapt when conditions change",
+            "The study of compass bearings and celestial bodies",
+            "Autonomous vehicle path planning algorithms"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 2,
+          "question": "Military aviation uses \"situational awareness\" as a core skill. What does it mean?",
+          "options": [
+            "The ability to fly at night without instruments",
+            "Perceiving your environment, understanding what it means, and projecting its future state",
+            "Radio communication protocol for dense airspace",
+            "The ability to perform maneuvers under high-G stress"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 3,
+          "question": "Norbert Wiener, who invented the field of cybernetics, defined it as the study of what?",
+          "options": [
+            "Electronic computing and artificial intelligence",
+            "Control and communication in the animal and the machine",
+            "The mathematical theory of information",
+            "Self-replicating mechanical systems"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ],
+  "originStory": [
+    {
+      "text": "Hi. I'm Justin Fritz — and I'm a Nerd Nite Boss.\n\nThat's a real title. The Nerd Nite organization gave it to me, and I take it very seriously.\n\nNerd Nite started in Boston in 2003. Graduate student Chris Balakrishnan had been telling the same stories at his local bar — The Midway Cafe — about studying parasitic birds in Cameroon. The bartenders finally told him: just give a talk. One night. Slides. Get it out of your system.\n\nHe did. It worked.\n\nIn 2006, his roommate Matt Wasowski moved the concept to New York City, expanded it beyond science to any topic worth a drink and 20 minutes, and built it into a global brand — the \"Discovery Channel with beer\" — now in over 100 cities worldwide.\n\nIt came to Fort Collins because of me and one other very important person: Senne Van Loon.\n\nBut first — trivia."
+    },
+    {
+      "text": "Senne and I built this thing from scratch.\n\nSenne is the kind of person who hears \"let's put on a nerdy event at a bar\" and says yes immediately — full commitment, no hesitation. That energy is rare and it matters. You cannot build something like this alone.\n\nAs we grew, Jamie Fritz joined us. Jamie is the backbone — always behind the scenes, making everything work, never needing the spotlight. The kind of person every organization needs and rarely thanks enough.\n\nJamie has been onstage exactly once: to introduce Marybeth Arcodia. Which brings me to Marybeth."
+    },
+    {
+      "text": "Marybeth Arcodia was our host.\n\nShe was brilliant at it — warm, sharp, funny in exactly the right way for a room full of nerds on their third drink. She held the stage like she was born for it.\n\nMarybeth eventually left Fort Collins for a faculty position in Miami. We were sad to lose her and enormously proud of her.\n\nHannah Bauer stepped up as host after Marybeth — and she's been incredible.\n\nHere's the thing you need to understand about Nerd Nite: once you're a Boss, you're always a Boss. Marybeth is still a Boss. Distance doesn't change that."
+    },
+    {
+      "text": "You just played Nerdometer.\n\nEvery edition is built around a real Nerd Nite Fort Collins event — the actual talks, the actual speakers, the real nerdy obsessions people bring to a bar and share with strangers.\n\nSenne. Jamie. Marybeth. Hannah. Every speaker who ever trusted a room full of people with the thing they love most.\n\nAll Bosses. Always.\n\nCome be part of it.\n\n— Justin Fritz, Nerd Nite Fort Collins Boss"
+    }
+  ]
+}

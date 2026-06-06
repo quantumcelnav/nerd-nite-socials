@@ -1,0 +1,105 @@
+{
+  "edition": "S2024E09",
+  "date": "Thursday, September 26, 2024",
+  "venue": "Wolverine Farm Publick House",
+  "doorsOpen": "6:30pm",
+  "talksStart": "7:00pm",
+  "admission": "$8 · Students $4",
+  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2024e09",
+  "talks": [
+    {
+      "id": 1,
+      "title": "Hypersonics: The Science Behind Going Really Fast",
+      "speaker": "Sean Zeeck",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "What is the minimum speed generally defined as \"hypersonic\"?",
+          "options": [
+            "Mach 1 — the speed of sound",
+            "Mach 3 — three times the speed of sound",
+            "Mach 5 — five times the speed of sound",
+            "Mach 10 — ten times the speed of sound"
+          ],
+          "answer": 2
+        },
+        {
+          "difficulty": 2,
+          "question": "Hypersonic vehicles face extreme thermal challenges primarily because of what?",
+          "options": [
+            "Bernoulli lift forces from asymmetric wing profiles",
+            "Aerodynamic heating — air is compressed and friction-heated to thousands of degrees around the vehicle",
+            "Resonance vibrations at high Mach numbers that cause structural heating",
+            "Shock waves that paradoxically cool the leading edges"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 3,
+          "question": "NASA's Artemis program uses a heat shield to protect the Orion capsule during re-entry. What is the material of choice for modern hypersonic heat shields?",
+          "options": [
+            "Titanium alloy — highest melting point of structural metals",
+            "Ablative thermal protection material — it intentionally burns away, carrying heat with it",
+            "Ceramic fiber blankets — same technology as Space Shuttle tiles",
+            "Water-cooled steel panels — heat is carried away by circulating coolant"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Chasing Tornadoes: The Science, The Process, and The Fanatics",
+      "speaker": "Ben Toms",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "What scale rates tornado intensity based on damage in the United States?",
+          "options": [
+            "The Beaufort Scale",
+            "The Saffir-Simpson Scale",
+            "The Enhanced Fujita (EF) Scale",
+            "The Richter Scale"
+          ],
+          "answer": 2
+        },
+        {
+          "difficulty": 2,
+          "question": "What atmospheric ingredient is most critical for tornado formation?",
+          "options": [
+            "High relative humidity at all atmospheric levels",
+            "Wind shear — changing wind speed or direction with altitude creates rotation",
+            "Surface air pressure below 980 millibars",
+            "Cold ocean temperatures driving onshore flow"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 3,
+          "question": "Storm chasers use a strategic \"positioning\" approach to intercept tornadoes safely. What is the preferred vantage for observing a tornado while minimizing risk?",
+          "options": [
+            "Directly behind the tornado, following its path",
+            "Southeast of the storm — the rear-flank downdraft area tends to be calmer",
+            "East or southeast of the mesocyclone — forward-flank position with a clear view and escape route",
+            "Above the storm in an aircraft — highest visibility and least surface hazard"
+          ],
+          "answer": 2
+        }
+      ]
+    }
+  ],
+  "originStory": [
+    {
+      "text": "Hi. I'm Justin Fritz — and I'm a Nerd Nite Boss.\n\nThat's a real title. The Nerd Nite organization gave it to me, and I take it very seriously.\n\nNerd Nite started in Boston in 2003. Graduate student Chris Balakrishnan had been telling the same stories at his local bar — The Midway Cafe — about studying parasitic birds in Cameroon. The bartenders finally told him: just give a talk. One night. Slides. Get it out of your system.\n\nHe did. It worked.\n\nIn 2006, his roommate Matt Wasowski moved the concept to New York City, expanded it beyond science to any topic worth a drink and 20 minutes, and built it into a global brand — the \"Discovery Channel with beer\" — now in over 100 cities worldwide.\n\nIt came to Fort Collins because of me and one other very important person: Senne Van Loon.\n\nBut first — trivia."
+    },
+    {
+      "text": "Senne and I built this thing from scratch.\n\nSenne is the kind of person who hears \"let's put on a nerdy event at a bar\" and says yes immediately — full commitment, no hesitation. That energy is rare and it matters. You cannot build something like this alone.\n\nAs we grew, Jamie Fritz joined us. Jamie is the backbone — always behind the scenes, making everything work, never needing the spotlight. The kind of person every organization needs and rarely thanks enough.\n\nJamie has been onstage exactly once: to introduce Marybeth Arcodia. Which brings me to Marybeth."
+    },
+    {
+      "text": "Marybeth Arcodia was our host.\n\nShe was brilliant at it — warm, sharp, funny in exactly the right way for a room full of nerds on their third drink. She held the stage like she was born for it.\n\nMarybeth eventually left Fort Collins for a faculty position in Miami. We were sad to lose her and enormously proud of her.\n\nHannah Bauer stepped up as host after Marybeth — and she's been incredible.\n\nHere's the thing you need to understand about Nerd Nite: once you're a Boss, you're always a Boss. Marybeth is still a Boss. Distance doesn't change that."
+    },
+    {
+      "text": "You just played Nerdometer.\n\nEvery edition is built around a real Nerd Nite Fort Collins event — the actual talks, the actual speakers, the real nerdy obsessions people bring to a bar and share with strangers.\n\nSenne. Jamie. Marybeth. Hannah. Every speaker who ever trusted a room full of people with the thing they love most.\n\nAll Bosses. Always.\n\nCome be part of it.\n\n— Justin Fritz, Nerd Nite Fort Collins Boss"
+    }
+  ]
+}

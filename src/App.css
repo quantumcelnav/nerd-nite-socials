@@ -614,3 +614,18 @@
   color: rgba(245, 245, 240, 0.5);
   margin-top: auto;
 }
+
+.hof-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--cyan);
+  font-style: normal;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.hof-link:hover {
+  opacity: 1;
+}

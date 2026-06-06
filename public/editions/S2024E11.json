@@ -1,0 +1,105 @@
+{
+  "edition": "S2024E11",
+  "date": "Thursday, November 21, 2024",
+  "venue": "Wolverine Farm Publick House",
+  "doorsOpen": "6:30pm",
+  "talksStart": "7:00pm",
+  "admission": "$8 · Students $4",
+  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2024e11",
+  "talks": [
+    {
+      "id": 1,
+      "title": "The Science of Global Warming Denial",
+      "speaker": "Walter Hannah",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "What percentage of actively publishing climate scientists agree that recent climate change is primarily caused by human activity?",
+          "options": [
+            "About 50% — scientists are genuinely split",
+            "About 75% — a solid majority",
+            "About 90% — a strong consensus",
+            "97% or more — an overwhelming consensus"
+          ],
+          "answer": 3
+        },
+        {
+          "difficulty": 2,
+          "question": "The tobacco industry pioneered a PR strategy later adopted by climate denial campaigns. What was it?",
+          "options": [
+            "Funding independent research institutes to produce contradictory studies",
+            "\"Manufactured doubt\" — deliberately promoting the appearance of scientific uncertainty to delay regulation",
+            "Lobbying for public school curricula that omitted health risks",
+            "Sponsoring popular media figures to question research methodology"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 3,
+          "question": "The 1998 \"Oregon Petition\" claimed to show that thousands of scientists rejected human-caused climate change. What was discovered upon scrutiny of the signatories?",
+          "options": [
+            "All signatories were legitimate scientists — the petition is still cited as valid",
+            "Most signatories had PhDs in climate-adjacent fields, making it technically accurate",
+            "Many signatories were not scientists; some names were fake or duplicate — \"Dr. Michael J. Fox\" appeared among them",
+            "The petition was legitimate but the questions were misleadingly worded"
+          ],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Ozempic: Miracle Drug or Too Good to Be True?",
+      "speaker": "Amber Bartlett, PharmD",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "Ozempic (semaglutide) was originally FDA-approved to treat which condition?",
+          "options": [
+            "High blood pressure",
+            "Type 2 diabetes",
+            "High cholesterol",
+            "Hypothyroidism"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 2,
+          "question": "Ozempic belongs to which drug class?",
+          "options": [
+            "SGLT-2 inhibitors",
+            "Biguanides (like metformin)",
+            "GLP-1 receptor agonists",
+            "DPP-4 inhibitors"
+          ],
+          "answer": 2
+        },
+        {
+          "difficulty": 3,
+          "question": "Semaglutide reduces appetite partly by acting on receptors in which brain region, suppressing hunger signals?",
+          "options": [
+            "Prefrontal cortex",
+            "Hypothalamus",
+            "Amygdala",
+            "Cerebellum"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ],
+  "originStory": [
+    {
+      "text": "Hi. I'm Justin Fritz — and I'm a Nerd Nite Boss.\n\nThat's a real title. The Nerd Nite organization gave it to me, and I take it very seriously.\n\nNerd Nite started in Boston in 2003. Graduate student Chris Balakrishnan had been telling the same stories at his local bar — The Midway Cafe — about studying parasitic birds in Cameroon. The bartenders finally told him: just give a talk. One night. Slides. Get it out of your system.\n\nHe did. It worked.\n\nIn 2006, his roommate Matt Wasowski moved the concept to New York City, expanded it beyond science to any topic worth a drink and 20 minutes, and built it into a global brand — the \"Discovery Channel with beer\" — now in over 100 cities worldwide.\n\nIt came to Fort Collins because of me and one other very important person: Senne Van Loon.\n\nBut first — trivia."
+    },
+    {
+      "text": "Senne and I built this thing from scratch.\n\nSenne is the kind of person who hears \"let's put on a nerdy event at a bar\" and says yes immediately — full commitment, no hesitation. That energy is rare and it matters. You cannot build something like this alone.\n\nAs we grew, Jamie Fritz joined us. Jamie is the backbone — always behind the scenes, making everything work, never needing the spotlight. The kind of person every organization needs and rarely thanks enough.\n\nJamie has been onstage exactly once: to introduce Marybeth Arcodia. Which brings me to Marybeth."
+    },
+    {
+      "text": "Marybeth Arcodia was our host.\n\nShe was brilliant at it — warm, sharp, funny in exactly the right way for a room full of nerds on their third drink. She held the stage like she was born for it.\n\nMarybeth eventually left Fort Collins for a faculty position in Miami. We were sad to lose her and enormously proud of her.\n\nHannah Bauer stepped up as host after Marybeth — and she's been incredible.\n\nHere's the thing you need to understand about Nerd Nite: once you're a Boss, you're always a Boss. Marybeth is still a Boss. Distance doesn't change that."
+    },
+    {
+      "text": "You just played Nerdometer.\n\nEvery edition is built around a real Nerd Nite Fort Collins event — the actual talks, the actual speakers, the real nerdy obsessions people bring to a bar and share with strangers.\n\nSenne. Jamie. Marybeth. Hannah. Every speaker who ever trusted a room full of people with the thing they love most.\n\nAll Bosses. Always.\n\nCome be part of it.\n\n— Justin Fritz, Nerd Nite Fort Collins Boss"
+    }
+  ]
+}

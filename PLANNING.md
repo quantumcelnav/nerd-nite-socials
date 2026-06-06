@@ -3,14 +3,15 @@
 **Tagline:** How nerdy are you, really?
 **Owner:** Justin Fritz, Nerd Nite Fort Collins Boss
 **Live:** https://nerd-nite-socials.vercel.app
+**Repo:** https://github.com/quantumcelnav/nerd-nite-socials
 
 ---
 
 ## Product Vision
 
-Nerdometer is a live-show trivia game tied to Nerd Nite Fort Collins events. Each edition is scoped to a specific show: talk titles, speakers, and questions are authored per event, interspersed with the Nerd Nite origin story narrated by Justin. The game runs on audience phones during the show, with a live leaderboard gated to people actually in the room via a per-show nonce URL.
+Nerdometer is a live-show trivia game tied to Nerd Nite Fort Collins events. Each edition is scoped to a specific show — talk titles, speakers, and questions authored per event, interspersed with the Nerd Nite origin story narrated by Justin. The game runs on audience phones during the show, with a live leaderboard gated to people in the room via a per-show nonce URL. Past editions stay playable forever at permanent URLs.
 
-The tool is open source (CC BY 4.0) — designed so any Nerd Nite city can fork it and run their own edition.
+Open source (CC BY 4.0) — designed so any Nerd Nite city can fork and run their own edition.
 
 ---
 
@@ -20,54 +21,58 @@ The tool is open source (CC BY 4.0) — designed so any Nerd Nite city can fork 
 |---|---|---|
 | Frontend | Vite + React | Mobile-first, PWA |
 | Hosting | Vercel | Git push → auto-deploy ~90s |
-| Database | Supabase | Scores + emails, real-time subscriptions |
+| Database | Supabase | Scores + emails + show_state; real-time subscriptions |
 | Style | Courier New, dark navy/cyan/orange | Monospace retro throughout |
 
-**Supabase free tier note:** Projects pause after 7 days of inactivity. Visit the site the day before each show to pre-wake the DB. Supabase Pro ($25/mo) removes this if it becomes a problem.
+**Supabase tables:**
+- `scores` — id, edition, name, score, max_score, mode, hidden, created_at
+- `emails` — id, email, subscribed, created_at
+- `show_state` — edition (PK), frozen, created_at
+
+**Supabase free tier note:** Projects pause after 7 days of inactivity. Visit the site the day before each show to pre-wake the DB.
 
 ---
 
-## Show Workflow (one file, one push)
+## Show Lifecycle
 
-1. Edit `src/data/edition.json` — new show info, talks, questions, nonce
-2. `git push origin main`
-3. Vercel deploys in ~90 seconds — production is live
-4. After show: remove nonce field from edition.json, push → leaderboard freezes
-
-Full runbook: `HOSTING.md`
+| Phase | How | Leaderboard |
+|---|---|---|
+| Ticket sales day | Push edition JSON without nonce | Practice mode (no writes) |
+| Show night | Add nonce to JSON, push | Live (nonce URL required) |
+| During trivia | Admin panel → Freeze toggle | Locked instantly via show_state |
+| After trivia | Admin panel → Go Live (optional) or leave frozen | Frozen or live |
+| Post-show cleanup | Admin panel → Hide bad names | Hidden from all views |
+| Forever | /S2026E06 stays playable | Frozen, historical |
 
 ---
 
-## Architecture
+## Special Routes
 
-### Nonce system
-- `edition.nonce` in edition.json is the per-show secret
-- Live URL: `https://nerd-nite-socials.vercel.app/?n=<nonce>`
-- Audience gets this URL via QR code at show time
-- Without the nonce: practice mode (game works, scores don't submit)
-- Nonce comparison strips non-alphanumeric chars (tolerates copy-paste punctuation)
-
-### Leaderboard
-- Supabase `scores` table: `edition, name, score, max_score, mode, created_at`
-- Filtered by current `edition.edition` string
-- Real-time subscription via `postgres_changes` INSERT — board updates live
-- Hall of Fame (`/?hof=1`): top scorer per edition, all time
-
-### Edition data
-- Current show: `src/data/edition.json`
-- Archive: `editions/S20XXE00.json` — permanent record of every show
-- Template: `editions/TEMPLATE.json`
-
-### Special routes
-| URL param | Renders |
+| URL | Renders |
 |---|---|
-| `?qr=1` | Full-screen QR projector slide |
-| `?hof=1` | Hall of Fame — top scorer per edition |
-| `?n=<nonce>` | Live mode — enables leaderboard write |
+| `/` | Home — current show (latest in index.json) |
+| `/S2026E06` | That show's game + leaderboard, forever |
+| `/?n=<nonce>` | Live mode — enables leaderboard write |
+| `/?qr=1` | Full-screen QR projector slide |
+| `/?hof=1` | Hall of Fame — top scorer per edition |
+| `/?admin=<token>` | Admin panel — freeze toggle, hide/restore |
+| `/S2026E06?admin=<token>` | Admin panel for a specific past show |
 
 ---
 
-## Content Schema (edition.json)
+## Edition Data Structure
+
+All edition files live in `public/editions/`. The `editions/` folder at repo root is the **author workspace** — draft and review files there, then copy to `public/editions/` when ready.
+
+```
+public/editions/index.json          ← [{slug, label}] newest first
+public/editions/S2026E06.json       ← full edition data, served at runtime
+editions/TEMPLATE.json              ← fill-in-the-blank starting point
+```
+
+`src/data/edition.json` — EditionContext fallback only (used when fetch fails in dev). Do not edit for show updates.
+
+### Edition JSON schema
 
 ```json
 {
@@ -86,17 +91,17 @@ Full runbook: `HOSTING.md`
       "title": "Talk Title",
       "speaker": "Speaker Name",
       "questions": [
-        {
-          "difficulty": 1,
-          "question": "Question text?",
-          "options": ["A", "B", "C", "D"],
-          "answer": 0
-        }
+        { "difficulty": 1, "question": "...", "options": ["A","B","C","D"], "answer": 0 },
+        { "difficulty": 2, "question": "...", "options": ["A","B","C","D"], "answer": 0 },
+        { "difficulty": 3, "question": "...", "options": ["A","B","C","D"], "answer": 0 }
       ]
     }
   ],
   "originStory": [
-    { "text": "Narrative card text..." }
+    { "text": "Narrative card shown before round 1..." },
+    { "text": "Narrative card shown before round 2..." },
+    { "text": "Narrative card shown before round 3..." },
+    { "text": "Outro card after final question..." }
   ]
 }
 ```
@@ -108,7 +113,7 @@ Full runbook: `HOSTING.md`
 | 2 | Nerdy | 300 |
 | 3 | Deep Cut | 900 |
 
-Max per show: 3,900 pts. "Nerd Nite Boss" = 97%+.
+Max per show (3 talks × 3 questions): 3,900 pts. "Nerd Nite Boss" = 97%+.
 
 ---
 
@@ -116,8 +121,7 @@ Max per show: 3,900 pts. "Nerd Nite Boss" = 97%+.
 
 | Feature | Status |
 |---|---|
-| Vite + React, Vercel git auto-deploy | ✅ |
-| Nerdometer branding, Courier New style | ✅ |
+| Vite + React, PWA, Vercel auto-deploy | ✅ |
 | Trivia mode (3 talks × 3 questions) | ✅ |
 | "What Is It?" ontology mode | ✅ |
 | Origin story cards between rounds | ✅ |
@@ -129,62 +133,66 @@ Max per show: 3,900 pts. "Nerd Nite Boss" = 97%+.
 | Home screen top-3 scores (live) | ✅ |
 | Hall of Fame (`/?hof=1`) | ✅ |
 | QR projector slide (`/?qr=1`) | ✅ |
-| Per-show nonce in edition.json | ✅ |
+| Per-show nonce in edition JSON | ✅ |
+| Freeze toggle (admin panel, instant, real-time) | ✅ |
+| Admin panel hide/restore scores | ✅ |
+| Hard delete from admin panel | ✅ |
+| Targeted slur blocklist | ✅ |
 | Supabase keepalive ping on load | ✅ |
-| Edition archive (`editions/`) | ✅ |
-| HOSTING.md host runbook | ✅ |
+| Archive playback (permanent URLs) | ✅ |
+| Episode dropdown with labels | ✅ |
 | Error boundary | ✅ |
-| PWA support | ✅ |
 | CC BY 4.0 license | ✅ |
+| HOSTING.md host runbook | ✅ |
 
 ---
 
 ## Next Steps
 
-### 1. Archive Playback (next)
-Let players replay any past show after the event — with its real leaderboard.
+### 1. Reaction GIFs
+Justin creating episode-agnostic NNFC GIFs with Qwen image edit.
+- Drop into `src/assets/gifs/correct.gif` and `src/assets/gifs/wrong.gif`
+- Update `src/data/reactions.js` to point at them
+- `ReactionGif.jsx` is already wired — no other code changes needed
 
-- Move `editions/*.json` to `public/editions/` (served as static files)
-- Replace hardcoded `import edition from '../data/edition.json'` with a React context
-- Edition loaded at runtime: `fetch(/editions/${slug}.json)`
-- Archive picker at `/?archive=1` — lists all past shows, click to play
-- Leaderboard already filtered by edition — works automatically
+### 2. Past show archive
 
-**Impact:** Major refactor of edition data flow (currently hardcoded in ~8 components). Well-understood scope, ~1 day.
+15 editions authored and live in `public/editions/`. Sources: `fortcollins.nerdnite.com` for episode metadata.
 
-### 2. Reaction GIFs
-Justin is creating episode-agnostic NNFC-branded GIFs using Qwen image edit.
-Assets: correct answer GIF, wrong answer GIF (at minimum).
+**TODO — question accuracy pass:**
+Questions were written from website summaries, not full talk abstracts. Before any show gets heavy traffic, pull the full abstract from the website post and tighten questions to the speaker's specific angle. Speaker review emails sent separately — corrections will come back for each show.
 
-Once assets exist:
-- Drop GIFs into `src/assets/gifs/`
-- Wire into Game.jsx answer feedback — show on correct/wrong
+**Shows not yet authored (website has abstracts):**
+- S2025E01–E05, S2025E09–E10
+- S2026E02–E05
 
-**Impact:** Small code change once assets are ready.
+Workflow: fetch abstract → write questions → create JSON → prepend to index.json → push → verify at `/S20XXE00`.
 
-### 3. Multiple Nonces (future)
-Change `nonce` to `nonces: ["abc", "def"]` array in edition.json.
-Use case: different QR codes for different sections of the bar.
-Check: `nonces.includes(param)` instead of `param === nonce`.
+### 3. Multiple nonces (future)
+Change `nonce` to `nonces: ["abc", "def"]` array. 2-line change to useNonce.js.
 
-**Impact:** 2-line change to useNonce.js + edition.json schema.
-
-### 4. Fun Facts per Question (future)
-Show a short fun fact after each answer reveal.
-Requires content: one fact per question from Justin/speaker.
-Add `"fact": "..."` field to each question in edition.json.
+### 4. Speaker question review (process)
+All questions should be sent to speakers for accuracy sign-off before going live.
 
 ---
 
-## Design Decisions Log
+## Design Decisions
 
 | Decision | Choice | Reason |
 |---|---|---|
 | Host-controlled vs self-paced | Self-paced | Bar format; sync is operationally risky |
-| Nonce location | edition.json | One file, one push; Vercel env var was two-step |
+| Nonce location | edition JSON | One file, one push; Vercel env var was two-step |
+| Freeze mechanism | Supabase show_state | Instant, real-time, no git push required |
 | GIF generation | Manual (Justin) | AI GIF quality inconsistent; Qwen gives control |
-| Database | Supabase (keep) | Real-time + RLS + free tier; replacing needs a backend |
-| Hosting | Vercel (keep) | Auto-deploy from git; trivial to move if needed |
+| Database | Supabase (keep) | Real-time + RLS + free tier |
+| Leaderboard moderation | Soft-delete (hidden) | Recoverable; audit trail |
+| Archive format | public/editions/*.json | Static files, served at runtime |
+
+---
+
+## Prize / Tiebreaker
+
+High score wins a prize. Ties resolved by host-run coin-flip elimination: ~half eliminated each round until one remains. Stage ceremony — no app logic. Live leaderboard is the source of truth.
 
 ---
 
@@ -195,18 +203,22 @@ Add `"fact": "..."` field to each question in edition.json.
 - [ ] Play through full game on staging with nonce URL
 - [ ] Confirm score appears on leaderboard
 - [ ] QR slide renders correctly (`/?qr=1`)
+- [ ] Admin panel accessible, freeze toggle works
 - [ ] Poster image loads
 
 ### Manual playtest (every push to main)
-- [ ] Home loads, top scores show (or "No scores yet")
-- [ ] Both game modes start and complete
+- [ ] Home loads, top scores show
+- [ ] Both game modes complete correctly
 - [ ] Origin story cards appear between rounds
-- [ ] Correct/wrong answer feedback works
-- [ ] Score submit: name entry, Submit button, Supabase write confirmed
+- [ ] Score submit: live mode writes to Supabase
 - [ ] Practice mode message shows without nonce
-- [ ] Leaderboard loads and Back to Home works
+- [ ] Freeze toggle: blocks submission, shows badge
+- [ ] Admin panel: hide/restore/delete work
+- [ ] Leaderboard loads, Back to Home works
 - [ ] Hall of Fame loads (`/?hof=1`)
-- [ ] Full replay without refresh resets state cleanly
+- [ ] Past show URL loads correct edition (`/S2026E06`)
+- [ ] Episode dropdown navigates correctly
+- [ ] Full replay without refresh resets state
 
 ### Scoring verification
 | Scenario | Expected % | Expected Tier |
