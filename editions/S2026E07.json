@@ -1,0 +1,145 @@
+{
+  "edition": "S2026E07",
+  "date": "Thursday, August 20, 2026",
+  "venue": "Wolverine Farm Publick House",
+  "doorsOpen": "6:30pm",
+  "talksStart": "7:00pm",
+  "admission": "$8 · Students $4",
+  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2026e07",
+  "talks": [
+    {
+      "id": 1,
+      "title": "Why Your Brain Lies to You",
+      "speaker": "Dr. Sarah Okonkwo",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "What is the name for the brain's tendency to seek patterns even in random data?",
+          "options": [
+            "Apophenia",
+            "Pareidolia",
+            "Confabulation",
+            "Priming"
+          ],
+          "answer": 0
+        },
+        {
+          "difficulty": 2,
+          "question": "The 'change blindness' phenomenon shows that humans often fail to notice large changes in a scene when?",
+          "options": [
+            "The scene is in low light",
+            "The change happens during a brief visual interruption",
+            "The observer is tired",
+            "The changed object is small"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 3,
+          "question": "What does the 'misinformation effect' in memory research demonstrate?",
+          "options": [
+            "People remember traumatic events more accurately than mundane ones",
+            "Post-event information can alter a person's memory of the original event",
+            "Eyewitness testimony is reliable when given immediately after an event",
+            "False memories are only created under hypnosis"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "The Secret Life of Soil",
+      "speaker": "Marcus Webb",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "Approximately how many bacterial cells live in one teaspoon of healthy soil?",
+          "options": [
+            "A few hundred",
+            "About a million",
+            "Up to a billion",
+            "Around ten thousand"
+          ],
+          "answer": 2
+        },
+        {
+          "difficulty": 2,
+          "question": "What is mycorrhizae?",
+          "options": [
+            "A soil-borne plant disease caused by bacteria",
+            "A symbiotic fungal network that connects plant roots and exchanges nutrients",
+            "The top layer of organic matter in a forest floor",
+            "A chemical process that converts nitrogen into plant-usable form"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 3,
+          "question": "What percentage of the world's food production depends on healthy topsoil?",
+          "options": [
+            "Around 25%",
+            "About 50%",
+            "Roughly 70%",
+            "Over 95%"
+          ],
+          "answer": 3
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Rockets Are Hard: A Love Letter to Failure",
+      "speaker": "Priya Nair",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "What is the Tsiolkovsky rocket equation used to calculate?",
+          "options": [
+            "The maximum altitude a rocket can reach",
+            "The relationship between a rocket's mass, exhaust velocity, and delta-v",
+            "The structural stress on a rocket during re-entry",
+            "The fuel combustion temperature needed for orbit"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 2,
+          "question": "Why is getting to orbit so much harder than simply reaching space (100km altitude)?",
+          "options": [
+            "Orbital mechanics require far more fuel due to air resistance above 100km",
+            "You must reach orbital velocity (~7.8 km/s sideways), not just altitude",
+            "Space agencies add unnecessary safety margins to fuel calculations",
+            "The Van Allen belts require special shielding that adds mass"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 3,
+          "question": "What is 'specific impulse' and why do rocket engineers care about it?",
+          "options": [
+            "The thrust-to-weight ratio of an engine at sea level",
+            "A measure of how efficiently a rocket engine uses propellant — higher is better",
+            "The maximum g-force a rocket structure can withstand during launch",
+            "The time delay between ignition and full thrust development"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ],
+  "originStory": [
+    {
+      "text": "Hi. I'm Justin Fritz — and I'm a Nerd Nite Boss.\n\nThat's a real title. The Nerd Nite organization gave it to me, and I take it very seriously.\n\nNerd Nite started in Boston in 2003. A guy named Matt Wasowski talked a bar into letting scientists give talks between band sets. It spread to over 100 cities worldwide.\n\nIt came to Fort Collins because of me and one other very important person: Senne Van Loon.\n\nBut first — trivia."
+    },
+    {
+      "text": "Senne and I built this thing from scratch.\n\nSenne is the kind of person who hears \"let's put on a nerdy event at a bar\" and says yes immediately — full commitment, no hesitation. That energy is rare and it matters. You cannot build something like this alone.\n\nAs we grew, Jamie Fritz joined us. Jamie is the backbone — always behind the scenes, making everything work, never needing the spotlight. The kind of person every organization needs and rarely thanks enough.\n\nJamie has been onstage exactly once: to introduce Marybeth Arcodia. Which brings me to Marybeth."
+    },
+    {
+      "text": "Marybeth Arcodia was our host.\n\nShe was brilliant at it — warm, sharp, funny in exactly the right way for a room full of nerds on their third drink. She held the stage like she was born for it.\n\nMarybeth eventually left Fort Collins for a faculty position in Miami. We were sad to lose her and enormously proud of her.\n\nHannah Bauer stepped up as host after Marybeth — and she's been incredible.\n\nHere's the thing you need to understand about Nerd Nite: once you're a Boss, you're always a Boss. Marybeth is still a Boss. Distance doesn't change that."
+    },
+    {
+      "text": "You just played Nerdometer.\n\nEvery edition is built around a real Nerd Nite Fort Collins event — the actual talks, the actual speakers, the real nerdy obsessions people bring to a bar and share with strangers.\n\nSenne. Jamie. Marybeth. Hannah. Every speaker who ever trusted a room full of people with the thing they love most.\n\nAll Bosses. Always.\n\nCome be part of it.\n\n— Justin Fritz, Nerd Nite Fort Collins Boss"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "edition": "S20XXE00",
+  "poster": "poster_s20xxe00.jpg",
+  "date": "Thursday, Month DD, 20XX",
+  "venue": "Wolverine Farm Publick House",
+  "doorsOpen": "6:30pm",
+  "talksStart": "7:00pm",
+  "admission": "$8 · Students $4",
+  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s20xxe00",
+  "talks": [
+    {
+      "id": 1,
+      "title": "Talk Title Here",
+      "speaker": "Speaker Name",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "Easy question — most people in the room will get this.",
+          "options": [
+            "Wrong answer",
+            "Correct answer",
+            "Wrong answer",
+            "Wrong answer"
+          ],
+          "answer": 1
+        },
+        {
+          "difficulty": 2,
+          "question": "Medium question — attentive audience members will know this.",
+          "options": [
+            "Wrong answer",
+            "Wrong answer",
+            "Correct answer",
+            "Wrong answer"
+          ],
+          "answer": 2
+        },
+        {
+          "difficulty": 3,
+          "question": "Deep cut — only the true nerds get this one.",
+          "options": [
+            "Correct answer",
+            "Wrong answer",
+            "Wrong answer",
+            "Wrong answer"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Second Talk Title",
+      "speaker": "Speaker Name",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "Easy question.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "answer": 0
+        },
+        {
+          "difficulty": 2,
+          "question": "Medium question.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "answer": 0
+        },
+        {
+          "difficulty": 3,
+          "question": "Deep cut.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Third Talk Title",
+      "speaker": "Speaker Name",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "Easy question.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "answer": 0
+        },
+        {
+          "difficulty": 2,
+          "question": "Medium question.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "answer": 0
+        },
+        {
+          "difficulty": 3,
+          "question": "Deep cut.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "answer": 0
+        }
+      ]
+    }
+  ],
+  "originStory": [
+    {
+      "text": "Before round 1 — set the scene. Who are you? Why are we here? Keep it short and punchy."
+    },
+    {
+      "text": "Before round 2 — continue the story. Something about the team or the journey."
+    },
+    {
+      "text": "Before round 3 — bring it home. Who made this happen. Make it personal."
+    },
+    {
+      "text": "Outro — shown after all questions. Thank the audience. Sign it.\n\n— Your Name, Nerd Nite [City] Boss"
+    }
+  ]
+}

@@ -1,6 +1,12 @@
 import edition from '../data/edition.json'
-import posterImg from '../assets/poster_s2026e06.jpg'
 import '../App.css'
+
+// Poster is optional — set "poster" field in edition.json to the asset filename.
+// If absent the section is hidden rather than breaking.
+const posters = import.meta.glob('../assets/poster_*.{jpg,png}', { eager: true })
+const posterImg = edition.poster
+  ? (posters[`../assets/${edition.poster}`]?.default ?? null)
+  : null
 
 const PLACEHOLDER_SCORES = [
   { rank: 1, name: 'N. Tesla', score: 900 },
@@ -42,9 +48,11 @@ export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
         </button>
       </section>
 
-      <div className="hero-poster">
-        <img src={posterImg} alt={`Nerd Nite Fort Collins ${edition.edition} poster`} />
-      </div>
+      {posterImg && (
+        <div className="hero-poster">
+          <img src={posterImg} alt={`Nerd Nite Fort Collins ${edition.edition} poster`} />
+        </div>
+      )}
 
       <section className="info-strip">
         <div className="info-text">

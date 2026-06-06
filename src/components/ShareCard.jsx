@@ -3,7 +3,10 @@ import '../game.css'
 export default function ShareCard({ pct, tier, mode, onShare }) {
   async function handleShare() {
     const text = `I scored ${pct}% on Nerdometer — "${tier.label}" 🧠\nNerd Nite Fort Collins trivia. How nerdy are you?`
-    const url = window.location.href
+    // Strip nonce param so the shared URL is the clean public homepage
+    const clean = new URL(window.location.href)
+    clean.searchParams.delete('n')
+    const url = clean.toString()
 
     if (navigator.share) {
       try {

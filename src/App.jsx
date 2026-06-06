@@ -6,6 +6,7 @@ import ScoreSubmit from './components/ScoreSubmit'
 import PostGame from './components/PostGame'
 import Leaderboard from './components/Leaderboard'
 import QRSlide from './components/QRSlide'
+import ErrorBoundary from './components/ErrorBoundary'
 import { useNonce } from './hooks/useNonce'
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
   }
 
   return (
+    <ErrorBoundary>
     <div className="app-root">
       {screen === 'home' && (
         <div className="screen-enter" key="home">
@@ -69,5 +71,6 @@ export default function App() {
         </div>
       )}
     </div>
+    </ErrorBoundary>
   )
 }
