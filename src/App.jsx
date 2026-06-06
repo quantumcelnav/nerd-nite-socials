@@ -1,21 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Home from './components/Home'
 import Game from './components/Game'
 import OntologyGame from './components/OntologyGame'
 import ScoreSubmit from './components/ScoreSubmit'
 import PostGame from './components/PostGame'
 import Leaderboard from './components/Leaderboard'
+import HallOfFame from './components/HallOfFame'
 import QRSlide from './components/QRSlide'
 import ErrorBoundary from './components/ErrorBoundary'
 import { useNonce } from './hooks/useNonce'
+import { supabase, supabaseReady } from './lib/supabase'
 
 export default function App() {
   const [screen, setScreen] = useState('home')
   const isLiveMode = useNonce()
 
-  // Projector mode: ?qr=1 shows the full-screen QR slide only
-  const isQRMode = new URLSearchParams(window.location.search).get('qr') === '1'
-  if (isQRMode) return <QRSlide />
+  // Wake Supabase on load — prevents 30s cold-start during a live show
+  useEffect(() => {
+    if (supabaseReady) {
+      supabase.from('scores').select('count', { count: 'exact', head: true }).then(() => {})
+    }
+  }, [])
+
+  const params = new URLSearchParams(window.location.search)
+  if (params.get('qr') === '1') return <QRSlide />
+  if (params.get('hof') === '1') return <HallOfFame />
   const [finalScore, setFinalScore] = useState(0)
   const [maxScore, setMaxScore] = useState(0)
   const [gameMode, setGameMode] = useState('trivia') // 'trivia' | 'ontology'
