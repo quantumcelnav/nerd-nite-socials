@@ -1,0 +1,74 @@
+% Nerd Nite Fort Collins — QR Slide
+% Compile: pdflatex qr-slide.tex
+% Update CONFIG section below for each new show.
+
+\documentclass[aspectratio=169]{beamer}
+
+\usepackage{qrcode}
+\usepackage{xcolor}
+\usepackage{fontenc}
+\usepackage{courier}
+
+% ── CONFIG ────────────────────────────────────────────────────────────────────
+\newcommand{\showurl}{https://nerd-nite-socials.vercel.app/?n=4hxqp7}
+\newcommand{\showlabel}{S2026E06}
+% ──────────────────────────────────────────────────────────────────────────────
+
+% NNFC brand colors
+\definecolor{NNblue}{HTML}{002A37}
+\definecolor{NNcyan}{HTML}{13DAF9}
+\definecolor{NNorange}{HTML}{FF611B}
+\definecolor{NNoffwhite}{HTML}{F5F5F0}
+
+% Slide geometry — full bleed dark background
+\setbeamercolor{background canvas}{bg=NNblue}
+\setbeamercolor{normal text}{fg=NNoffwhite}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+
+\begin{document}
+\begin{frame}[plain]
+  \centering
+
+  % Header
+  \vspace{0.3cm}
+  {\fontfamily{pcr}\selectfont
+    \textcolor{NNcyan}{\Large\textbf{NERD NITE FORT COLLINS}}
+  }
+
+  \vspace{0.1cm}
+  {\fontfamily{pcr}\selectfont
+    \textcolor{NNorange}{\normalsize\textbf{\showlabel}}
+  }
+
+  \vspace{0.3cm}
+
+  % QR code — cyan on dark navy
+  \begingroup
+    \color{NNcyan}
+    \qrcode[height=4.4cm,padding]{\showurl}
+  \endgroup
+
+  \vspace{0.3cm}
+
+  % CTA
+  {\fontfamily{pcr}\selectfont
+    \textcolor{NNoffwhite}{\large Scan to play along \& get on the leaderboard}
+  }
+
+  \vspace{0.15cm}
+
+  % URL
+  {\fontfamily{pcr}\selectfont
+    \textcolor{NNcyan}{\small\showurl}
+  }
+
+  \vspace{0.3cm}
+
+  % Tagline
+  {\fontfamily{pcr}\selectfont
+    \textcolor{NNoffwhite}{\small\textit{Be there and be square}}
+  }
+
+\end{frame}
+\end{document}
