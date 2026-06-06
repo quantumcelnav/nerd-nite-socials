@@ -5,8 +5,9 @@ import '../App.css'
 
 const posters = import.meta.glob('../assets/poster_*.{jpg,png}', { eager: true })
 
-function EpisodeDropdown({ currentSlug, allEditions }) {
+function EpisodeDropdown({ currentSlug, allEditions, isLiveMode }) {
   if (allEditions.length <= 1) return null
+  if (isLiveMode) return null
 
   function handleChange(e) {
     const slug = e.target.value
@@ -135,7 +136,7 @@ export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
         </div>
       </section>
 
-      <EpisodeDropdown currentSlug={edition.edition} allEditions={allEditions} />
+      <EpisodeDropdown currentSlug={edition.edition} allEditions={allEditions} isLiveMode={isLiveMode} />
 
       <section className="social-section">
         <h3>Find Us Online</h3>
