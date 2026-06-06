@@ -1,0 +1,117 @@
+.admin-screen {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.admin-header {
+  background: var(--dark-navy, #002A37);
+  padding: 1.5rem;
+  border-bottom: 3px solid var(--orange);
+}
+
+.admin-title-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.admin-title {
+  font-family: 'Courier New', monospace;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--orange);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.admin-edition-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: var(--cyan);
+  opacity: 0.8;
+}
+
+/* Freeze toggle */
+.freeze-toggle {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.12em;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  margin-bottom: 0.5rem;
+}
+
+.freeze-toggle--live {
+  background: var(--orange);
+  color: #fff;
+}
+
+.freeze-toggle--live:hover {
+  background: #c94e12;
+}
+
+.freeze-toggle--frozen {
+  background: var(--cyan);
+  color: var(--bg);
+}
+
+.freeze-toggle--frozen:hover {
+  background: #0fb8d0;
+}
+
+.freeze-status {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: var(--off-white);
+  opacity: 0.55;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+/* Score rows */
+.admin-action-btn {
+  margin-left: 0.5rem;
+  background: transparent;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  border: 1px solid;
+  flex-shrink: 0;
+}
+
+.admin-action-btn--hide {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.admin-action-btn--restore {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.admin-hidden-list {
+  opacity: 0.4;
+}
+
+.admin-hidden-list .lb-name {
+  text-decoration: line-through;
+}
+
+.admin-section-label {
+  padding: 1rem 1.5rem 0.25rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+}

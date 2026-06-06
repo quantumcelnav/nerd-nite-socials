@@ -1,35 +1,34 @@
 import { useEffect, useState } from 'react'
 import { supabase, supabaseReady } from '../lib/supabase'
 import { useEdition } from '../contexts/EditionContext'
+import { useShowState } from '../hooks/useShowState'
 import '../game.css'
+import '../admin.css'
 
 const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN
 
 export default function AdminPanel({ token }) {
   const { edition, allEditions } = useEdition()
+  const [selectedSlug, setSelectedSlug] = useState(null)
+  const activeSlug = selectedSlug ?? edition?.edition
+  const { frozen, toggleFrozen } = useShowState(activeSlug)
   const [scores, setScores] = useState([])
   const [loading, setLoading] = useState(true)
-  const [selectedEdition, setSelectedEdition] = useState(null)
 
-  // Gate: token must match env var
   if (!ADMIN_TOKEN || token !== ADMIN_TOKEN) {
-    return (
-      <div className="app-loading">Access denied.</div>
-    )
+    return <div className="app-loading">Access denied.</div>
   }
 
-  const activeEdition = selectedEdition ?? edition?.edition
-
   useEffect(() => {
-    if (!supabaseReady || !activeEdition) return
+    if (!supabaseReady || !activeSlug) return
     setLoading(true)
     supabase
       .from('scores')
       .select('id, name, score, mode, hidden, created_at')
-      .eq('edition', activeEdition)
+      .eq('edition', activeSlug)
       .order('score', { ascending: false })
       .then(({ data }) => { setScores(data ?? []); setLoading(false) })
-  }, [activeEdition])
+  }, [activeSlug])
 
   async function toggleHidden(row) {
     const { error } = await supabase
@@ -45,16 +44,17 @@ export default function AdminPanel({ token }) {
   const hidden = scores.filter(s => s.hidden)
 
   return (
-    <div className="leaderboard-screen screen-enter" role="main">
-      <div className="leaderboard-header">
-        <h1 className="leaderboard-title">Admin Panel</h1>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-          <p className="leaderboard-edition">{activeEdition}</p>
-          {allEditions.length > 1 && (
+    <div className="admin-screen screen-enter" role="main">
+
+      {/* Header */}
+      <div className="admin-header">
+        <div className="admin-title-row">
+          <h1 className="admin-title">Admin</h1>
+          {allEditions.length > 1 ? (
             <select
               className="episode-select"
-              value={activeEdition}
-              onChange={e => setSelectedEdition(e.target.value)}
+              value={activeSlug}
+              onChange={e => setSelectedSlug(e.target.value)}
               aria-label="Switch edition"
             >
               {allEditions.map((ed, i) => (
@@ -63,10 +63,27 @@ export default function AdminPanel({ token }) {
                 </option>
               ))}
             </select>
+          ) : (
+            <span className="admin-edition-label">{activeSlug}</span>
           )}
         </div>
+
+        {/* Freeze toggle */}
+        <button
+          className={`freeze-toggle ${frozen ? 'freeze-toggle--frozen' : 'freeze-toggle--live'}`}
+          onClick={toggleFrozen}
+          aria-label={frozen ? 'Leaderboard is frozen — click to go live' : 'Leaderboard is live — click to freeze'}
+        >
+          {frozen ? '▶ GO LIVE' : '■ FREEZE LEADERBOARD'}
+        </button>
+        <p className="freeze-status">
+          {frozen
+            ? 'Leaderboard frozen — no new scores accepted'
+            : 'Leaderboard live — accepting scores'}
+        </p>
       </div>
 
+      {/* Scores */}
       {loading ? (
         <p className="lb-loading">Loading…</p>
       ) : scores.length === 0 ? (
@@ -78,22 +95,11 @@ export default function AdminPanel({ token }) {
               <li key={row.id} className={`lb-row ${i === 0 ? 'lb-top' : ''}`}>
                 <span className="lb-rank">#{i + 1}</span>
                 <span className="lb-name">{row.name}</span>
-                <span className="lb-mode" style={{ fontSize: '0.7rem', opacity: 0.6 }}>{row.mode}</span>
+                <span className="lb-mode">{row.mode}</span>
                 <span className="lb-score">{row.score}</span>
-                <button
+                <button className="admin-action-btn admin-action-btn--hide"
                   onClick={() => toggleHidden(row)}
-                  style={{
-                    marginLeft: '0.5rem',
-                    background: 'transparent',
-                    border: '1px solid var(--orange)',
-                    color: 'var(--orange)',
-                    fontFamily: 'Courier New',
-                    fontSize: '0.7rem',
-                    padding: '0.2rem 0.5rem',
-                    cursor: 'pointer',
-                  }}
-                  aria-label={`Hide ${row.name}`}
-                >
+                  aria-label={`Hide ${row.name}`}>
                   Hide
                 </button>
               </li>
@@ -102,29 +108,16 @@ export default function AdminPanel({ token }) {
 
           {hidden.length > 0 && (
             <>
-              <p style={{ padding: '1rem 1.5rem 0.25rem', fontFamily: 'Courier New', fontSize: '0.75rem', opacity: 0.5, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                Hidden ({hidden.length})
-              </p>
-              <ol className="leaderboard-list" aria-label="Hidden scores" style={{ opacity: 0.4 }}>
+              <p className="admin-section-label">Hidden ({hidden.length})</p>
+              <ol className="leaderboard-list admin-hidden-list" aria-label="Hidden scores">
                 {hidden.map(row => (
-                  <li key={row.id} className="lb-row" style={{ textDecoration: 'line-through' }}>
+                  <li key={row.id} className="lb-row">
                     <span className="lb-rank">–</span>
                     <span className="lb-name">{row.name}</span>
                     <span className="lb-score">{row.score}</span>
-                    <button
+                    <button className="admin-action-btn admin-action-btn--restore"
                       onClick={() => toggleHidden(row)}
-                      style={{
-                        marginLeft: '0.5rem',
-                        background: 'transparent',
-                        border: '1px solid var(--cyan)',
-                        color: 'var(--cyan)',
-                        fontFamily: 'Courier New',
-                        fontSize: '0.7rem',
-                        padding: '0.2rem 0.5rem',
-                        cursor: 'pointer',
-                      }}
-                      aria-label={`Restore ${row.name}`}
-                    >
+                      aria-label={`Restore ${row.name}`}>
                       Restore
                     </button>
                   </li>
@@ -135,9 +128,7 @@ export default function AdminPanel({ token }) {
         </>
       )}
 
-      <a className="lb-home-btn" href="/" aria-label="Back to home">
-        ← Back to Home
-      </a>
+      <a className="lb-home-btn" href="/" aria-label="Back to home">← Back to Home</a>
     </div>
   )
 }

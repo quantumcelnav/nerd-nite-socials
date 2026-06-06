@@ -4,6 +4,7 @@ import { getTier } from '../data/scoring'
 import ShareCard from './ShareCard'
 import { supabase, supabaseReady } from '../lib/supabase'
 import { useEdition } from '../contexts/EditionContext'
+import { useShowState } from '../hooks/useShowState'
 import { isBlocked } from '../data/blocklist'
 import '../game.css'
 
@@ -33,6 +34,7 @@ function fireConfetti() {
 
 export default function ScoreSubmit({ score, maxScore, mode, isLiveMode, onDone }) {
   const { edition } = useEdition()
+  const { frozen } = useShowState(edition?.edition)
   const [name, setName] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState(null)
@@ -102,7 +104,13 @@ export default function ScoreSubmit({ score, maxScore, mode, isLiveMode, onDone 
           <p className="submit-boss-msg">You are the real deal. 🎓</p>
         )}
 
-        {isLiveMode ? (
+        {isLiveMode && frozen ? (
+          <p className="submit-practice-msg">
+            The leaderboard is closed for tonight.
+            <br />
+            <span>Great game — the final scores are locked in.</span>
+          </p>
+        ) : isLiveMode ? (
           <>
             <p className="submit-subtext">Enter your name for the leaderboard.</p>
             <form className="submit-form" onSubmit={handleSubmit}>

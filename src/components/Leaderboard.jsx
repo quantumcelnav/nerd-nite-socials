@@ -1,19 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { supabase, supabaseReady } from '../lib/supabase'
 import { useEdition } from '../contexts/EditionContext'
+import { useShowState } from '../hooks/useShowState'
 import '../game.css'
 
 const MODE_LABEL = { trivia: 'Trivia', ontology: 'What Is It?' }
 
-// A show is frozen when it has no nonce and is being viewed at a past-show URL
-function useIsFrozen(edition) {
-  const isArchiveUrl = window.location.pathname.length > 1
-  return isArchiveUrl && !edition?.nonce
-}
-
 export default function Leaderboard({ onHome }) {
   const { edition } = useEdition()
-  const isFrozen = useIsFrozen(edition)
+  const { frozen: isFrozen } = useShowState(edition?.edition)
   const [scores, setScores] = useState([])
   const [loading, setLoading] = useState(true)
   const homeRef = useRef(null)
