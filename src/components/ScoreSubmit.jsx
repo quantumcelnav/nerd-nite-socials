@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import confetti from 'canvas-confetti'
 import { getTier } from '../data/scoring'
 import ShareCard from './ShareCard'
-import { supabase } from '../lib/supabase'
+import { supabase, supabaseReady } from '../lib/supabase'
 import edition from '../data/edition.json'
 import '../game.css'
 
@@ -58,17 +58,19 @@ export default function ScoreSubmit({ score, maxScore, mode, isLiveMode, onDone 
     if (!name.trim() || submitting) return
     setSubmitting(true)
     setSubmitError(null)
-    const { error } = await supabase.from('scores').insert({
-      edition: edition.edition,
-      name: name.trim(),
-      score,
-      max_score: maxScore,
-      mode,
-    })
-    if (error) {
-      setSubmitError('Could not save score — try again.')
-      setSubmitting(false)
-      return
+    if (supabaseReady) {
+      const { error } = await supabase.from('scores').insert({
+        edition: edition.edition,
+        name: name.trim(),
+        score,
+        max_score: maxScore,
+        mode,
+      })
+      if (error) {
+        setSubmitError('Could not save score — try again.')
+        setSubmitting(false)
+        return
+      }
     }
     onDone()
   }

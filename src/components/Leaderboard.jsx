@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { supabase } from '../lib/supabase'
+import { supabase, supabaseReady } from '../lib/supabase'
 import edition from '../data/edition.json'
 import '../game.css'
 
@@ -13,6 +13,8 @@ export default function Leaderboard({ onHome }) {
   useEffect(() => { homeRef.current?.focus() }, [])
 
   useEffect(() => {
+    if (!supabaseReady) { setLoading(false); return }
+
     // Initial fetch
     supabase
       .from('scores')

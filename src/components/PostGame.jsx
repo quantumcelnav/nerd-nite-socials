@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { POSTGAME_MODE } from '../data/config'
-import { supabase } from '../lib/supabase'
+import { supabase, supabaseReady } from '../lib/supabase'
 import '../postgame.css'
 
 const SOCIALS = [
@@ -93,7 +93,7 @@ function EmailMode({ onDone }) {
     e.preventDefault()
     if (!email.trim()) return
     // Upsert so repeat players don't get a duplicate error
-    await supabase.from('emails').upsert(
+    if (supabaseReady) await supabase.from('emails').upsert(
       { email: email.trim(), subscribed },
       { onConflict: 'email' }
     )
