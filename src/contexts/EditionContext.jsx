@@ -6,7 +6,7 @@ const EditionContext = createContext(null)
 export function EditionProvider({ slug, children }) {
   const [edition, setEdition] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [allSlugs, setAllSlugs] = useState([])
+  const [allEditions, setAllEditions] = useState([]) // [{slug, label}]
 
   useEffect(() => {
     let cancelled = false
@@ -14,10 +14,10 @@ export function EditionProvider({ slug, children }) {
     async function load() {
       try {
         const idxRes = await fetch('/editions/index.json')
-        const slugs = await idxRes.json()
-        if (!cancelled) setAllSlugs(slugs)
+        const editions = await idxRes.json()
+        if (!cancelled) setAllEditions(editions)
 
-        const target = slug ?? slugs[0]
+        const target = slug ?? editions[0].slug
         const res = await fetch(`/editions/${target}.json`)
         if (!res.ok) throw new Error('not found')
         const data = await res.json()
@@ -32,7 +32,7 @@ export function EditionProvider({ slug, children }) {
   }, [slug])
 
   return (
-    <EditionContext.Provider value={{ edition, loading, allSlugs }}>
+    <EditionContext.Provider value={{ edition, loading, allEditions }}>
       {children}
     </EditionContext.Provider>
   )

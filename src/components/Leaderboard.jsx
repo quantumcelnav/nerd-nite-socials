@@ -5,8 +5,15 @@ import '../game.css'
 
 const MODE_LABEL = { trivia: 'Trivia', ontology: 'What Is It?' }
 
+// A show is frozen when it has no nonce and is being viewed at a past-show URL
+function useIsFrozen(edition) {
+  const isArchiveUrl = window.location.pathname.length > 1
+  return isArchiveUrl && !edition?.nonce
+}
+
 export default function Leaderboard({ onHome }) {
   const { edition } = useEdition()
+  const isFrozen = useIsFrozen(edition)
   const [scores, setScores] = useState([])
   const [loading, setLoading] = useState(true)
   const homeRef = useRef(null)
@@ -16,7 +23,6 @@ export default function Leaderboard({ onHome }) {
   useEffect(() => {
     if (!supabaseReady) { setLoading(false); return }
 
-    // Initial fetch
     supabase
       .from('scores')
       .select('name, score, mode')
@@ -29,7 +35,9 @@ export default function Leaderboard({ onHome }) {
         setLoading(false)
       })
 
-    // Real-time: new score submitted anywhere → refresh the top 10 live
+    // Only subscribe to live updates for active (non-frozen) shows
+    if (isFrozen) return
+
     const channel = supabase
       .channel('scores-live')
       .on('postgres_changes',
@@ -49,13 +57,18 @@ export default function Leaderboard({ onHome }) {
       .subscribe()
 
     return () => supabase.removeChannel(channel)
-  }, [])
+  }, [isFrozen])
 
   return (
     <div className="leaderboard-screen screen-enter" role="main">
       <div className="leaderboard-header">
         <h1 className="leaderboard-title">Leaderboard</h1>
         <p className="leaderboard-edition">{edition.edition}</p>
+        {isFrozen && (
+          <p className="lb-frozen-badge" aria-label="This leaderboard is final">
+            ■ Final Results
+          </p>
+        )}
       </div>
 
       {loading ? (

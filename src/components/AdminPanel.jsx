@@ -6,7 +6,7 @@ import '../game.css'
 const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN
 
 export default function AdminPanel({ token }) {
-  const { edition, allSlugs } = useEdition()
+  const { edition, allEditions } = useEdition()
   const [scores, setScores] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectedEdition, setSelectedEdition] = useState(null)
@@ -50,15 +50,17 @@ export default function AdminPanel({ token }) {
         <h1 className="leaderboard-title">Admin Panel</h1>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <p className="leaderboard-edition">{activeEdition}</p>
-          {allSlugs.length > 1 && (
+          {allEditions.length > 1 && (
             <select
               className="episode-select"
               value={activeEdition}
               onChange={e => setSelectedEdition(e.target.value)}
               aria-label="Switch edition"
             >
-              {allSlugs.map(s => (
-                <option key={s} value={s}>{s}</option>
+              {allEditions.map((ed, i) => (
+                <option key={ed.slug} value={ed.slug}>
+                  {ed.label}{i === 0 ? ' (Current)' : ''}
+                </option>
               ))}
             </select>
           )}

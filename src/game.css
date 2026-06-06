@@ -610,6 +610,16 @@
   margin: 0;
 }
 
+.lb-frozen-badge {
+  font-family: var(--font);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin: 0.4rem 0 0;
+  opacity: 0.85;
+}
+
 .leaderboard-list {
   flex: 1;
   padding: 8px 0;

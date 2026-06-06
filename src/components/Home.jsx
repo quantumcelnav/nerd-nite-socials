@@ -5,12 +5,12 @@ import '../App.css'
 
 const posters = import.meta.glob('../assets/poster_*.{jpg,png}', { eager: true })
 
-function EpisodeDropdown({ currentSlug, allSlugs }) {
-  if (allSlugs.length <= 1) return null
+function EpisodeDropdown({ currentSlug, allEditions }) {
+  if (allEditions.length <= 1) return null
 
   function handleChange(e) {
     const slug = e.target.value
-    window.location.href = slug === allSlugs[0] ? '/' : `/${slug}`
+    window.location.href = slug === allEditions[0].slug ? '/' : `/${slug}`
   }
 
   return (
@@ -23,9 +23,9 @@ function EpisodeDropdown({ currentSlug, allSlugs }) {
         onChange={handleChange}
         aria-label="Switch to a past episode"
       >
-        {allSlugs.map((slug, i) => (
-          <option key={slug} value={slug}>
-            {slug}{i === 0 ? ' (Current)' : ''}
+        {allEditions.map((ed, i) => (
+          <option key={ed.slug} value={ed.slug}>
+            {ed.label}{i === 0 ? ' (Current)' : ''}
           </option>
         ))}
       </select>
@@ -34,7 +34,7 @@ function EpisodeDropdown({ currentSlug, allSlugs }) {
 }
 
 export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
-  const { edition, allSlugs } = useEdition()
+  const { edition, allEditions } = useEdition()
   const [topScores, setTopScores] = useState([])
 
   const posterImg = edition?.poster
@@ -135,7 +135,7 @@ export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
         </div>
       </section>
 
-      <EpisodeDropdown currentSlug={edition.edition} allSlugs={allSlugs} />
+      <EpisodeDropdown currentSlug={edition.edition} allEditions={allEditions} />
 
       <section className="social-section">
         <h3>Find Us Online</h3>

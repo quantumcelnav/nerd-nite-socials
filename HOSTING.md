@@ -14,6 +14,27 @@ How to run Nerdometer for your show. The full cycle from prep to post-show.
 
 ---
 
+## On ticket sales day — go live early (optional)
+
+Put the game live with teaser questions and no leaderboard. Players can
+explore the game in practice mode while they wait for the real show.
+
+1. Create `public/editions/S2026E08.json` with the talk titles and speaker
+   names but placeholder or teaser questions. **Leave out the `nonce` field.**
+2. Prepend to `public/editions/index.json`:
+   ```json
+   [
+     {"slug": "S2026E08", "label": "S2026E08 — October 2026"},
+     {"slug": "S2026E06", "label": "S2026E06 — June 2026"}
+   ]
+   ```
+3. Push to main — home screen shows the new show in practice mode.
+
+Everyone can play. No scores submit. Leaderboard shows "No scores yet."
+On show night, swap in the real questions + nonce and push. Same slug, same URL.
+
+---
+
 ## Before every show — prep (1–2 days out)
 
 ### 1. Wake Supabase
@@ -127,7 +148,19 @@ score to the leaderboard. Everyone else can still play but is in practice mode.
 ### During the show
 
 The game is self-serve — audience plays on their phones between/after talks.
-Check the leaderboard live at your production URL.
+
+**Bookmark your admin panel before the show:**
+```
+https://your-site.com/?admin=<your-VITE_ADMIN_TOKEN>
+```
+Open it on your phone. Any name you Hide disappears from the leaderboard
+instantly. Restore brings it back. The edition switcher lets you moderate
+past shows too.
+
+Check the live leaderboard at your production URL. To moderate a past show:
+```
+https://your-site.com/S2026E06?admin=<your-token>
+```
 
 ---
 
