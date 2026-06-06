@@ -1,83 +1,93 @@
 # Nerdometer — Product Plan
 
 **Tagline:** How nerdy are you, really?
-
 **Owner:** Justin Fritz, Nerd Nite Fort Collins Boss
+**Live:** https://nerd-nite-socials.vercel.app
 
 ---
 
 ## Product Vision
 
-Nerdometer is a trivia game tied directly to Nerd Nite Fort Collins events. Each iteration is scoped to a specific event: Justin provides the speaker names and talk topics, and the game generates targeted trivia around those talks — interspersed with the Nerd Nite origin story, narrated by Justin himself.
+Nerdometer is a live-show trivia game tied to Nerd Nite Fort Collins events. Each edition is scoped to a specific show: talk titles, speakers, and questions are authored per event, interspersed with the Nerd Nite origin story narrated by Justin. The game runs on audience phones during the show, with a live leaderboard gated to people actually in the room via a per-show nonce URL.
 
-The game is a community engagement tool and a celebration of the talks. Players prove their nerd credentials, climb the leaderboard, and learn more about the people and ideas on stage.
-
----
-
-## Iteration Model
-
-Each Nerd Nite event spawns a new edition of Nerdometer:
-
-1. Justin provides talk titles, speaker names, and topic summaries
-2. Trivia questions are authored around those talks
-3. Origin story segments are woven between rounds
-4. Players play, score, and hit the leaderboard
-5. After the event, the edition is archived; the next edition begins
-
----
-
-## Game Structure
-
-### Rounds
-- Each round corresponds to one talk from the event
-- Players answer trivia questions about that talk's topic
-- Between rounds: a segment of the Nerd Nite origin story, narrated by Justin
-
-### Scoring
-- Points per correct answer (speed bonus TBD)
-- Running score shown throughout
-- Final score submitted to global leaderboard at the end
-
-### Origin Story Segments
-- Short narrative cards presented between rounds
-- Justin is the narrator/presenter — first-person voice
-- Tells the story of how Nerd Nite Fort Collins came to be
-- Goal: players finish the game knowing what Nerd Nite is and why it matters
+The tool is open source (CC BY 4.0) — designed so any Nerd Nite city can fork it and run their own edition.
 
 ---
 
 ## Stack
 
-- **Frontend:** Vite + React (mobile-first)
-- **Hosting:** Vercel
-- **Leaderboard:** Supabase (global, persistent, per-edition)
-- **Content:** JSON-driven per edition (talk info, questions, origin story segments)
+| Layer | Choice | Notes |
+|---|---|---|
+| Frontend | Vite + React | Mobile-first, PWA |
+| Hosting | Vercel | Git push → auto-deploy ~90s |
+| Database | Supabase | Scores + emails, real-time subscriptions |
+| Style | Courier New, dark navy/cyan/orange | Monospace retro throughout |
+
+**Supabase free tier note:** Projects pause after 7 days of inactivity. Visit the site the day before each show to pre-wake the DB. Supabase Pro ($25/mo) removes this if it becomes a problem.
 
 ---
 
-## Design / Style
+## Show Workflow (one file, one push)
 
-- **Product name:** Nerdometer (used in-app branding, not "Nerd Nite Socials")
-- **Colors:** Dark navy/teal `#1a2f3a`, cyan `#00b8d9`, burnt orange `#e05c1a`, off-white `#f5f5f0`
-- **Font:** Courier New throughout — bold headers, italic for narrative/Justin's voice
-- **Layout:** Mobile-first, bold stacked color blocks, touch-friendly (min 48px targets)
-- **Desktop:** Two-column grid panels at 768px+
+1. Edit `src/data/edition.json` — new show info, talks, questions, nonce
+2. `git push origin main`
+3. Vercel deploys in ~90 seconds — production is live
+4. After show: remove nonce field from edition.json, push → leaderboard freezes
+
+Full runbook: `HOSTING.md`
 
 ---
 
-## Content Schema (per edition)
+## Architecture
+
+### Nonce system
+- `edition.nonce` in edition.json is the per-show secret
+- Live URL: `https://nerd-nite-socials.vercel.app/?n=<nonce>`
+- Audience gets this URL via QR code at show time
+- Without the nonce: practice mode (game works, scores don't submit)
+- Nonce comparison strips non-alphanumeric chars (tolerates copy-paste punctuation)
+
+### Leaderboard
+- Supabase `scores` table: `edition, name, score, max_score, mode, created_at`
+- Filtered by current `edition.edition` string
+- Real-time subscription via `postgres_changes` INSERT — board updates live
+- Hall of Fame (`/?hof=1`): top scorer per edition, all time
+
+### Edition data
+- Current show: `src/data/edition.json`
+- Archive: `editions/S20XXE00.json` — permanent record of every show
+- Template: `editions/TEMPLATE.json`
+
+### Special routes
+| URL param | Renders |
+|---|---|
+| `?qr=1` | Full-screen QR projector slide |
+| `?hof=1` | Hall of Fame — top scorer per edition |
+| `?n=<nonce>` | Live mode — enables leaderboard write |
+
+---
+
+## Content Schema (edition.json)
 
 ```json
 {
-  "edition": "June 2026",
+  "edition": "S2026E06",
+  "nonce": "4hxqp7",
+  "poster": "poster_s2026e06.jpg",
+  "date": "Thursday, June 18, 2026",
+  "venue": "Wolverine Farm Publick House",
+  "doorsOpen": "6:30pm",
+  "talksStart": "7:00pm",
+  "admission": "$8 · Students $4",
+  "ticketUrl": "https://events.humanitix.com/...",
   "talks": [
     {
       "id": 1,
       "title": "Talk Title",
       "speaker": "Speaker Name",
-      "summary": "Brief topic description",
       "questions": [
         {
+          "difficulty": 1,
           "question": "Question text?",
           "options": ["A", "B", "C", "D"],
           "answer": 0
@@ -86,88 +96,122 @@ Each Nerd Nite event spawns a new edition of Nerdometer:
     }
   ],
   "originStory": [
-    {
-      "after_talk": 0,
-      "text": "Justin's narration segment..."
-    }
+    { "text": "Narrative card text..." }
   ]
 }
 ```
 
+**Scoring:**
+| difficulty | label | points |
+|---|---|---|
+| 1 | Accessible | 100 |
+| 2 | Nerdy | 300 |
+| 3 | Deep Cut | 900 |
+
+Max per show: 3,900 pts. "Nerd Nite Boss" = 97%+.
+
 ---
 
-## Pages / Views
+## What's Built
 
-1. **Home** — Nerdometer branding, current edition, Play button, leaderboard preview
-2. **Game** — Question flow with round indicators, origin story cards between rounds
-3. **Score Submit** — Enter name/handle after game ends
-4. **Leaderboard** — Full top scores for current edition
-5. **Archive** — Past editions (future)
+| Feature | Status |
+|---|---|
+| Vite + React, Vercel git auto-deploy | ✅ |
+| Nerdometer branding, Courier New style | ✅ |
+| Trivia mode (3 talks × 3 questions) | ✅ |
+| "What Is It?" ontology mode | ✅ |
+| Origin story cards between rounds | ✅ |
+| Logarithmic scoring + tier system | ✅ |
+| Score submit with name entry | ✅ |
+| Share card (nonce stripped from URL) | ✅ |
+| Email capture / social links post-game | ✅ |
+| Supabase leaderboard, real-time updates | ✅ |
+| Home screen top-3 scores (live) | ✅ |
+| Hall of Fame (`/?hof=1`) | ✅ |
+| QR projector slide (`/?qr=1`) | ✅ |
+| Per-show nonce in edition.json | ✅ |
+| Supabase keepalive ping on load | ✅ |
+| Edition archive (`editions/`) | ✅ |
+| HOSTING.md host runbook | ✅ |
+| Error boundary | ✅ |
+| PWA support | ✅ |
+| CC BY 4.0 license | ✅ |
 
 ---
 
-## Milestones
+## Next Steps
 
-1. [x] Scaffold Vite + React, push to GitHub
-2. [x] Rebrand to Nerdometer, Courier New style system
-3. [x] Game flow: origin cards → trivia rounds → score submit → leaderboard
-4. [x] Reaction GIFs on correct/wrong answer
-5. [x] Logarithmic scoring: Accessible (100) / Nerdy (300) / Deep Cut (900)
-6. [x] Nerdometer % tier system: Curious Muggle → Nerd Nite Boss
-7. [ ] Refactor Game.jsx to useReducer (before adding real content)
-8. [ ] Deploy to Vercel
-9. [ ] Supabase leaderboard (replace mock scores)
-10. [ ] Real episode editions — past shows playtested with speaker review
-11. [ ] Edition switcher on home screen
-12. [ ] Justin host presence on origin cards
-13. [ ] Real social links
-14. [ ] Hero image (Nerd Nite mascot / branded art)
+### 1. Archive Playback (next)
+Let players replay any past show after the event — with its real leaderboard.
+
+- Move `editions/*.json` to `public/editions/` (served as static files)
+- Replace hardcoded `import edition from '../data/edition.json'` with a React context
+- Edition loaded at runtime: `fetch(/editions/${slug}.json)`
+- Archive picker at `/?archive=1` — lists all past shows, click to play
+- Leaderboard already filtered by edition — works automatically
+
+**Impact:** Major refactor of edition data flow (currently hardcoded in ~8 components). Well-understood scope, ~1 day.
+
+### 2. Reaction GIFs
+Justin is creating episode-agnostic NNFC-branded GIFs using Qwen image edit.
+Assets: correct answer GIF, wrong answer GIF (at minimum).
+
+Once assets exist:
+- Drop GIFs into `src/assets/gifs/`
+- Wire into Game.jsx answer feedback — show on correct/wrong
+
+**Impact:** Small code change once assets are ready.
+
+### 3. Multiple Nonces (future)
+Change `nonce` to `nonces: ["abc", "def"]` array in edition.json.
+Use case: different QR codes for different sections of the bar.
+Check: `nonces.includes(param)` instead of `param === nonce`.
+
+**Impact:** 2-line change to useNonce.js + edition.json schema.
+
+### 4. Fun Facts per Question (future)
+Show a short fun fact after each answer reveal.
+Requires content: one fact per question from Justin/speaker.
+Add `"fact": "..."` field to each question in edition.json.
+
+---
+
+## Design Decisions Log
+
+| Decision | Choice | Reason |
+|---|---|---|
+| Host-controlled vs self-paced | Self-paced | Bar format; sync is operationally risky |
+| Nonce location | edition.json | One file, one push; Vercel env var was two-step |
+| GIF generation | Manual (Justin) | AI GIF quality inconsistent; Qwen gives control |
+| Database | Supabase (keep) | Real-time + RLS + free tier; replacing needs a backend |
+| Hosting | Vercel (keep) | Auto-deploy from git; trivial to move if needed |
 
 ---
 
 ## Test Plan
 
-### Manual Playtest Checklist (run before every commit)
-- [ ] Home screen loads, all three sections visible
-- [ ] "Play Now" starts the game at the origin story card
-- [ ] Origin story cards advance correctly between all rounds
-- [ ] All 9 questions display (3 per talk, 3 talks)
-- [ ] Correct answer: green highlight, reaction GIF, correct point value awarded
-- [ ] Wrong answer: red highlight, reaction GIF, score unchanged
-- [ ] Difficulty badge shown per question (Accessible / Nerdy / Deep Cut)
-- [ ] Progress bar advances across all questions
-- [ ] Score accumulates correctly across rounds
-- [ ] Outro origin card appears after final question
-- [ ] Score submit screen shows correct %, tier name, and fill bar
-- [ ] Leaderboard screen loads and "Back to Home" works
-- [ ] Full replay from home works without refresh
+### Pre-show checklist
+- [ ] Visit production URL day before (wakes Supabase)
+- [ ] Play through full game on staging with nonce URL
+- [ ] Confirm score appears on leaderboard
+- [ ] QR slide renders correctly (`/?qr=1`)
+- [ ] Poster image loads
 
-### Scoring Verification
+### Manual playtest (every push to main)
+- [ ] Home loads, top scores show (or "No scores yet")
+- [ ] Both game modes start and complete
+- [ ] Origin story cards appear between rounds
+- [ ] Correct/wrong answer feedback works
+- [ ] Score submit: name entry, Submit button, Supabase write confirmed
+- [ ] Practice mode message shows without nonce
+- [ ] Leaderboard loads and Back to Home works
+- [ ] Hall of Fame loads (`/?hof=1`)
+- [ ] Full replay without refresh resets state cleanly
+
+### Scoring verification
 | Scenario | Expected % | Expected Tier |
 |---|---|---|
 | All correct | 100% | Nerd Nite Boss |
-| All Deep Cuts correct, rest wrong | ~69% | Certified Nerd |
+| All Deep Cuts correct only | ~69% | Certified Nerd |
 | Only Accessibles correct | ~23% | Apprentice Nerd |
 | All wrong | 0% | Curious Muggle |
-
-### Speaker Review Process (per edition)
-1. Justin drafts talk summaries and sends to Claude
-2. Claude writes 3 questions per talk (Accessible / Nerdy / Deep Cut)
-3. Justin plays through the edition
-4. Questions shared with speaker for accuracy review
-5. Speaker approves or requests edits
-6. Edition locked and deployed
-
-### Edge Cases to Watch
-- Fast tapping: answer buttons disabled after first selection ✓
-- GIF load failure: img gracefully shows nothing (no crash)
-- Empty name on score submit: button disabled ✓
-- Game state after replay: all state resets cleanly (needs verification)
-
----
-
-## Open Questions
-
-- Social platforms to link (Instagram, Facebook, Meetup?)
-- Any audio/sound effects?
-- Fun facts after each answer (requires content per question from Justin)
