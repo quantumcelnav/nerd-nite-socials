@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react'
 import edition from '../data/edition.json'
+import { supabase, supabaseReady } from '../lib/supabase'
 import '../App.css'
 
 // Poster is optional — set "poster" field in edition.json to the asset filename.
@@ -8,13 +10,19 @@ const posterImg = edition.poster
   ? (posters[`../assets/${edition.poster}`]?.default ?? null)
   : null
 
-const PLACEHOLDER_SCORES = [
-  { rank: 1, name: 'N. Tesla', score: 900 },
-  { rank: 2, name: 'A. Lovelace', score: 800 },
-  { rank: 3, name: 'R. Feynman', score: 700 },
-]
-
 export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
+  const [topScores, setTopScores] = useState([])
+  useEffect(() => {
+    if (!supabaseReady) return
+    supabase
+      .from('scores')
+      .select('name, score')
+      .eq('edition', edition.edition)
+      .order('score', { ascending: false })
+      .limit(3)
+      .then(({ data }) => setTopScores(data ?? []))
+  }, [])
+
   return (
     <>
       <header className="header">
@@ -77,13 +85,17 @@ export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
         </div>
         <div className="leaderboard-panel">
           <h3>Top Scores</h3>
-          {PLACEHOLDER_SCORES.map(row => (
-            <div key={row.rank} className="score-row">
-              <span className="rank">#{row.rank}</span>
-              <span className="name">{row.name}</span>
-              <span className="score">{row.score}</span>
-            </div>
-          ))}
+          {topScores.length === 0 ? (
+            <p className="lb-empty-home">No scores yet — be the first!</p>
+          ) : (
+            topScores.map((row, i) => (
+              <div key={i} className="score-row">
+                <span className="rank">#{i + 1}</span>
+                <span className="name">{row.name}</span>
+                <span className="score">{row.score}</span>
+              </div>
+            ))
+          )}
           <button className="view-all-btn" onClick={onLeaderboard}
             aria-label="View full leaderboard">
             View Full Leaderboard
