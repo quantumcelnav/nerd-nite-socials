@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conway's Game of Life — Nerd Nite Fort Collins</title>
+  <style>
+    :root {
+      --bg:     #002A37;
+      --cyan:   #13DAF9;
+      --orange: #FF611B;
+      --red:    #ED1C25;
+      --pink:   #F8A4A7;
+      --white:  #f5f5f0;
+      --font:   'Courier New', Courier, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      border-bottom: 1px solid var(--cyan);
+    }
+
+    header .logo {
+      color: var(--cyan);
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    header .act-label {
+      color: var(--orange);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+
+    #stage-title {
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: var(--cyan);
+      text-align: center;
+      padding: 10px 24px 4px;
+      letter-spacing: 0.08em;
+      min-height: 2.2em;
+    }
+
+    #stage-desc {
+      font-size: clamp(0.78rem, 1.6vw, 1rem);
+      color: var(--white);
+      text-align: center;
+      padding: 0 24px 10px;
+      max-width: 820px;
+      line-height: 1.5;
+      min-height: 3.2em;
+      opacity: 0.88;
+    }
+
+    #canvas-wrap {
+      position: relative;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    canvas {
+      display: block;
+      image-rendering: pixelated;
+    }
+
+    /* overlay for cell count */
+    #stats {
+      position: absolute;
+      bottom: 8px;
+      right: 16px;
+      font-size: 0.72rem;
+      color: var(--cyan);
+      opacity: 0.6;
+      letter-spacing: 0.05em;
+    }
+
+    footer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 10px 16px;
+      border-top: 1px solid rgba(19,218,249,0.25);
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: transparent;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      font-family: var(--font);
+      font-size: 0.8rem;
+      padding: 6px 14px;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    button:hover, button.active {
+      background: var(--cyan);
+      color: var(--bg);
+    }
+
+    button.nav {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    button.nav:hover {
+      background: var(--orange);
+      color: var(--bg);
+    }
+
+    #rules-box {
+      position: absolute;
+      top: 8px;
+      left: 16px;
+      font-size: 0.7rem;
+      color: var(--cyan);
+      opacity: 0.7;
+      line-height: 1.7;
+      letter-spacing: 0.03em;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="logo">Nerd Nite Fort Collins</span>
+  <span class="act-label" id="act-label">ACT I</span>
+</header>
+
+<div id="stage-title">Conway's Game of Life</div>
+<div id="stage-desc">Three rules. Infinite possibility.</div>
+
+<div id="canvas-wrap">
+  <canvas id="c"></canvas>
+  <div id="rules-box" style="display:none">
+    BIRTH &nbsp;— dead cell with exactly 3 live neighbours → lives<br>
+    SURVIVAL — live cell with 2 or 3 neighbours → survives<br>
+    DEATH &nbsp;— all other live cells → die
+  </div>
+  <div id="stats"></div>
+</div>
+
+<footer>
+  <button class="nav" id="btn-prev">◀ Prev</button>
+  <button id="btn-pause">Pause</button>
+  <button id="btn-step">Step</button>
+  <button id="btn-reset">Reset</button>
+  <button class="nav" id="btn-next">Next ▶</button>
+</footer>
+
+<script>
+// ─── NNFC colours ───────────────────────────────────────────────────────────
+const C = { bg:'#002A37', cyan:'#13DAF9', orange:'#FF611B',
+            red:'#ED1C25', pink:'#F8A4A7', white:'#f5f5f0' };
+
+// ─── Canvas setup ───────────────────────────────────────────────────────────
+const canvas = document.getElementById('c');
+const ctx    = canvas.getContext('2d');
+let W, H, CELL, cols, rows;
+
+function resize() {
+  const wrap = document.getElementById('canvas-wrap');
+  const hw   = wrap.clientWidth;
+  const hh   = wrap.clientHeight;
+  CELL = currentAct().cell || 8;
+  cols = Math.floor(hw / CELL);
+  rows = Math.floor(hh / CELL);
+  canvas.width  = cols * CELL;
+  canvas.height = rows * CELL;
+  W = canvas.width; H = canvas.height;
+}
+
+// ─── Grid ───────────────────────────────────────────────────────────────────
+let grid, next;
+
+function makeGrid() {
+  return new Uint8Array(cols * rows);
+}
+
+function idx(x, y) {
+  return ((y + rows) % rows) * cols + ((x + cols) % cols);
+}
+
+function set(g, x, y, v=1) { g[idx(x,y)] = v; }
+function get(g, x, y)      { return g[idx(x,y)]; }
+
+function step() {
+  next = makeGrid();
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      let n = 0;
+      for (let dy=-1; dy<=1; dy++)
+        for (let dx=-1; dx<=1; dx++)
+          if (dx||dy) n += get(grid, x+dx, y+dy);
+      const alive = get(grid, x, y);
+      next[idx(x,y)] = alive ? (n===2||n===3?1:0) : (n===3?1:0);
+    }
+  }
+  grid = next;
+  gen++;
+}
+
+// ─── Render ─────────────────────────────────────────────────────────────────
+let cellColor = C.cyan;
+
+function draw() {
+  ctx.fillStyle = C.bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // grid lines (subtle, only when cells are large enough)
+  if (CELL >= 6) {
+    ctx.strokeStyle = 'rgba(19,218,249,0.06)';
+    ctx.lineWidth = 0.5;
+    for (let x=0; x<=cols; x++) {
+      ctx.beginPath(); ctx.moveTo(x*CELL,0); ctx.lineTo(x*CELL,H); ctx.stroke();
+    }
+    for (let y=0; y<=rows; y++) {
+      ctx.beginPath(); ctx.moveTo(0,y*CELL); ctx.lineTo(W,y*CELL); ctx.stroke();
+    }
+  }
+
+  let alive = 0;
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (grid[idx(x,y)]) {
+        ctx.fillStyle = cellColor;
+        ctx.fillRect(x*CELL+1, y*CELL+1, CELL-1, CELL-1);
+        alive++;
+      }
+    }
+  }
+  document.getElementById('stats').textContent =
+    `gen ${gen}  |  live cells ${alive}`;
+}
+
+// ─── Patterns ───────────────────────────────────────────────────────────────
+function place(g, ox, oy, pat) {
+  pat.forEach(([dy,dx]) => set(g, ox+dx, oy+dy));
+}
+
+// Classic glider
+const GLIDER = [[0,1],[1,2],[2,0],[2,1],[2,2]];
+
+// Gosper Glider Gun
+const GOSPER = [
+  [0,24],
+  [1,22],[1,24],
+  [2,12],[2,13],[2,20],[2,21],[2,34],[2,35],
+  [3,11],[3,15],[3,20],[3,21],[3,34],[3,35],
+  [4,0],[4,1],[4,10],[4,16],[4,20],[4,21],
+  [5,0],[5,1],[5,10],[5,14],[5,16],[5,17],[5,22],[5,24],
+  [6,10],[6,16],[6,24],
+  [7,11],[7,15],
+  [8,12],[8,13]
+];
+
+// R-pentomino (chaotic)
+const R_PENTO = [[0,1],[0,2],[1,0],[1,1],[2,1]];
+
+// Pulsar (period-3 oscillator)
+const PULSAR = [
+  [0,2],[0,3],[0,4],[0,8],[0,9],[0,10],
+  [2,0],[2,5],[2,7],[2,12],
+  [3,0],[3,5],[3,7],[3,12],
+  [4,0],[4,5],[4,7],[4,12],
+  [5,2],[5,3],[5,4],[5,8],[5,9],[5,10],
+  [7,2],[7,3],[7,4],[7,8],[7,9],[7,10],
+  [8,0],[8,5],[8,7],[8,12],
+  [9,0],[9,5],[9,7],[9,12],
+  [10,0],[10,5],[10,7],[10,12],
+  [12,2],[12,3],[12,4],[12,8],[12,9],[12,10]
+];
+
+// Lightweight spaceship
+const LWSS = [[0,1],[0,4],[1,0],[2,0],[2,4],[3,0],[3,1],[3,2],[3,3]];
+
+// AND gate seed: two glider streams will collide
+// We'll simulate a simplified signal collision visually
+function placeGun(g, ox, oy) {
+  GOSPER.forEach(([dy,dx]) => {
+    if (oy+dy>=0 && oy+dy<rows && ox+dx>=0 && ox+dx<cols)
+      set(g, ox+dx, oy+dy);
+  });
+}
+
+// ─── Acts ───────────────────────────────────────────────────────────────────
+// Each act has: title, desc, init(), speed(ms), cell size, color
+const ACTS = [
+  {
+    id: 1,
+    label: 'ACT I',
+    title: 'Three Rules',
+    desc:  'Birth: a dead cell with exactly 3 live neighbours comes alive. ' +
+           'Survival: a live cell with 2 or 3 neighbours survives. ' +
+           'Death: everything else dies. That\'s it.',
+    cell:  10,
+    speed: 120,
+    color: C.cyan,
+    showRules: true,
+    init(g) {
+      // show a few still lifes and a glider so rules are visible
+      // Block (still life)
+      const cx = Math.floor(cols/2), cy = Math.floor(rows/2);
+      set(g, cx,   cy);   set(g, cx+1, cy);
+      set(g, cx,   cy+1); set(g, cx+1, cy+1);
+      // Blinker (oscillator)
+      set(g, cx-8, cy); set(g, cx-7, cy); set(g, cx-6, cy);
+      // Glider
+      place(g, cx-14, cy-6, GLIDER);
+    }
+  },
+  {
+    id: 2,
+    label: 'ACT II',
+    title: 'Information Moves',
+    desc:  'The glider — five cells, four steps, one diagonal move. ' +
+           'Simple rules produce a persistent structure that travels forever. ' +
+           'Information can propagate.',
+    cell:  10,
+    speed: 100,
+    color: C.cyan,
+    init(g) {
+      const cx = Math.floor(cols*0.2), cy = Math.floor(rows*0.2);
+      for (let i=0; i<6; i++)
+        place(g, cx + i*10, cy + i*4, GLIDER);
+    }
+  },
+  {
+    id: 3,
+    label: 'ACT III',
+    title: 'Unbounded Creation — Gosper Glider Gun',
+    desc:  'A structure that generates an infinite stream of gliders. ' +
+           'Discovered by Bill Gosper in 1970. Proved the grid is infinite. ' +
+           'A factory. A transmitter. A clock.',
+    cell:  7,
+    speed: 60,
+    color: C.orange,
+    init(g) {
+      const ox = Math.floor(cols*0.05);
+      const oy = Math.floor(rows*0.25);
+      placeGun(g, ox, oy);
+    }
+  },
+  {
+    id: 4,
+    label: 'ACT IV',
+    title: 'Collision = Computation',
+    desc:  'Gliders can be aimed at each other. ' +
+           'Collision patterns implement AND, OR, NOT gates. ' +
+           'Two glider guns + an eater = a logic gate. ' +
+           'Logic gates = any computation. Any computation = Turing complete.',
+    cell:  6,
+    speed: 40,
+    color: C.orange,
+    init(g) {
+      // Two guns aimed to collide — demonstrates the concept
+      placeGun(g, Math.floor(cols*0.04), Math.floor(rows*0.1));
+      // Reflected gun via LWSS stream
+      placeGun(g, Math.floor(cols*0.04), Math.floor(rows*0.55));
+      // Scatter some eaters/blocks to show interaction
+      const mx = Math.floor(cols*0.6), my = Math.floor(rows*0.35);
+      // Eater 1
+      set(g,mx,my); set(g,mx+1,my);
+      set(g,mx,my+1); set(g,mx+2,my+1);
+      set(g,mx+2,my+2); set(g,mx+2,my+3); set(g,mx+3,my+3);
+    }
+  },
+  {
+    id: 5,
+    label: 'ACT V',
+    title: 'Life Inside Life',
+    desc:  'CGOL can simulate a Turing machine. A Turing machine can simulate CGOL. ' +
+           'Therefore CGOL can simulate itself — ' +
+           'a universe whose rules are complex enough to contain a copy of itself. ' +
+           'Three rules. Infinite possibility. This is what Turing completeness means.',
+    cell:  4,
+    speed: 20,
+    color: C.pink,
+    init(g) {
+      // Dense chaotic soup — let emergence do the talking
+      for (let y=0; y<rows; y++)
+        for (let x=0; x<cols; x++)
+          if (Math.random() < 0.32) set(g,x,y);
+    }
+  }
+];
+
+// ─── State ──────────────────────────────────────────────────────────────────
+let actIdx   = 0;
+let gen      = 0;
+let paused   = false;
+let raf      = null;
+let lastTime = 0;
+
+function currentAct() { return ACTS[actIdx]; }
+
+function loadAct(idx) {
+  actIdx = ((idx % ACTS.length) + ACTS.length) % ACTS.length;
+  const act = currentAct();
+  gen = 0;
+
+  // update UI
+  document.getElementById('act-label').textContent   = act.label;
+  document.getElementById('stage-title').textContent  = act.title;
+  document.getElementById('stage-desc').textContent   = act.desc;
+  document.getElementById('rules-box').style.display  = act.showRules ? 'block' : 'none';
+  cellColor = act.color;
+
+  resize();
+  grid = makeGrid();
+  act.init(grid);
+  draw();
+}
+
+// ─── Loop ───────────────────────────────────────────────────────────────────
+function loop(ts) {
+  raf = requestAnimationFrame(loop);
+  if (paused) return;
+  if (ts - lastTime < currentAct().speed) return;
+  lastTime = ts;
+  step();
+  draw();
+}
+
+// ─── Controls ───────────────────────────────────────────────────────────────
+document.getElementById('btn-pause').onclick = () => {
+  paused = !paused;
+  document.getElementById('btn-pause').textContent = paused ? 'Play' : 'Pause';
+};
+
+document.getElementById('btn-step').onclick = () => {
+  paused = true;
+  document.getElementById('btn-pause').textContent = 'Play';
+  step(); draw();
+};
+
+document.getElementById('btn-reset').onclick = () => loadAct(actIdx);
+
+document.getElementById('btn-next').onclick  = () => loadAct(actIdx + 1);
+document.getElementById('btn-prev').onclick  = () => loadAct(actIdx - 1);
+
+// keyboard nav
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); loadAct(actIdx+1); }
+  if (e.key === 'ArrowLeft')  { e.preventDefault(); loadAct(actIdx-1); }
+  if (e.key === 'p' || e.key === 'P') document.getElementById('btn-pause').click();
+  if (e.key === 'r' || e.key === 'R') loadAct(actIdx);
+});
+
+// click to toggle cells (interactive)
+canvas.addEventListener('click', e => {
+  const r = canvas.getBoundingClientRect();
+  const x = Math.floor((e.clientX - r.left) / CELL);
+  const y = Math.floor((e.clientY - r.top)  / CELL);
+  grid[idx(x,y)] = grid[idx(x,y)] ? 0 : 1;
+  draw();
+});
+
+window.addEventListener('resize', () => { loadAct(actIdx); });
+
+// ─── Boot ───────────────────────────────────────────────────────────────────
+loadAct(0);
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
