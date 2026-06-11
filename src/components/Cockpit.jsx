@@ -9,7 +9,8 @@ import CommsChannel from './CommsChannel'
 import '../cockpit.css'
 
 const COCKPIT_TOKEN  = import.meta.env.VITE_COCKPIT_TOKEN
-const SHOWPACK_TOKEN = import.meta.env.VITE_COCKPIT_TOKEN  // same token for now
+const CREW_TOKEN     = import.meta.env.VITE_CREW_TOKEN
+const SHOWPACK_TOKEN = import.meta.env.VITE_COCKPIT_TOKEN
 
 const MODULE_LABELS = {
   trivia: 'Trivia',
@@ -26,8 +27,10 @@ export default function Cockpit({ token }) {
     canAdvance, blockingItems,
   } = useCockpit(slug)
 
-  const network = useNetworkStatus()
-  const isBoss  = COCKPIT_TOKEN && token === COCKPIT_TOKEN
+  const network  = useNetworkStatus()
+  const isBoss   = COCKPIT_TOKEN && token === COCKPIT_TOKEN
+  const isCrew   = CREW_TOKEN && token === CREW_TOKEN
+  const hasAccess = isBoss || isCrew
 
   const [viewingStateId, setViewingStateId] = useState(null)
   const activeViewId  = viewingStateId ?? currentStateId
@@ -36,7 +39,7 @@ export default function Cockpit({ token }) {
 
   const [senderName, setSenderName] = useState(() => localStorage.getItem('cockpit_sender') ?? '')
 
-  if (!COCKPIT_TOKEN || !token) {
+  if (!hasAccess) {
     return <div className="cockpit-denied">Access denied.</div>
   }
 
@@ -136,7 +139,7 @@ export default function Cockpit({ token }) {
           currentState={viewingState}
           currentStateId={activeViewId}
           checklist={checklist}
-          onToggle={isPreviewing ? undefined : toggleCheckItem}
+          onToggle={isPreviewing || !isBoss ? undefined : toggleCheckItem}
           isPreviewing={isPreviewing}
           previewLabel={isPreviewing ? viewingState?.label : null}
         />
