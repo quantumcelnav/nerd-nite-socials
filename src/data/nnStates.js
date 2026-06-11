@@ -12,6 +12,8 @@ export const NN_STATES = [
     label: 'Pre-Show',
     moduleActions: {},
     checklist: [
+      { key: 'humanitix_pulled',  label: 'Humanitix guest list pulled',     owner: 'boss' },
+      { key: 'loyalty_cards',     label: 'Loyalty libation cards at door',  owner: 'crew' },
       { key: 'speakers_arrived',  label: 'Speakers confirmed arrived',      owner: 'boss' },
       { key: 'mic_check',         label: 'Mic check complete',              owner: 'tech' },
       { key: 'trivia_loaded',     label: 'Trivia loaded for tonight',       owner: 'boss' },
@@ -25,6 +27,8 @@ export const NN_STATES = [
     moduleActions: {},
     checklist: [
       { key: 'music_on',          label: 'Pre-show music playing',          owner: 'auto' },
+      { key: 'humanitix_checkin', label: 'Humanitix check-in device live',  owner: 'tech' },
+      { key: 'loyalty_stamping',  label: 'Stamping loyalty cards at door',  owner: 'crew' },
       { key: 'bar_briefed',       label: 'Bar staff briefed on trivia',     owner: 'boss' },
     ],
   },
@@ -120,6 +124,7 @@ export const NN_STATES = [
     checklist: [
       { key: 'thanks_given',      label: 'Thank speakers and audience',     owner: 'boss' },
       { key: 'next_show',         label: 'Next show date announced',        owner: 'boss' },
+      { key: 'loyalty_redeem',    label: 'Announce loyalty card redemption at bar', owner: 'boss' },
       { key: 'outro_music',       label: 'Outro music playing',             owner: 'auto' },
     ],
   },

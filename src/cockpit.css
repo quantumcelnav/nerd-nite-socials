@@ -1,9 +1,18 @@
 /* ── Cockpit — TCAEvent OS show operations view ── */
 
+/* Cockpit overrides the global palette — ops terminal, not game UI */
 .cockpit-screen {
+  --ck-bg:       #0a0f14;
+  --ck-surface:  #111820;
+  --ck-border:   rgba(255,255,255,0.08);
+  --ck-orange:   #E05A1E;
+  --ck-cyan:     #17D4E8;
+  --ck-text:     #d4d8dc;
+  --ck-dim:      #5a6070;
+
   min-height: 100vh;
-  background: var(--bg, #002A37);
-  color: var(--off-white, #F5F5F0);
+  background: var(--ck-bg);
+  color: var(--ck-text);
   display: flex;
   flex-direction: column;
   font-family: 'Courier New', monospace;
@@ -15,7 +24,7 @@
   align-items: center;
   justify-content: center;
   font-family: 'Courier New', monospace;
-  color: var(--orange, #E05A1E);
+  color: var(--ck-orange);
   font-size: 1.2rem;
   letter-spacing: 0.1em;
 }
@@ -26,15 +35,15 @@
   align-items: center;
   gap: 1rem;
   padding: 0.6rem 1rem;
-  background: var(--dark-navy, #001F2A);
-  border-bottom: 2px solid var(--orange, #E05A1E);
+  background: var(--ck-surface);
+  border-bottom: 2px solid var(--ck-orange);
 }
 
 .cockpit-title {
   font-size: 0.9rem;
   font-weight: bold;
   letter-spacing: 0.15em;
-  color: var(--orange, #E05A1E);
+  color: var(--ck-orange);
   text-transform: uppercase;
   flex: 1;
   text-align: center;
@@ -42,7 +51,7 @@
 
 .cockpit-edition {
   font-size: 0.7rem;
-  color: var(--cyan, #17D4E8);
+  color: var(--ck-cyan);
   opacity: 0.7;
   letter-spacing: 0.08em;
 }
@@ -56,18 +65,18 @@
 }
 
 .cockpit-role--boss {
-  border-color: var(--orange, #E05A1E);
-  color: var(--orange, #E05A1E);
+  border-color: var(--ck-orange);
+  color: var(--ck-orange);
 }
 
 .cockpit-role--crew {
-  border-color: var(--cyan, #17D4E8);
-  color: var(--cyan, #17D4E8);
+  border-color: var(--ck-cyan);
+  color: var(--ck-cyan);
 }
 
 /* ── State Machine ── */
 .sm-wrap {
-  background: var(--dark-navy, #001F2A);
+  background: var(--ck-surface);
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -78,7 +87,7 @@
   padding: 0.75rem 1rem;
   gap: 0;
   scrollbar-width: thin;
-  scrollbar-color: var(--orange, #E05A1E) transparent;
+  scrollbar-color: var(--ck-orange) transparent;
 }
 
 .sm-node {
@@ -107,8 +116,8 @@
   border-color: rgba(255,255,255,0.5);
 }
 
-.sm-node--past .sm-connector    { background: var(--cyan, #17D4E8); opacity: 0.5; }
-.sm-node--live .sm-connector    { background: var(--orange, #E05A1E); }
+.sm-node--past .sm-connector    { background: var(--ck-cyan); opacity: 0.5; }
+.sm-node--live .sm-connector    { background: var(--ck-orange); }
 
 .sm-dot {
   width: 14px;
@@ -122,15 +131,15 @@
 }
 
 .sm-node--past .sm-dot {
-  border-color: var(--cyan, #17D4E8);
-  background: var(--cyan, #17D4E8);
+  border-color: var(--ck-cyan);
+  background: var(--ck-cyan);
   opacity: 0.5;
 }
 
 .sm-node--live .sm-dot {
-  border-color: var(--orange, #E05A1E);
-  background: var(--orange, #E05A1E);
-  box-shadow: 0 0 8px var(--orange, #E05A1E);
+  border-color: var(--ck-orange);
+  background: var(--ck-orange);
+  box-shadow: 0 0 8px var(--ck-orange);
   width: 18px;
   height: 18px;
   display: flex;
@@ -162,8 +171,8 @@
   text-transform: uppercase;
 }
 
-.sm-node--past .sm-node-label    { opacity: 0.35; color: var(--cyan, #17D4E8); }
-.sm-node--live .sm-node-label    { opacity: 1; color: var(--orange, #E05A1E); font-weight: bold; }
+.sm-node--past .sm-node-label    { opacity: 0.35; color: var(--ck-cyan); }
+.sm-node--live .sm-node-label    { opacity: 1; color: var(--ck-orange); font-weight: bold; }
 .sm-node--viewing:not(.sm-node--live) .sm-node-label { opacity: 1; color: #fff; }
 
 .sm-preview-tag {
@@ -202,8 +211,8 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--orange, #E05A1E);
-  box-shadow: 0 0 5px var(--orange, #E05A1E);
+  background: var(--ck-orange);
+  box-shadow: 0 0 5px var(--ck-orange);
   flex-shrink: 0;
   align-self: center;
 }
@@ -211,7 +220,7 @@
 .sm-banner-state {
   font-size: 1.1rem;
   font-weight: bold;
-  color: var(--orange, #E05A1E);
+  color: var(--ck-orange);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -257,13 +266,13 @@
 }
 
 .sm-advance--ready {
-  border-color: var(--orange, #E05A1E);
-  color: var(--orange, #E05A1E);
+  border-color: var(--ck-orange);
+  color: var(--ck-orange);
   background: transparent;
 }
 
 .sm-advance--ready:hover {
-  background: var(--orange, #E05A1E);
+  background: var(--ck-orange);
   color: #fff;
 }
 
@@ -276,7 +285,7 @@
 
 .sm-complete {
   font-size: 0.75rem;
-  color: var(--cyan, #17D4E8);
+  color: var(--ck-cyan);
   letter-spacing: 0.1em;
 }
 
@@ -304,7 +313,7 @@
 .cl-heading {
   font-size: 0.65rem;
   letter-spacing: 0.12em;
-  color: var(--orange, #E05A1E);
+  color: var(--ck-orange);
   margin: 0 0 0.75rem;
   text-transform: uppercase;
 }
@@ -330,12 +339,12 @@
 }
 
 .cl-item:hover:not(.cl-item--auto) {
-  border-color: var(--orange, #E05A1E);
+  border-color: var(--ck-orange);
   background: rgba(224,90,30,0.05);
 }
 
 .cl-item--done {
-  border-color: var(--cyan, #17D4E8) !important;
+  border-color: var(--ck-cyan) !important;
   background: rgba(23,212,232,0.04);
 }
 
@@ -347,7 +356,7 @@
 .cl-check {
   font-size: 0.9rem;
   width: 16px;
-  color: var(--cyan, #17D4E8);
+  color: var(--ck-cyan);
   flex-shrink: 0;
 }
 
@@ -374,8 +383,8 @@
   flex-shrink: 0;
 }
 
-.cl-owner--boss  { border-color: var(--orange, #E05A1E); color: var(--orange, #E05A1E); }
-.cl-owner--crew  { border-color: var(--cyan, #17D4E8);   color: var(--cyan, #17D4E8); }
+.cl-owner--boss  { border-color: var(--ck-orange); color: var(--ck-orange); }
+.cl-owner--crew  { border-color: var(--ck-cyan);   color: var(--ck-cyan); }
 .cl-owner--tech  { border-color: #aaa; color: #aaa; }
 .cl-owner--auto  { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.3); }
 
@@ -421,7 +430,7 @@
 .comms-heading {
   font-size: 0.65rem;
   letter-spacing: 0.12em;
-  color: var(--cyan, #17D4E8);
+  color: var(--ck-cyan);
   margin: 0 0 0.75rem;
   text-transform: uppercase;
   flex-shrink: 0;
@@ -434,8 +443,8 @@
 .comms-name-input {
   width: 100%;
   background: transparent;
-  border: 1px solid var(--cyan, #17D4E8);
-  color: var(--cyan, #17D4E8);
+  border: 1px solid var(--ck-cyan);
+  color: var(--ck-cyan);
   font-family: 'Courier New', monospace;
   font-size: 0.8rem;
   padding: 0.4rem 0.6rem;
@@ -478,7 +487,7 @@
 }
 
 .comms-sender {
-  color: var(--cyan, #17D4E8);
+  color: var(--ck-cyan);
   font-weight: bold;
   flex-shrink: 0;
 }
@@ -510,7 +519,7 @@
 
 .comms-input:focus {
   outline: none;
-  border-color: var(--cyan, #17D4E8);
+  border-color: var(--ck-cyan);
 }
 
 .comms-input::placeholder { color: rgba(255,255,255,0.25); }
@@ -519,8 +528,8 @@
 
 .comms-send {
   background: transparent;
-  border: 1px solid var(--cyan, #17D4E8);
-  color: var(--cyan, #17D4E8);
+  border: 1px solid var(--ck-cyan);
+  color: var(--ck-cyan);
   font-family: 'Courier New', monospace;
   font-size: 0.7rem;
   font-weight: bold;
@@ -532,8 +541,8 @@
 }
 
 .comms-send:hover:not(:disabled) {
-  background: var(--cyan, #17D4E8);
-  color: var(--bg, #002A37);
+  background: var(--ck-cyan);
+  color: var(--ck-bg);
 }
 
 .comms-send:disabled { opacity: 0.3; cursor: default; }
@@ -547,7 +556,7 @@
 }
 
 .cockpit-net--online  { color: #4CAF50; }
-.cockpit-net--offline { color: var(--orange, #E05A1E); animation: net-blink 1s step-end infinite; }
+.cockpit-net--offline { color: var(--ck-orange); animation: net-blink 1s step-end infinite; }
 .cockpit-net--checking { color: #888; }
 
 @keyframes net-blink {
@@ -556,7 +565,7 @@
 
 /* ── Offline banner ── */
 .cockpit-offline-banner {
-  background: var(--orange, #E05A1E);
+  background: var(--ck-orange);
   color: #fff;
   font-size: 0.75rem;
   font-weight: bold;
@@ -571,7 +580,7 @@
   font-size: 0.65rem;
   font-weight: bold;
   letter-spacing: 0.08em;
-  background: var(--orange, #E05A1E);
+  background: var(--ck-orange);
   color: #fff;
   border: none;
   padding: 0.25rem 0.6rem;
@@ -587,13 +596,13 @@
   font-size: 0.65rem;
   font-weight: bold;
   letter-spacing: 0.06em;
-  color: var(--cyan, #17D4E8);
+  color: var(--ck-cyan);
   text-decoration: none;
-  border: 1px solid var(--cyan, #17D4E8);
+  border: 1px solid var(--ck-cyan);
   padding: 0.2rem 0.5rem;
 }
 
-.cockpit-showpack-link:hover { background: var(--cyan, #17D4E8); color: var(--bg, #002A37); }
+.cockpit-showpack-link:hover { background: var(--ck-cyan); color: var(--ck-bg); }
 
 /* ── Modules panel ── */
 .cockpit-modules {
@@ -625,10 +634,10 @@
   transition: color 0.15s;
 }
 
-.cockpit-module-toggle--on { color: var(--orange, #E05A1E); }
+.cockpit-module-toggle--on { color: var(--ck-orange); }
 
 .cockpit-module-toggle input[type="checkbox"] {
-  accent-color: var(--orange, #E05A1E);
+  accent-color: var(--ck-orange);
   cursor: pointer;
 }
 

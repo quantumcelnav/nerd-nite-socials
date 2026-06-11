@@ -155,6 +155,7 @@ export default function ShowPack({ token }) {
           <thead><tr><th>Role</th><th>Name</th><th>Phone / Signal</th></tr></thead>
           <tbody>
             <tr><td>Boss</td><td>Justin Fritz</td><td>_______________</td></tr>
+            <tr><td>Boss</td><td>Senne Van Loon</td><td>_______________</td></tr>
             <tr><td>Host</td><td>Hannah Bauer</td><td>_______________</td></tr>
             <tr><td>Social</td><td>Jamie Fritz</td><td>_______________</td></tr>
             <tr><td>Venue</td><td>Wolverine Farm</td><td>_______________</td></tr>
