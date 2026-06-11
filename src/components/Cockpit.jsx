@@ -23,7 +23,7 @@ export default function Cockpit({ token }) {
     allStates, currentState, currentStateId, currentStateIdx,
     nextState, prevState, stateEnteredAt, checklist, comms,
     wiredModules, showNonce, offlinePending,
-    advanceState, retreatState, toggleCheckItem, sendMessage, toggleModule, syncPending,
+    advanceState, checkAllAndAdvance, retreatState, toggleCheckItem, sendMessage, toggleModule, syncPending,
     generateNonce, canAdvance, blockingItems,
   } = useCockpit(slug)
 
@@ -117,6 +117,7 @@ export default function Cockpit({ token }) {
         stateEnteredAt={stateEnteredAt}
         onAdvance={isBoss ? handleAdvance : undefined}
         onRetreat={isBoss ? handleRetreat : undefined}
+        onBossAdvance={isBoss && !canAdvance && nextState ? () => { checkAllAndAdvance(); setViewingStateId(null) } : undefined}
         onNodeClick={handleNodeClick}
         canAdvance={isBoss && canAdvance}
         blockingItems={blockingItems}

@@ -110,6 +110,34 @@ export function useCockpit(editionSlug) {
     }
   }, [editionSlug])
 
+  async function checkAllAndAdvance() {
+    const now = new Date().toISOString()
+    const blocking = currentState.checklist.filter(item =>
+      item.owner !== 'auto' && !checklist[`${currentStateId}:${item.key}`]?.completed
+    )
+
+    // Optimistic — check all blocking items locally before advancing
+    if (blocking.length) {
+      const patch = {}
+      for (const item of blocking) {
+        patch[`${currentStateId}:${item.key}`] = { completed: true, completedAt: now }
+      }
+      setChecklist(prev => ({ ...prev, ...patch }))
+
+      if (supabaseReady) {
+        await supabase.from('show_checklist').upsert(
+          blocking.map(item => ({
+            edition: editionSlug, state_id: currentStateId, item_key: item.key,
+            completed: true, completed_at: now, updated_at: now,
+          })),
+          { onConflict: 'edition,state_id,item_key' }
+        )
+      }
+    }
+
+    await advanceState()
+  }
+
   async function advanceState() {
     const next = getNextState(currentStateId)
     if (!next) return
@@ -271,6 +299,7 @@ export function useCockpit(editionSlug) {
     showNonce,
     generateNonce,
     advanceState,
+    checkAllAndAdvance,
     retreatState,
     toggleCheckItem,
     sendMessage,

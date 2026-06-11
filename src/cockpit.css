@@ -283,6 +283,25 @@
   cursor: default;
 }
 
+.sm-boss-advance {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--ck-orange);
+  color: var(--ck-orange);
+  background: rgba(224, 90, 30, 0.12);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sm-boss-advance:hover {
+  background: var(--ck-orange);
+  color: #fff;
+}
+
 .sm-retreat {
   font-family: 'Courier New', monospace;
   font-size: 0.8rem;

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 export default function StateMachine({
   allStates, currentStateId, currentStateIdx, viewingStateId,
-  nextState, prevState, stateEnteredAt, onAdvance, onRetreat, onNodeClick,
+  nextState, prevState, stateEnteredAt, onAdvance, onRetreat, onBossAdvance, onNodeClick,
   canAdvance, blockingItems, isPreviewing,
 }) {
   const [elapsed, setElapsed] = useState(0)
@@ -93,16 +93,27 @@ export default function StateMachine({
             </button>
           )}
           {nextState ? (
-            <button
-              className={`sm-advance ${canAdvance ? 'sm-advance--ready' : 'sm-advance--blocked'}`}
-              onClick={canAdvance ? onAdvance : undefined}
-              disabled={!canAdvance}
-              title={!canAdvance ? `Blocked: ${blockingItems.map(i => i.label).join(', ')}` : `Advance to ${nextState.label}`}
-            >
-              {canAdvance
-                ? `→ ${nextState.label}`
-                : `● ${blockingItems.length} blocking`}
-            </button>
+            <>
+              <button
+                className={`sm-advance ${canAdvance ? 'sm-advance--ready' : 'sm-advance--blocked'}`}
+                onClick={canAdvance ? onAdvance : undefined}
+                disabled={!canAdvance}
+                title={!canAdvance ? `Blocked: ${blockingItems.map(i => i.label).join(', ')}` : `Advance to ${nextState.label}`}
+              >
+                {canAdvance
+                  ? `→ ${nextState.label}`
+                  : `● ${blockingItems.length} blocking`}
+              </button>
+              {onBossAdvance && (
+                <button
+                  className="sm-boss-advance"
+                  onClick={onBossAdvance}
+                  title="Check all items and advance"
+                >
+                  BOSS: CHECK ALL + ADVANCE
+                </button>
+              )}
+            </>
           ) : (
             <span className="sm-complete">SHOW COMPLETE</span>
           )}
