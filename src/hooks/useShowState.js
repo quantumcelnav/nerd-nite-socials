@@ -7,13 +7,14 @@ export function useShowState(editionSlug) {
   const [dashboardEnabled, setDashboardEnabled] = useState(false)
   const [currentState, setCurrentState]       = useState('pre_show')
   const [wiredModules, setWiredModules]       = useState({})
+  const [showNonce, setShowNonce]             = useState(null)
 
   useEffect(() => {
     if (!supabaseReady || !editionSlug) return
 
     supabase
       .from('show_state')
-      .select('frozen, dashboard_enabled, current_state, wired_modules')
+      .select('frozen, dashboard_enabled, current_state, wired_modules, show_nonce')
       .eq('edition', editionSlug)
       .single()
       .then(({ data }) => {
@@ -22,6 +23,7 @@ export function useShowState(editionSlug) {
         setDashboardEnabled(data.dashboard_enabled ?? false)
         setCurrentState(data.current_state ?? 'pre_show')
         setWiredModules(data.wired_modules ?? {})
+        setShowNonce(data.show_nonce ?? null)
       })
 
     const channel = supabase
@@ -33,6 +35,7 @@ export function useShowState(editionSlug) {
           setDashboardEnabled(row.dashboard_enabled ?? false)
           if (row.current_state) setCurrentState(row.current_state)
           if (row.wired_modules) setWiredModules(row.wired_modules)
+          if (row.show_nonce)    setShowNonce(row.show_nonce)
         }
       )
       .subscribe()
@@ -71,5 +74,6 @@ export function useShowState(editionSlug) {
     triviaWired,
     dashboardEnabled,
     setDashboard,
+    showNonce,
   }
 }

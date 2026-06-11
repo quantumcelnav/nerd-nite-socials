@@ -8,7 +8,7 @@ const MODE_LABEL = { trivia: 'Trivia', ontology: 'What Is It?' }
 
 export default function Leaderboard({ onHome }) {
   const { edition } = useEdition()
-  const { frozen: isFrozen } = useShowState(edition?.edition)
+  const { frozen: isFrozen, showNonce } = useShowState(edition?.edition)
   const [scores, setScores] = useState([])
   const [loading, setLoading] = useState(true)
   const homeRef = useRef(null)
@@ -18,19 +18,23 @@ export default function Leaderboard({ onHome }) {
   useEffect(() => {
     if (!supabaseReady) { setLoading(false); return }
 
-    supabase
-      .from('scores')
-      .select('name, score, mode')
-      .eq('edition', edition.edition)
-      .neq('hidden', true)
-      .order('score', { ascending: false })
-      .limit(10)
-      .then(({ data }) => {
-        setScores(data ?? [])
-        setLoading(false)
-      })
+    function buildQuery() {
+      let q = supabase
+        .from('scores')
+        .select('name, score, mode')
+        .eq('edition', edition.edition)
+        .neq('hidden', true)
+        .order('score', { ascending: false })
+        .limit(10)
+      if (showNonce) q = q.eq('nonce', showNonce)
+      return q
+    }
 
-    // Only subscribe to live updates for active (non-frozen) shows
+    buildQuery().then(({ data }) => {
+      setScores(data ?? [])
+      setLoading(false)
+    })
+
     if (isFrozen) return
 
     const channel = supabase
@@ -38,21 +42,12 @@ export default function Leaderboard({ onHome }) {
       .on('postgres_changes',
         { event: 'INSERT', schema: 'public', table: 'scores',
           filter: `edition=eq.${edition.edition}` },
-        () => {
-          supabase
-            .from('scores')
-            .select('name, score, mode')
-            .eq('edition', edition.edition)
-            .neq('hidden', true)
-            .order('score', { ascending: false })
-            .limit(10)
-            .then(({ data }) => setScores(data ?? []))
-        }
+        () => buildQuery().then(({ data }) => setScores(data ?? []))
       )
       .subscribe()
 
     return () => supabase.removeChannel(channel)
-  }, [isFrozen])
+  }, [isFrozen, showNonce])
 
   return (
     <div className="leaderboard-screen screen-enter" role="main">

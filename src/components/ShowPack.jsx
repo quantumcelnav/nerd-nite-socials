@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useEdition } from '../contexts/EditionContext'
+import { useShowState } from '../hooks/useShowState'
 import { supabase, supabaseReady } from '../lib/supabase'
 import { NN_STATES } from '../data/nnStates'
 import '../showpack.css'
@@ -16,6 +17,7 @@ const HAND_SIGNALS = [
 
 export default function ShowPack({ token }) {
   const { edition } = useEdition()
+  const { showNonce } = useShowState(edition?.edition)
   const [scores, setScores] = useState([])
   const [printTime] = useState(() => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }))
 
@@ -26,15 +28,16 @@ export default function ShowPack({ token }) {
 
   useEffect(() => {
     if (!supabaseReady || !edition?.edition) return
-    supabase
+    let q = supabase
       .from('scores')
       .select('name, score, mode')
       .eq('edition', edition.edition)
       .eq('hidden', false)
       .order('score', { ascending: false })
       .limit(20)
-      .then(({ data }) => setScores(data ?? []))
-  }, [edition?.edition])
+    if (showNonce) q = q.eq('nonce', showNonce)
+    q.then(({ data }) => setScores(data ?? []))
+  }, [edition?.edition, showNonce])
 
   if (!edition) return <div style={{ padding: '2rem', fontFamily: 'monospace' }}>Loading…</div>
 

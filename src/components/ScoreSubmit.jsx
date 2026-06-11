@@ -67,12 +67,14 @@ export default function ScoreSubmit({ score, maxScore, mode, isLiveMode, onDone 
     setSubmitting(true)
     setSubmitError(null)
     if (supabaseReady) {
+      const urlNonce = new URLSearchParams(window.location.search).get('n') ?? null
       const { error } = await supabase.from('scores').insert({
         edition: edition.edition,
         name: name.trim(),
         score,
         max_score: maxScore,
         mode,
+        nonce: urlNonce,
       })
       if (error) {
         setSubmitError('Could not save score — try again.')
