@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
 import { supabase, supabaseReady } from '../lib/supabase'
-import { NN_STATES, getState, getNextState } from '../data/nnStates'
+import { NN_STATES, getState, getNextState, getPrevState } from '../data/nnStates'
 
 const DEFAULT_MODULES = { trivia: false }
 
@@ -46,11 +46,16 @@ export function useCockpit(editionSlug) {
 
     supabase
       .from('show_checklist')
-      .select('state_id, item_key, completed')
+      .select('state_id, item_key, completed, completed_at')
       .eq('edition', editionSlug)
       .then(({ data }) => {
         const map = {}
-        for (const row of data ?? []) map[`${row.state_id}:${row.item_key}`] = row.completed
+        for (const row of data ?? []) {
+          map[`${row.state_id}:${row.item_key}`] = {
+            completed: row.completed,
+            completedAt: row.completed_at ?? null,
+          }
+        }
         setChecklist(map)
       })
 
@@ -79,7 +84,13 @@ export function useCockpit(editionSlug) {
       .on('postgres_changes',
         { event: '*', schema: 'public', table: 'show_checklist', filter: `edition=eq.${editionSlug}` },
         ({ new: row }) => {
-          setChecklist(prev => ({ ...prev, [`${row.state_id}:${row.item_key}`]: row.completed }))
+          setChecklist(prev => ({
+            ...prev,
+            [`${row.state_id}:${row.item_key}`]: {
+              completed: row.completed,
+              completedAt: row.completed_at ?? prev[`${row.state_id}:${row.item_key}`]?.completedAt ?? null,
+            },
+          }))
         }
       )
       .subscribe()
@@ -113,7 +124,7 @@ export function useCockpit(editionSlug) {
     try {
       const autoUpserts = next.checklist
         .filter(item => item.owner === 'auto')
-        .map(item => ({ edition: editionSlug, state_id: next.id, item_key: item.key, completed: true, updated_at: now }))
+        .map(item => ({ edition: editionSlug, state_id: next.id, item_key: item.key, completed: true, completed_at: now, updated_at: now }))
       if (autoUpserts.length) {
         await supabase.from('show_checklist').upsert(autoUpserts, { onConflict: 'edition,state_id,item_key' })
       }
@@ -145,14 +156,28 @@ export function useCockpit(editionSlug) {
   }
 
   async function toggleCheckItem(stateId, itemKey) {
-    const key  = `${stateId}:${itemKey}`
-    const next = !checklist[key]
-    setChecklist(prev => ({ ...prev, [key]: next }))
+    const key     = `${stateId}:${itemKey}`
+    const prev    = checklist[key]
+    const nowDone = !prev?.completed
+    const now     = new Date().toISOString()
+
+    // Preserve completedAt when unchecking so the panel can show "prev: HH:mm"
+    setChecklist(c => ({
+      ...c,
+      [key]: {
+        completed:   nowDone,
+        completedAt: nowDone ? now : (prev?.completedAt ?? null),
+      },
+    }))
+
     if (!supabaseReady) return
-    await supabase.from('show_checklist').upsert(
-      { edition: editionSlug, state_id: stateId, item_key: itemKey, completed: next, updated_at: new Date().toISOString() },
-      { onConflict: 'edition,state_id,item_key' }
-    )
+
+    const payload = {
+      edition: editionSlug, state_id: stateId, item_key: itemKey,
+      completed: nowDone, updated_at: now,
+      ...(nowDone ? { completed_at: now } : {}),
+    }
+    await supabase.from('show_checklist').upsert(payload, { onConflict: 'edition,state_id,item_key' })
   }
 
   async function sendMessage(sender, message) {
@@ -175,14 +200,14 @@ export function useCockpit(editionSlug) {
       .upsert({ edition: editionSlug, show_nonce: nonce }, { onConflict: 'edition' })
 
     await supabase.from('show_checklist').upsert([
-      { edition: editionSlug, state_id: 'pre_show', item_key: 'nonce_generated',  completed: true, updated_at: now },
-      { edition: editionSlug, state_id: 'pre_show', item_key: 'urls_distributed', completed: true, updated_at: now },
+      { edition: editionSlug, state_id: 'pre_show', item_key: 'nonce_generated',  completed: true, completed_at: now, updated_at: now },
+      { edition: editionSlug, state_id: 'pre_show', item_key: 'urls_distributed', completed: true, completed_at: now, updated_at: now },
     ], { onConflict: 'edition,state_id,item_key' })
 
     setChecklist(prev => ({
       ...prev,
-      'pre_show:nonce_generated':  true,
-      'pre_show:urls_distributed': true,
+      'pre_show:nonce_generated':  { completed: true, completedAt: now },
+      'pre_show:urls_distributed': { completed: true, completedAt: now },
     }))
 
     await supabase.from('show_comms').insert({
@@ -210,10 +235,26 @@ export function useCockpit(editionSlug) {
   const currentState    = getState(currentStateId)
   const currentStateIdx = NN_STATES.findIndex(s => s.id === currentStateId)
   const nextState       = getNextState(currentStateId)
+  const prevState       = getPrevState(currentStateId)
 
   const blockingItems = currentState.checklist.filter(item =>
-    item.owner !== 'auto' && !checklist[`${currentStateId}:${item.key}`]
+    item.owner !== 'auto' && !checklist[`${currentStateId}:${item.key}`]?.completed
   )
+
+  async function retreatState() {
+    if (!prevState) return
+    const now = new Date().toISOString()
+    setCurrentStateId(prevState.id)
+    setStateEnteredAt(new Date(now))
+    if (!supabaseReady) { setOfflinePending(true); return }
+    try {
+      await supabase.from('show_state')
+        .upsert({ edition: editionSlug, current_state: prevState.id, state_entered_at: now }, { onConflict: 'edition' })
+      setOfflinePending(false)
+    } catch {
+      setOfflinePending(true)
+    }
+  }
 
   return {
     allStates: NN_STATES,
@@ -221,6 +262,7 @@ export function useCockpit(editionSlug) {
     currentStateId,
     currentStateIdx,
     nextState,
+    prevState,
     stateEnteredAt,
     checklist,
     comms,
@@ -229,6 +271,7 @@ export function useCockpit(editionSlug) {
     showNonce,
     generateNonce,
     advanceState,
+    retreatState,
     toggleCheckItem,
     sendMessage,
     toggleModule,

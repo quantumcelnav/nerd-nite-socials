@@ -21,9 +21,9 @@ export default function Cockpit({ token }) {
   const slug = edition?.edition
   const {
     allStates, currentState, currentStateId, currentStateIdx,
-    nextState, stateEnteredAt, checklist, comms,
+    nextState, prevState, stateEnteredAt, checklist, comms,
     wiredModules, showNonce, offlinePending,
-    advanceState, toggleCheckItem, sendMessage, toggleModule, syncPending,
+    advanceState, retreatState, toggleCheckItem, sendMessage, toggleModule, syncPending,
     generateNonce, canAdvance, blockingItems,
   } = useCockpit(slug)
 
@@ -51,6 +51,12 @@ export default function Cockpit({ token }) {
   function handleAdvance() {
     if (!isBoss || !canAdvance) return
     advanceState()
+    setViewingStateId(null)
+  }
+
+  function handleRetreat() {
+    if (!isBoss || !prevState) return
+    retreatState()
     setViewingStateId(null)
   }
 
@@ -107,8 +113,10 @@ export default function Cockpit({ token }) {
         currentStateIdx={currentStateIdx}
         viewingStateId={activeViewId}
         nextState={nextState}
+        prevState={prevState}
         stateEnteredAt={stateEnteredAt}
         onAdvance={isBoss ? handleAdvance : undefined}
+        onRetreat={isBoss ? handleRetreat : undefined}
         onNodeClick={handleNodeClick}
         canAdvance={isBoss && canAdvance}
         blockingItems={blockingItems}

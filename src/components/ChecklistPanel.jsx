@@ -1,5 +1,10 @@
 const OWNER_LABELS = { boss: 'BOSS', crew: 'CREW', tech: 'TECH', auto: 'AUTO' }
 
+function fmtTime(iso) {
+  if (!iso) return null
+  return new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+}
+
 export default function ChecklistPanel({ currentState, currentStateId, checklist, onToggle, isPreviewing, previewLabel }) {
   if (!currentState?.checklist?.length) {
     return <div className="cl-empty">No checklist for this state.</div>
@@ -18,9 +23,11 @@ export default function ChecklistPanel({ currentState, currentStateId, checklist
       )}
       <ul className="cl-list">
         {currentState.checklist.map(item => {
-          const done   = !!checklist[`${currentStateId}:${item.key}`]
+          const entry  = checklist[`${currentStateId}:${item.key}`]
+          const done   = !!entry?.completed
+          const prevAt = !done ? fmtTime(entry?.completedAt) : null
           const isAuto = item.owner === 'auto'
-          const locked = isPreviewing || isAuto
+          const locked = isPreviewing || isAuto || !onToggle
           return (
             <li
               key={item.key}
@@ -32,7 +39,10 @@ export default function ChecklistPanel({ currentState, currentStateId, checklist
               onKeyDown={locked ? undefined : e => e.key === ' ' && onToggle(currentStateId, item.key)}
             >
               <span className="cl-check">{done ? '✓' : '○'}</span>
-              <span className="cl-label">{item.label}</span>
+              <span className="cl-label">
+                {item.label}
+                {prevAt && <span className="cl-prev-note">prev {prevAt}</span>}
+              </span>
               <span className={`cl-owner cl-owner--${item.owner}`}>{OWNER_LABELS[item.owner]}</span>
             </li>
           )

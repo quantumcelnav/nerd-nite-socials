@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 export default function StateMachine({
   allStates, currentStateId, currentStateIdx, viewingStateId,
-  nextState, stateEnteredAt, onAdvance, onNodeClick,
+  nextState, prevState, stateEnteredAt, onAdvance, onRetreat, onNodeClick,
   canAdvance, blockingItems, isPreviewing,
 }) {
   const [elapsed, setElapsed] = useState(0)
@@ -83,6 +83,15 @@ export default function StateMachine({
         </div>
 
         <div className="sm-banner-right">
+          {prevState && onRetreat && (
+            <button
+              className="sm-retreat"
+              onClick={onRetreat}
+              title={`Go back to ${prevState.label}`}
+            >
+              ← {prevState.label}
+            </button>
+          )}
           {nextState ? (
             <button
               className={`sm-advance ${canAdvance ? 'sm-advance--ready' : 'sm-advance--blocked'}`}

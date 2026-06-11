@@ -148,3 +148,8 @@ export function getNextState(id) {
   const idx = NN_STATES.findIndex(s => s.id === id)
   return idx >= 0 && idx < NN_STATES.length - 1 ? NN_STATES[idx + 1] : null
 }
+
+export function getPrevState(id) {
+  const idx = NN_STATES.findIndex(s => s.id === id)
+  return idx > 0 ? NN_STATES[idx - 1] : null
+}

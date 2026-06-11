@@ -283,6 +283,31 @@
   cursor: default;
 }
 
+.sm-retreat {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  padding: 0.5rem 1rem;
+  border: 2px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.45);
+  background: transparent;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.sm-retreat:hover {
+  border-color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.75);
+}
+
+.sm-banner-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .sm-complete {
   font-size: 0.75rem;
   color: var(--ck-cyan);
@@ -351,6 +376,14 @@
 .cl-item--auto {
   cursor: default;
   opacity: 0.6;
+}
+
+.cl-prev-note {
+  display: block;
+  font-size: 0.55rem;
+  color: var(--ck-dim);
+  letter-spacing: 0.06em;
+  margin-top: 0.1rem;
 }
 
 .cl-check {
