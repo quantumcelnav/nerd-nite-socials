@@ -1,43 +1,75 @@
 import { useEffect, useState } from 'react'
 import { supabase, supabaseReady } from '../lib/supabase'
+import { MODULE_ACTIONS } from '../data/nnStates'
 
-// Returns { frozen, setFrozen } for a given edition slug.
-// Subscribes to real-time changes so freeze/unfreeze propagates to all
-// connected clients immediately.
 export function useShowState(editionSlug) {
-  const [frozen, setFrozen] = useState(false)
+  const [frozen, setFrozen]                   = useState(false)
+  const [dashboardEnabled, setDashboardEnabled] = useState(false)
+  const [currentState, setCurrentState]       = useState('pre_show')
+  const [wiredModules, setWiredModules]       = useState({})
 
   useEffect(() => {
     if (!supabaseReady || !editionSlug) return
 
     supabase
       .from('show_state')
-      .select('frozen')
+      .select('frozen, dashboard_enabled, current_state, wired_modules')
       .eq('edition', editionSlug)
       .single()
-      .then(({ data }) => setFrozen(data?.frozen ?? false))
+      .then(({ data }) => {
+        if (!data) return
+        setFrozen(data.frozen ?? false)
+        setDashboardEnabled(data.dashboard_enabled ?? false)
+        setCurrentState(data.current_state ?? 'pre_show')
+        setWiredModules(data.wired_modules ?? {})
+      })
 
     const channel = supabase
       .channel(`show-state-${editionSlug}`)
       .on('postgres_changes',
-        { event: '*', schema: 'public', table: 'show_state',
-          filter: `edition=eq.${editionSlug}` },
-        (payload) => setFrozen(payload.new.frozen)
+        { event: '*', schema: 'public', table: 'show_state', filter: `edition=eq.${editionSlug}` },
+        ({ new: row }) => {
+          setFrozen(row.frozen ?? false)
+          setDashboardEnabled(row.dashboard_enabled ?? false)
+          if (row.current_state) setCurrentState(row.current_state)
+          if (row.wired_modules) setWiredModules(row.wired_modules)
+        }
       )
       .subscribe()
 
     return () => supabase.removeChannel(channel)
   }, [editionSlug])
 
+  // When trivia is wired to cockpit, derive frozen from the state machine.
+  // When standalone, use the manual frozen field from DB.
+  const triviaWired = !!wiredModules?.trivia
+  const effectiveFrozen = triviaWired
+    ? MODULE_ACTIONS[currentState]?.trivia !== 'unlock'
+    : frozen
+
   async function toggleFrozen() {
+    if (triviaWired) return  // cockpit owns this when wired
     const next = !frozen
-    setFrozen(next) // optimistic
+    setFrozen(next)
     if (supabaseReady) {
-      await supabase
-        .from('show_state')
-        .upsert({ edition: editionSlug, frozen: next })
+      await supabase.from('show_state')
+        .upsert({ edition: editionSlug, frozen: next }, { onConflict: 'edition' })
     }
   }
 
-  return { frozen, toggleFrozen }
+  async function setDashboard(enabled) {
+    setDashboardEnabled(enabled)
+    if (supabaseReady) {
+      await supabase.from('show_state')
+        .upsert({ edition: editionSlug, dashboard_enabled: enabled }, { onConflict: 'edition' })
+    }
+  }
+
+  return {
+    frozen: effectiveFrozen,
+    toggleFrozen,
+    triviaWired,
+    dashboardEnabled,
+    setDashboard,
+  }
 }

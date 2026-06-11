@@ -10,6 +10,7 @@ import HallOfFame from './components/HallOfFame'
 import AdminPanel from './components/AdminPanel'
 import Dashboard from './components/Dashboard'
 import Cockpit from './components/Cockpit'
+import ShowPack from './components/ShowPack'
 import QRSlide from './components/QRSlide'
 import ErrorBoundary from './components/ErrorBoundary'
 import { useNonce } from './hooks/useNonce'
@@ -105,6 +106,15 @@ export default function App() {
     <ErrorBoundary>
       <EditionProvider slug={getEditionSlug()}>
         <Dashboard />
+      </EditionProvider>
+    </ErrorBoundary>
+  )
+
+  const showpackToken = params.get('showpack')
+  if (showpackToken) return (
+    <ErrorBoundary>
+      <EditionProvider slug={getEditionSlug()}>
+        <ShowPack token={showpackToken} />
       </EditionProvider>
     </ErrorBoundary>
   )

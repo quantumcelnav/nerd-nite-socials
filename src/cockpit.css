@@ -537,3 +537,103 @@
 }
 
 .comms-send:disabled { opacity: 0.3; cursor: default; }
+
+/* ── Network status ── */
+.cockpit-net {
+  font-size: 0.65rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.5rem;
+}
+
+.cockpit-net--online  { color: #4CAF50; }
+.cockpit-net--offline { color: var(--orange, #E05A1E); animation: net-blink 1s step-end infinite; }
+.cockpit-net--checking { color: #888; }
+
+@keyframes net-blink {
+  50% { opacity: 0.3; }
+}
+
+/* ── Offline banner ── */
+.cockpit-offline-banner {
+  background: var(--orange, #E05A1E);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  text-align: center;
+  padding: 0.4rem 1rem;
+}
+
+/* ── Sync button ── */
+.cockpit-sync-btn {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  background: var(--orange, #E05A1E);
+  color: #fff;
+  border: none;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  animation: net-blink 1.5s step-end infinite;
+}
+
+.cockpit-sync-btn:hover { opacity: 0.85; animation: none; }
+
+/* ── Show pack link ── */
+.cockpit-showpack-link {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  color: var(--cyan, #17D4E8);
+  text-decoration: none;
+  border: 1px solid var(--cyan, #17D4E8);
+  padding: 0.2rem 0.5rem;
+}
+
+.cockpit-showpack-link:hover { background: var(--cyan, #17D4E8); color: var(--bg, #002A37); }
+
+/* ── Modules panel ── */
+.cockpit-modules {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.4rem 1rem;
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cockpit-modules-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: #888;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.cockpit-module-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  color: #888;
+  transition: color 0.15s;
+}
+
+.cockpit-module-toggle--on { color: var(--orange, #E05A1E); }
+
+.cockpit-module-toggle input[type="checkbox"] {
+  accent-color: var(--orange, #E05A1E);
+  cursor: pointer;
+}
+
+.cockpit-module-state {
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}

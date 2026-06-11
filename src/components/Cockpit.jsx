@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import { useEdition } from '../contexts/EditionContext'
 import { useCockpit } from '../hooks/useCockpit'
+import { useNetworkStatus } from '../hooks/useNetworkStatus'
 import { getState } from '../data/nnStates'
 import StateMachine from './StateMachine'
 import ChecklistPanel from './ChecklistPanel'
 import CommsChannel from './CommsChannel'
 import '../cockpit.css'
 
-const COCKPIT_TOKEN = import.meta.env.VITE_COCKPIT_TOKEN
+const COCKPIT_TOKEN  = import.meta.env.VITE_COCKPIT_TOKEN
+const SHOWPACK_TOKEN = import.meta.env.VITE_COCKPIT_TOKEN  // same token for now
+
+const MODULE_LABELS = {
+  trivia: 'Trivia',
+}
 
 export default function Cockpit({ token }) {
   const { edition } = useEdition()
@@ -15,17 +21,18 @@ export default function Cockpit({ token }) {
   const {
     allStates, currentState, currentStateId, currentStateIdx,
     nextState, stateEnteredAt, checklist, comms,
-    advanceState, toggleCheckItem, sendMessage,
+    wiredModules, offlinePending,
+    advanceState, toggleCheckItem, sendMessage, toggleModule, syncPending,
     canAdvance, blockingItems,
   } = useCockpit(slug)
 
-  const isBoss = COCKPIT_TOKEN && token === COCKPIT_TOKEN
+  const network = useNetworkStatus()
+  const isBoss  = COCKPIT_TOKEN && token === COCKPIT_TOKEN
 
-  // viewingStateId: what checklist the boss is looking at (may differ from live state)
   const [viewingStateId, setViewingStateId] = useState(null)
-  const activeViewId    = viewingStateId ?? currentStateId
-  const viewingState    = getState(activeViewId)
-  const isPreviewing    = viewingStateId !== null && viewingStateId !== currentStateId
+  const activeViewId  = viewingStateId ?? currentStateId
+  const viewingState  = getState(activeViewId)
+  const isPreviewing  = viewingStateId !== null && viewingStateId !== currentStateId
 
   const [senderName, setSenderName] = useState(() => localStorage.getItem('cockpit_sender') ?? '')
 
@@ -41,25 +48,56 @@ export default function Cockpit({ token }) {
   function handleAdvance() {
     if (!isBoss || !canAdvance) return
     advanceState()
-    // snap view back to live state after advancing
     setViewingStateId(null)
   }
 
   function handleNodeClick(stateId) {
-    // clicking the live node snaps back to live view
     setViewingStateId(stateId === currentStateId ? null : stateId)
   }
 
   return (
     <div className="cockpit-screen">
+      {/* Header */}
       <div className="cockpit-header">
         <span className="cockpit-edition">{slug ?? '—'}</span>
         <span className="cockpit-title">COCKPIT</span>
-        <span className={`cockpit-role ${isBoss ? 'cockpit-role--boss' : 'cockpit-role--crew'}`}>
-          {isBoss ? 'BOSS' : 'CREW'}
-        </span>
+        <div className="cockpit-header-right">
+          {offlinePending && (
+            <button className="cockpit-sync-btn" onClick={syncPending} title="Pending changes — tap to retry sync">
+              ↑ SYNC
+            </button>
+          )}
+          <span className={`cockpit-net cockpit-net--${network}`} title={`Network: ${network}`}>
+            {network === 'online'   ? '● LIVE'     : ''}
+            {network === 'offline'  ? '● OFFLINE'  : ''}
+            {network === 'checking' ? '○ …'        : ''}
+          </span>
+          <span className={`cockpit-role ${isBoss ? 'cockpit-role--boss' : 'cockpit-role--crew'}`}>
+            {isBoss ? 'BOSS' : 'CREW'}
+          </span>
+          {isBoss && (
+            <a
+              className="cockpit-showpack-link"
+              href={`${window.location.origin}${window.location.pathname}?showpack=${SHOWPACK_TOKEN}`}
+              target="_blank"
+              rel="noreferrer"
+              title="Open printable show pack"
+            >
+              🖨 PACK
+            </a>
+          )}
+        </div>
       </div>
 
+      {/* Offline banner */}
+      {network === 'offline' && (
+        <div className="cockpit-offline-banner">
+          OFFLINE — running on local state. Crew phones may not update. Show continues.
+          {offlinePending && ' Changes will sync when reconnected.'}
+        </div>
+      )}
+
+      {/* State machine */}
       <StateMachine
         allStates={allStates}
         currentStateId={currentStateId}
@@ -74,6 +112,25 @@ export default function Cockpit({ token }) {
         isPreviewing={isPreviewing}
       />
 
+      {/* Modules panel (boss only) */}
+      {isBoss && (
+        <div className="cockpit-modules">
+          <span className="cockpit-modules-label">MODULES</span>
+          {Object.keys(MODULE_LABELS).map(mod => (
+            <label key={mod} className={`cockpit-module-toggle ${wiredModules[mod] ? 'cockpit-module-toggle--on' : ''}`}>
+              <input
+                type="checkbox"
+                checked={!!wiredModules[mod]}
+                onChange={() => toggleModule(mod)}
+              />
+              {MODULE_LABELS[mod]}
+              <span className="cockpit-module-state">{wiredModules[mod] ? 'WIRED' : 'STANDALONE'}</span>
+            </label>
+          ))}
+        </div>
+      )}
+
+      {/* Body */}
       <div className="cockpit-body">
         <ChecklistPanel
           currentState={viewingState}
