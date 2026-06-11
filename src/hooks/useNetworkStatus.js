@@ -14,7 +14,6 @@ export function useNetworkStatus() {
           .from('show_state')
           .select('edition')
           .limit(1)
-          .timeout?.(5000)  // not all clients support, graceful ignore
         setStatus(error ? 'offline' : 'online')
       } catch {
         setStatus('offline')
