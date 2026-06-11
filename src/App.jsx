@@ -38,9 +38,6 @@ function AppInner() {
     }
   }, [])
 
-  const params = new URLSearchParams(window.location.search)
-  if (params.get('qr') === '1') return <QRSlide />
-
   if (loading) return <div className="app-loading">Loading…</div>
   if (!edition) return <div className="app-loading">Edition not found.</div>
 
@@ -100,6 +97,14 @@ function AppInner() {
 export default function App() {
   const params = new URLSearchParams(window.location.search)
   if (params.get('hof') === '1') return <HallOfFame />
+
+  if (params.get('qr') === '1') return (
+    <ErrorBoundary>
+      <EditionProvider slug={getEditionSlug()}>
+        <QRSlide />
+      </EditionProvider>
+    </ErrorBoundary>
+  )
 
   const dashToken = params.get('dashboard')
   if (DASHBOARD_BUILD && DASHBOARD_TOKEN && dashToken === DASHBOARD_TOKEN) return (
