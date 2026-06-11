@@ -1,10 +1,35 @@
+import { useEffect, useState } from 'react'
 import { QRCodeSVG } from 'qrcode.react'
 import { useEdition } from '../contexts/EditionContext'
 import { getLiveUrl } from '../hooks/useNonce'
+import { supabase, supabaseReady } from '../lib/supabase'
 
 export default function QRSlide() {
   const { edition } = useEdition()
-  const liveUrl = getLiveUrl(edition)
+  const [showNonce, setShowNonce] = useState(null)
+
+  useEffect(() => {
+    if (!supabaseReady || !edition?.edition) return
+
+    supabase
+      .from('show_state')
+      .select('show_nonce')
+      .eq('edition', edition.edition)
+      .single()
+      .then(({ data }) => { if (data?.show_nonce) setShowNonce(data.show_nonce) })
+
+    const channel = supabase
+      .channel(`qr-nonce-${edition.edition}`)
+      .on('postgres_changes',
+        { event: '*', schema: 'public', table: 'show_state', filter: `edition=eq.${edition.edition}` },
+        ({ new: row }) => { if (row.show_nonce) setShowNonce(row.show_nonce) }
+      )
+      .subscribe()
+
+    return () => supabase.removeChannel(channel)
+  }, [edition?.edition])
+
+  const liveUrl = getLiveUrl(edition, showNonce)
 
   return (
     <div className="qr-slide">
@@ -30,7 +55,7 @@ export default function QRSlide() {
         </>
       ) : (
         <div className="qr-missing">
-          Set a nonce in edition.json to enable the live leaderboard.
+          Generate show nonce in the cockpit to enable the live leaderboard.
         </div>
       )}
 

@@ -22,9 +22,9 @@ export default function Cockpit({ token }) {
   const {
     allStates, currentState, currentStateId, currentStateIdx,
     nextState, stateEnteredAt, checklist, comms,
-    wiredModules, offlinePending,
+    wiredModules, showNonce, offlinePending,
     advanceState, toggleCheckItem, sendMessage, toggleModule, syncPending,
-    canAdvance, blockingItems,
+    generateNonce, canAdvance, blockingItems,
   } = useCockpit(slug)
 
   const network  = useNetworkStatus()
@@ -114,6 +114,35 @@ export default function Cockpit({ token }) {
         blockingItems={blockingItems}
         isPreviewing={isPreviewing}
       />
+
+      {/* Nonce panel (boss only) */}
+      {isBoss && (
+        <div className="cockpit-nonce-panel">
+          <span className="cockpit-modules-label">NONCE</span>
+          {showNonce
+            ? <span className="cockpit-nonce-value">{showNonce}</span>
+            : <span className="cockpit-nonce-unset">NOT SET</span>
+          }
+          <button
+            className="cockpit-nonce-btn"
+            onClick={() => {
+              const base = `${window.location.origin}${window.location.pathname}`
+              generateNonce({
+                gameBaseUrl: base,
+                bossUrl:     `${base}?cockpit=${COCKPIT_TOKEN}`,
+                crewUrl:     `${base}?cockpit=${CREW_TOKEN}`,
+              })
+            }}
+          >
+            {showNonce ? '↻ REGEN' : '⚡ GENERATE'}
+          </button>
+          {showNonce && (
+            <span className="cockpit-nonce-url">
+              {`${window.location.origin}${window.location.pathname}?n=${showNonce}`}
+            </span>
+          )}
+        </div>
+      )}
 
       {/* Modules panel (boss only) */}
       {isBoss && (

@@ -604,6 +604,52 @@
 
 .cockpit-showpack-link:hover { background: var(--ck-cyan); color: var(--ck-bg); }
 
+/* ── Nonce panel ── */
+.cockpit-nonce-panel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 1rem;
+  background: rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-wrap: wrap;
+}
+
+.cockpit-nonce-value {
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  color: var(--ck-cyan);
+  font-family: 'Courier New', monospace;
+}
+
+.cockpit-nonce-unset {
+  font-size: 0.7rem;
+  color: var(--ck-dim);
+  letter-spacing: 0.1em;
+}
+
+.cockpit-nonce-btn {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.7rem;
+  background: var(--ck-orange);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.cockpit-nonce-btn:hover { opacity: 0.85; }
+
+.cockpit-nonce-url {
+  font-size: 0.6rem;
+  color: var(--ck-dim);
+  letter-spacing: 0.04em;
+  word-break: break-all;
+}
+
 /* ── Modules panel ── */
 .cockpit-modules {
   display: flex;

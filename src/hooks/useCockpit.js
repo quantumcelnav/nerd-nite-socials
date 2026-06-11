@@ -22,6 +22,7 @@ export function useCockpit(editionSlug) {
   const [checklist, setChecklist]             = useState({})
   const [comms, setComms]                     = useState([])
   const [wiredModules, setWiredModules]       = useState(() => lsGet(editionSlug, 'modules', DEFAULT_MODULES))
+  const [showNonce, setShowNonce]             = useState(null)
   const [offlinePending, setOfflinePending]   = useState(false)
 
   // Mirror state to localStorage on every change so paper fallback is always current
@@ -33,13 +34,14 @@ export function useCockpit(editionSlug) {
 
     supabase
       .from('show_state')
-      .select('current_state, state_entered_at, wired_modules')
+      .select('current_state, state_entered_at, wired_modules, show_nonce')
       .eq('edition', editionSlug)
       .single()
       .then(({ data }) => {
         if (data?.current_state)    setCurrentStateId(data.current_state)
         if (data?.state_entered_at) setStateEnteredAt(new Date(data.state_entered_at))
         if (data?.wired_modules)    setWiredModules(data.wired_modules)
+        if (data?.show_nonce)       setShowNonce(data.show_nonce)
       })
 
     supabase
@@ -67,6 +69,7 @@ export function useCockpit(editionSlug) {
           if (row.current_state)    setCurrentStateId(row.current_state)
           if (row.state_entered_at) setStateEnteredAt(new Date(row.state_entered_at))
           if (row.wired_modules)    setWiredModules(row.wired_modules)
+          if (row.show_nonce)       setShowNonce(row.show_nonce)
         }
       )
       .subscribe()
@@ -159,6 +162,43 @@ export function useCockpit(editionSlug) {
     })
   }
 
+  async function generateNonce({ gameBaseUrl, bossUrl, crewUrl }) {
+    const nonce = Math.random().toString(36).slice(2, 8)
+    setShowNonce(nonce)
+
+    if (!supabaseReady) return nonce
+
+    const now = new Date().toISOString()
+    const gameUrl = `${gameBaseUrl}?n=${nonce}`
+
+    await supabase.from('show_state')
+      .upsert({ edition: editionSlug, show_nonce: nonce }, { onConflict: 'edition' })
+
+    await supabase.from('show_checklist').upsert([
+      { edition: editionSlug, state_id: 'pre_show', item_key: 'nonce_generated',  completed: true, updated_at: now },
+      { edition: editionSlug, state_id: 'pre_show', item_key: 'urls_distributed', completed: true, updated_at: now },
+    ], { onConflict: 'edition,state_id,item_key' })
+
+    setChecklist(prev => ({
+      ...prev,
+      'pre_show:nonce_generated':  true,
+      'pre_show:urls_distributed': true,
+    }))
+
+    await supabase.from('show_comms').insert({
+      edition: editionSlug,
+      sender: 'SYSTEM',
+      message: `NONCE READY — Game: ${gameUrl}`,
+    })
+    await supabase.from('show_comms').insert({
+      edition: editionSlug,
+      sender: 'SYSTEM',
+      message: `Boss: ${bossUrl} | Crew: ${crewUrl}`,
+    })
+
+    return nonce
+  }
+
   async function toggleModule(moduleName) {
     const next = { ...wiredModules, [moduleName]: !wiredModules[moduleName] }
     setWiredModules(next)
@@ -186,6 +226,8 @@ export function useCockpit(editionSlug) {
     comms,
     wiredModules,
     offlinePending,
+    showNonce,
+    generateNonce,
     advanceState,
     toggleCheckItem,
     sendMessage,
