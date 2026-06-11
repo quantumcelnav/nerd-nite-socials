@@ -8,10 +8,15 @@ import PostGame from './components/PostGame'
 import Leaderboard from './components/Leaderboard'
 import HallOfFame from './components/HallOfFame'
 import AdminPanel from './components/AdminPanel'
+import Dashboard from './components/Dashboard'
+import Cockpit from './components/Cockpit'
 import QRSlide from './components/QRSlide'
 import ErrorBoundary from './components/ErrorBoundary'
 import { useNonce } from './hooks/useNonce'
 import { supabase, supabaseReady } from './lib/supabase'
+
+const DASHBOARD_TOKEN = import.meta.env.VITE_DASHBOARD_TOKEN
+const DASHBOARD_BUILD = import.meta.env.VITE_ENABLE_DASHBOARD === 'true'
 
 function getEditionSlug() {
   const slug = window.location.pathname.slice(1).replace(/\/$/, '').toUpperCase()
@@ -94,6 +99,24 @@ function AppInner() {
 export default function App() {
   const params = new URLSearchParams(window.location.search)
   if (params.get('hof') === '1') return <HallOfFame />
+
+  const dashToken = params.get('dashboard')
+  if (DASHBOARD_BUILD && DASHBOARD_TOKEN && dashToken === DASHBOARD_TOKEN) return (
+    <ErrorBoundary>
+      <EditionProvider slug={getEditionSlug()}>
+        <Dashboard />
+      </EditionProvider>
+    </ErrorBoundary>
+  )
+
+  const cockpitToken = params.get('cockpit')
+  if (cockpitToken) return (
+    <ErrorBoundary>
+      <EditionProvider slug={getEditionSlug()}>
+        <Cockpit token={cockpitToken} />
+      </EditionProvider>
+    </ErrorBoundary>
+  )
 
   const adminToken = params.get('admin')
   if (adminToken) return (
