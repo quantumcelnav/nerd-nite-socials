@@ -24,7 +24,7 @@ export default function Cockpit({ token }) {
     nextState, prevState, stateEnteredAt, checklist, comms,
     wiredModules, showNonce, offlinePending,
     advanceState, checkAllAndAdvance, retreatState, toggleCheckItem,
-    sendMessage, toggleModule, syncPending, generateNonce,
+    sendMessage, toggleModule, syncPending, generateNonce, resetScores,
     canAdvance, blockingItems,
   } = useCockpit(slug)
 
@@ -164,6 +164,16 @@ export default function Cockpit({ token }) {
           >
             {showNonce ? '↻ REGEN' : '⚡ GENERATE'}
           </button>
+          {showNonce && (
+            <button
+              className="cockpit-nonce-reset-btn"
+              onClick={() => {
+                if (window.confirm(`Hide all scores for nonce "${showNonce}"?`)) resetScores(showNonce)
+              }}
+            >
+              ✕ RESET SCORES
+            </button>
+          )}
           {showNonce && (
             <>
               <span className="cockpit-nonce-url">

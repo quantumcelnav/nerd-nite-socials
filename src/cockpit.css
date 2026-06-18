@@ -695,6 +695,23 @@
 
 .cockpit-nonce-btn:hover { opacity: 0.85; }
 
+.cockpit-nonce-reset-btn {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.7rem;
+  background: transparent;
+  color: #ff4466;
+  border: 1px solid #ff4466;
+  cursor: pointer;
+}
+
+.cockpit-nonce-reset-btn:hover {
+  background: #ff4466;
+  color: #fff;
+}
+
 .cockpit-nonce-url {
   font-size: 0.6rem;
   color: var(--ck-dim);

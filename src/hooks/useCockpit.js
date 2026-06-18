@@ -252,6 +252,14 @@ export function useCockpit(editionSlug) {
     return nonce
   }
 
+  async function resetScores(nonce) {
+    if (!nonce || !supabaseReady) return
+    await supabase.from('scores')
+      .update({ hidden: true })
+      .eq('edition', editionSlug)
+      .eq('nonce', nonce)
+  }
+
   async function toggleModule(moduleName) {
     const next = { ...wiredModules, [moduleName]: !wiredModules[moduleName] }
     setWiredModules(next)
@@ -298,6 +306,7 @@ export function useCockpit(editionSlug) {
     offlinePending,
     showNonce,
     generateNonce,
+    resetScores,
     advanceState,
     checkAllAndAdvance,
     retreatState,
