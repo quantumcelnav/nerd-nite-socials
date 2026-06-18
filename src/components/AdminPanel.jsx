@@ -6,14 +6,27 @@ import '../game.css'
 import '../admin.css'
 
 const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN
+const DASHBOARD_TOKEN = import.meta.env.VITE_DASHBOARD_TOKEN
+const DASHBOARD_BUILD = import.meta.env.VITE_ENABLE_DASHBOARD === 'true'
+
+const PANIC_SAYINGS = [
+  "You are doing GREAT. The crowd doesn't know what hit them.",
+  "Nerd Nite runs on chaos and caffeine. You have both.",
+  "Every great show felt like this five minutes before it started.",
+  "The microphone is hot, the beer is cold, and you've got this.",
+  "Science is just vibes with math. You know the vibes.",
+  "It's not a disaster. It's an adventure with an audience.",
+]
 
 export default function AdminPanel({ token }) {
   const { edition, allEditions } = useEdition()
   const [selectedSlug, setSelectedSlug] = useState(null)
   const activeSlug = selectedSlug ?? edition?.edition
-  const { frozen, toggleFrozen } = useShowState(activeSlug)
+  const { frozen, toggleFrozen, dashboardEnabled, setDashboard } = useShowState(activeSlug)
   const [scores, setScores] = useState([])
   const [loading, setLoading] = useState(true)
+  const [panic, setPanic] = useState(false)
+  const [saying] = useState(() => PANIC_SAYINGS[Math.floor(Math.random() * PANIC_SAYINGS.length)])
 
   if (!ADMIN_TOKEN || token !== ADMIN_TOKEN) {
     return <div className="app-loading">Access denied.</div>
@@ -59,10 +72,28 @@ export default function AdminPanel({ token }) {
   return (
     <div className="admin-screen screen-enter" role="main">
 
+      {/* Panic overlay */}
+      {panic && (
+        <div className="panic-overlay" onClick={() => setPanic(false)} role="dialog" aria-modal="true">
+          <div className="panic-box" onClick={e => e.stopPropagation()}>
+            <img
+              className="panic-cat"
+              src="https://cataas.com/cat/gif"
+              alt="A very cute cat"
+            />
+            <p className="panic-saying">{saying}</p>
+            <button className="panic-dismiss" onClick={() => setPanic(false)}>I'M FINE ✓</button>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="admin-header">
         <div className="admin-title-row">
           <h1 className="admin-title">Admin</h1>
+          <button className="panic-btn" onClick={() => setPanic(true)} aria-label="Panic button">
+            🐱 PANIC
+          </button>
           {allEditions.length > 1 ? (
             <select
               className="episode-select"
@@ -94,6 +125,34 @@ export default function AdminPanel({ token }) {
             ? 'Leaderboard frozen — no new scores accepted'
             : 'Leaderboard live — accepting scores'}
         </p>
+
+        {/* Dashboard control */}
+        <div className={`dashboard-control ${!DASHBOARD_BUILD ? 'dashboard-control--disabled' : ''}`}>
+          <span className="dashboard-label">DASHBOARD</span>
+          <select
+            className="dashboard-select"
+            value={dashboardEnabled ? 'on' : 'off'}
+            onChange={e => DASHBOARD_BUILD && setDashboard(e.target.value === 'on')}
+            disabled={!DASHBOARD_BUILD}
+            aria-label="Dashboard visibility"
+          >
+            <option value="off">Off</option>
+            <option value="on">Live</option>
+          </select>
+          {DASHBOARD_BUILD && dashboardEnabled && DASHBOARD_TOKEN && (
+            <a
+              className="dashboard-link"
+              href={`${window.location.origin}${window.location.pathname}?dashboard=${DASHBOARD_TOKEN}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              ↗ Open
+            </a>
+          )}
+          {!DASHBOARD_BUILD && (
+            <span className="dashboard-hint">not in this build</span>
+          )}
+        </div>
       </div>
 
       {/* Scores */}

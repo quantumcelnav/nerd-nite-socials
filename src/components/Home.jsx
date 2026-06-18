@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useEdition } from '../contexts/EditionContext'
+import { useShowState } from '../hooks/useShowState'
 import { supabase, supabaseReady } from '../lib/supabase'
 import '../App.css'
 
@@ -36,6 +37,8 @@ function EpisodeDropdown({ currentSlug, allEditions, isLiveMode }) {
 
 export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
   const { edition, allEditions } = useEdition()
+  const { showNonce: dbNonce } = useShowState(edition?.edition)
+  const activeNonce = dbNonce ?? edition?.nonce ?? null
   const [topScores, setTopScores] = useState([])
 
   const posterImg = edition?.poster
@@ -44,15 +47,16 @@ export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
 
   useEffect(() => {
     if (!supabaseReady || !edition) return
-    supabase
+    let q = supabase
       .from('scores')
       .select('name, score')
       .eq('edition', edition.edition)
       .neq('hidden', true)
       .order('score', { ascending: false })
       .limit(3)
-      .then(({ data }) => setTopScores(data ?? []))
-  }, [edition])
+    if (activeNonce) q = q.eq('nonce', activeNonce)
+    q.then(({ data }) => setTopScores(data ?? []))
+  }, [edition, activeNonce])
 
   if (!edition) return null
 
