@@ -280,6 +280,24 @@
   color: var(--bg, #002A37);
 }
 
+.nonce-reset-btn {
+  background: transparent;
+  border: 1px solid #ff4466;
+  color: #ff4466;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nonce-reset-btn:hover {
+  background: #ff4466;
+  color: #fff;
+}
+
 .admin-section-label {
   padding: 1rem 1.5rem 0.25rem;
   font-family: 'Courier New', monospace;

@@ -45,7 +45,7 @@ export default function AdminPanel({ token }) {
     setLoading(true)
     supabase
       .from('scores')
-      .select('id, name, score, mode, hidden, created_at')
+      .select('id, name, score, mode, hidden, nonce, created_at')
       .eq('edition', activeSlug)
       .order('score', { ascending: false })
       .then(({ data }) => { setScores(data ?? []); setLoading(false) })
@@ -58,6 +58,19 @@ export default function AdminPanel({ token }) {
       .eq('id', row.id)
     if (!error) {
       setScores(prev => prev.map(s => s.id === row.id ? { ...s, hidden: !s.hidden } : s))
+    }
+  }
+
+  async function hideAllForNonce(nonce) {
+    if (!nonce) return
+    if (!window.confirm(`Hide all scores for nonce "${nonce}"? They stay in the DB but disappear from the leaderboard.`)) return
+    const { error } = await supabase
+      .from('scores')
+      .update({ hidden: true })
+      .eq('edition', activeSlug)
+      .eq('nonce', nonce)
+    if (!error) {
+      setScores(prev => prev.map(s => s.nonce === nonce ? { ...s, hidden: true } : s))
     }
   }
 
@@ -177,6 +190,11 @@ export default function AdminPanel({ token }) {
           <button className="nonce-save-btn" onClick={handleSaveNonce}>
             {nonceSaved ? 'SAVED ✓' : 'SET'}
           </button>
+          {showNonce && (
+            <button className="nonce-reset-btn" onClick={() => hideAllForNonce(showNonce)}>
+              RESET SCORES
+            </button>
+          )}
           {showNonce && <span className="dashboard-hint">DB override active</span>}
         </div>
       </div>
