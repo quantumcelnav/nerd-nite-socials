@@ -68,6 +68,15 @@ export function useShowState(editionSlug) {
     }
   }
 
+  async function saveNonce(nonce) {
+    const val = nonce?.trim() || null
+    setShowNonce(val)
+    if (supabaseReady) {
+      await supabase.from('show_state')
+        .upsert({ edition: editionSlug, show_nonce: val }, { onConflict: 'edition' })
+    }
+  }
+
   return {
     frozen: effectiveFrozen,
     toggleFrozen,
@@ -75,5 +84,6 @@ export function useShowState(editionSlug) {
     dashboardEnabled,
     setDashboard,
     showNonce,
+    saveNonce,
   }
 }

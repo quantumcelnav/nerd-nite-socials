@@ -22,11 +22,19 @@ export default function AdminPanel({ token }) {
   const { edition, allEditions } = useEdition()
   const [selectedSlug, setSelectedSlug] = useState(null)
   const activeSlug = selectedSlug ?? edition?.edition
-  const { frozen, toggleFrozen, dashboardEnabled, setDashboard } = useShowState(activeSlug)
+  const { frozen, toggleFrozen, dashboardEnabled, setDashboard, showNonce, saveNonce } = useShowState(activeSlug)
   const [scores, setScores] = useState([])
   const [loading, setLoading] = useState(true)
   const [panic, setPanic] = useState(false)
   const [saying] = useState(() => PANIC_SAYINGS[Math.floor(Math.random() * PANIC_SAYINGS.length)])
+  const [nonceInput, setNonceInput] = useState('')
+  const [nonceSaved, setNonceSaved] = useState(false)
+
+  async function handleSaveNonce() {
+    await saveNonce(nonceInput)
+    setNonceSaved(true)
+    setTimeout(() => setNonceSaved(false), 2000)
+  }
 
   if (!ADMIN_TOKEN || token !== ADMIN_TOKEN) {
     return <div className="app-loading">Access denied.</div>
@@ -152,6 +160,24 @@ export default function AdminPanel({ token }) {
           {!DASHBOARD_BUILD && (
             <span className="dashboard-hint">not in this build</span>
           )}
+        </div>
+
+        {/* Nonce control */}
+        <div className="dashboard-control">
+          <span className="dashboard-label">NONCE</span>
+          <input
+            className="nonce-input"
+            type="text"
+            value={nonceInput}
+            onChange={e => setNonceInput(e.target.value)}
+            placeholder={showNonce ?? '(from build)'}
+            maxLength={12}
+            aria-label="Set live nonce"
+          />
+          <button className="nonce-save-btn" onClick={handleSaveNonce}>
+            {nonceSaved ? 'SAVED ✓' : 'SET'}
+          </button>
+          {showNonce && <span className="dashboard-hint">DB override active</span>}
         </div>
       </div>
 
