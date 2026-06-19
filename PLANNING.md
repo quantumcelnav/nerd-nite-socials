@@ -25,9 +25,13 @@ Open source (CC BY 4.0) — designed so any Nerd Nite city can fork and run thei
 | Style | Courier New, dark navy/cyan/orange | Monospace retro throughout |
 
 **Supabase tables:**
-- `scores` — id, edition, name, score, max_score, mode, hidden, created_at
+- `scores` — id, edition, name, score, max_score, mode, hidden, **nonce**, created_at
 - `emails` — id, email, subscribed, created_at
-- `show_state` — edition (PK), frozen, created_at
+- `show_state` — edition (PK), frozen, **show_nonce**, **dashboard_enabled**, current_state, state_entered_at, wired_modules, created_at
+- `show_checklist` — edition, state_id, item_key, completed, updated_at
+- `show_comms` — edition, sender, message, created_at
+
+**⚠ Schema note:** `scores.nonce` column was added manually on 2026-06-18 (show night). No schema.sql exists yet — `supabase/schema.sql` needs to be written before the next fresh install.
 
 **Supabase free tier note:** Projects pause after 7 days of inactivity. Visit the site the day before each show to pre-wake the DB.
 
@@ -38,11 +42,15 @@ Open source (CC BY 4.0) — designed so any Nerd Nite city can fork and run thei
 | Phase | How | Leaderboard |
 |---|---|---|
 | Ticket sales day | Push edition JSON without nonce | Practice mode (no writes) |
-| Show night | Add nonce to JSON, push | Live (nonce URL required) |
-| During trivia | Admin panel → Freeze toggle | Locked instantly via show_state |
-| After trivia | Admin panel → Go Live (optional) or leave frozen | Frozen or live |
+| Show night | Cockpit → ⚡ GENERATE nonce | Live (nonce URL required) |
+| Testing pre-show | Play with nonce URL, then → ✕ RESET SCORES | Clears test scores |
+| During trivia | Cockpit / Admin → Freeze toggle | Locked instantly via show_state |
+| After trivia | Leave frozen | Frozen for history |
 | Post-show cleanup | Admin panel → Hide bad names | Hidden from all views |
+| Next show | Create S2026E07.json, prepend to index.json, push | New show goes live |
 | Forever | /S2026E06 stays playable | Frozen, historical |
+
+**Nonce source of truth (important):** `show_state.show_nonce` takes precedence over `edition.json` nonce. Cockpit GENERATE writes to DB. Leaderboard and live-mode detection both read DB first. Keep them in sync — after generating via cockpit, the build nonce in edition.json no longer matters for the live show.
 
 ---
 
@@ -147,6 +155,35 @@ Max per show (3 talks × 3 questions): 3,900 pts. "Nerd Nite Boss" = 97%+.
 
 ---
 
+## Version Tags
+
+| Tag | Commit | Notes |
+|---|---|---|
+| `show/S2026E06` | 08290d0 | S2026E06 live show, June 18 2026 — first Nerdometer show |
+
+Convention: `show/S2026EXX` for every live show. Tag before pushing post-show changes.
+
+---
+
+## Known Issues / Polish (post-S2026E06)
+
+### P0 — Fix before next show
+- **RESET SCORES unreliable**: bulk `UPDATE scores SET hidden=true WHERE nonce=X` may be blocked by Supabase RLS policy. Needs a dedicated policy or a server-side function. Workaround: run SQL manually in Supabase console.
+- **No schema.sql**: fresh install requires manually running ALTER TABLE commands. Write `supabase/schema.sql` with full table + policy definitions.
+- **Nonce column missing from HOSTING.md setup**: add the `ALTER TABLE scores ADD COLUMN nonce text` step to the initial setup section.
+
+### P1 — Nonce system simplification
+The nonce lives in two places (edition.json + show_state.show_nonce) and the fallback logic caused confusion on show night. Proposed simplification:
+- Cockpit GENERATE is the only way to set a live nonce (DB only)
+- edition.json never has a nonce field — remove it from the schema
+- Leaderboard only filters by nonce when `show_state.show_nonce` is explicitly set
+- Practice mode = no nonce in show_state; scores don't submit
+
+### P2 — Regression testing
+See Test Plan section below. Automate with Playwright.
+
+---
+
 ## Next Steps
 
 ### 1. Reaction GIFs
@@ -198,29 +235,51 @@ High score wins a prize. Ties resolved by host-run coin-flip elimination: ~half 
 
 ## Test Plan
 
-### Pre-show checklist
-- [ ] Visit production URL day before (wakes Supabase)
-- [ ] Play through full game on staging with nonce URL
-- [ ] Confirm score appears on leaderboard
-- [ ] QR slide renders correctly (`/?qr=1`)
-- [ ] Admin panel accessible, freeze toggle works
+### Automated regression tests (Playwright — to be written)
+
+Each test suite maps to a feature. Any push to main should run all suites. A broken suite blocks deploy.
+
+**Suite A — Game flow (golden path)**
+- Home loads with correct edition title and date
+- Start trivia → 9 questions answered → score screen shows correct score
+- Start What Is It → completes without error
+- Origin story cards appear between rounds (3 cards)
+- Full replay from score screen resets all state
+
+**Suite B — Nonce / live mode**
+- Without `?n=`: score screen shows practice mode message, no name input
+- With correct `?n=<nonce>`: name input appears, submit enabled
+- With wrong `?n=`: practice mode (not live)
+- After submit: score appears on leaderboard filtered to that nonce
+- Scores from a different nonce do NOT appear on leaderboard
+
+**Suite C — Leaderboard**
+- Leaderboard shows only scores matching active nonce
+- Hidden scores do not appear
+- Real-time: new score submitted in tab 2 appears in tab 1 without refresh
+- Frozen leaderboard: submit form replaced with "closed" message
+
+**Suite D — Admin**
+- Freeze toggle: sets frozen=true in DB, score submit blocked immediately
+- Hide score: score disappears from public leaderboard, still in admin list
+- Restore score: score reappears on public leaderboard
+- RESET SCORES: all scores for nonce hidden in one action
+
+**Suite E — Routes**
+- `/S2026E06` loads the correct archived edition
+- `/?qr=1` renders QR slide with correct URL
+- `/?hof=1` renders Hall of Fame with at least one entry
+- Episode dropdown navigates between editions correctly
+
+### Pre-show manual checklist (until Playwright is wired)
+- [ ] Wake Supabase: visit production URL the day before
+- [ ] Play full game with `?n=<nonce>`, confirm score appears on leaderboard
+- [ ] Test RESET SCORES, confirm leaderboard clears
+- [ ] QR slide renders with correct nonce URL
+- [ ] Freeze toggle works
 - [ ] Poster image loads
 
-### Manual playtest (every push to main)
-- [ ] Home loads, top scores show
-- [ ] Both game modes complete correctly
-- [ ] Origin story cards appear between rounds
-- [ ] Score submit: live mode writes to Supabase
-- [ ] Practice mode message shows without nonce
-- [ ] Freeze toggle: blocks submission, shows badge
-- [ ] Admin panel: hide/restore/delete work
-- [ ] Leaderboard loads, Back to Home works
-- [ ] Hall of Fame loads (`/?hof=1`)
-- [ ] Past show URL loads correct edition (`/S2026E06`)
-- [ ] Episode dropdown navigates correctly
-- [ ] Full replay without refresh resets state
-
-### Scoring verification
+### Scoring spot-check
 | Scenario | Expected % | Expected Tier |
 |---|---|---|
 | All correct | 100% | Nerd Nite Boss |
