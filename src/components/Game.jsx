@@ -1,7 +1,8 @@
-import { useReducer, useEffect, useMemo } from 'react'
+import { useReducer, useMemo } from 'react'
 import { correctGifs, wrongGifs, pickRandom } from '../data/reactions'
-import { POINTS, DIFFICULTY_LABEL, calcMaxScore } from '../data/scoring'
+import { POINTS, DIFFICULTY_LABEL, calcMaxScore, TIEBREAKER_MAX } from '../data/scoring'
 import ReactionGif from './ReactionGif'
+import TiebreakerGame from './TiebreakerGame'
 import '../game.css'
 
 function vibrate(pattern) {
@@ -77,10 +78,6 @@ export default function Game({ edition, onComplete }) {
     .slice(0, talkIdx)
     .reduce((s, t) => s + t.questions.length, 0) + questionIdx
 
-  useEffect(() => {
-    if (phase === 'complete') onComplete(score, MAX_SCORE)
-  }, [phase]) // eslint-disable-line
-
   function handleAnswer(idx) {
     const correct = idx === question.answer
     vibrate(correct ? [40] : [80, 40, 80])
@@ -109,7 +106,13 @@ export default function Game({ edition, onComplete }) {
     )
   }
 
-  if (phase === 'complete') return null
+  if (phase === 'complete') return (
+    <TiebreakerGame
+      triviaScore={score}
+      maxTriviaScore={MAX_SCORE}
+      onComplete={(bonus) => onComplete(score + bonus, MAX_SCORE + TIEBREAKER_MAX)}
+    />
+  )
 
   return (
     <div className="game-screen screen-enter">

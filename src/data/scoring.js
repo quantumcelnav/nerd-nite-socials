@@ -1,4 +1,5 @@
 export const POINTS = { 1: 100, 2: 300, 3: 900 }
+export const TIEBREAKER_MAX = POINTS[1]
 
 export const DIFFICULTY_LABEL = {
   1: 'Accessible',
