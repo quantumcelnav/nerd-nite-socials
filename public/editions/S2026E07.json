@@ -7,6 +7,7 @@
   "admission": "Free",
   "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2026e07-free-planning-event",
   "nonce": "f404c8",
+  "talksLabel": "Tonight's Topics",
   "talks": [
     {
       "id": 1,

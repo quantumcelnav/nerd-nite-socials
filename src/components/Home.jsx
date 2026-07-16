@@ -83,7 +83,7 @@ export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
           aria-label="Play Trivia — test your knowledge of tonight's talks">
           <span className="mode-icon">🧠</span>
           <span className="mode-label">Trivia</span>
-          <span className="mode-desc">Test your knowledge of tonight's talks</span>
+          <span className="mode-desc">Test your knowledge of {edition?.talksLabel?.toLowerCase() ?? "tonight's talks"}</span>
         </button>
         <button className="mode-btn mode-ontology" onClick={() => onPlay('ontology')}
           aria-label="What Is It? — explore the nature of things">
@@ -101,7 +101,7 @@ export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
 
       <section className="info-strip">
         <div className="info-text">
-          <h3>Tonight's Talks</h3>
+          <h3>{edition.talksLabel ?? "Tonight's Talks"}</h3>
           <div className="event-meta">
             <span>{edition.date}</span>
             <span>{edition.venue}</span>
