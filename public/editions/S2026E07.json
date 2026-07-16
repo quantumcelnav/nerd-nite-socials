@@ -1,0 +1,155 @@
+{
+  "edition": "S2026E07",
+  "date": "Thursday, July 16, 2026",
+  "venue": "Wolverine Farm Publick House",
+  "doorsOpen": "6:00pm",
+  "talksStart": "7:00pm",
+  "admission": "Free",
+  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2026e07-free-planning-event",
+  "nonce": "f404c8",
+  "talks": [
+    {
+      "id": 1,
+      "title": "AGI, Turing Machines, and You",
+      "speaker": "Justin Fritz",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "What is a Turing machine?",
+          "options": [
+            "A theoretical model of computation using an infinite tape and read/write head",
+            "The first electronic computer, built in 1943",
+            "A quantum computer that processes probabilistic states",
+            "A neural network architecture developed at MIT"
+          ],
+          "answer": 0,
+          "funFact": "Alan Turing described this abstract machine in 1936 — before electronic computers existed — as a thought experiment to define the limits of what can be computed."
+        },
+        {
+          "difficulty": 2,
+          "question": "Norbert Wiener founded the field of cybernetics in 1948. What did he study?",
+          "options": [
+            "The mathematics of quantum entanglement",
+            "Early programming languages for analog computers",
+            "Control and communication systems in animals and machines",
+            "The sociology of technological unemployment"
+          ],
+          "answer": 2,
+          "funFact": "Wiener warned in 1950 that automation would cause massive unemployment — over 70 years before today's AI debates. He was largely ignored."
+        },
+        {
+          "difficulty": 3,
+          "question": "In a transformer model — the architecture behind modern LLMs — what is the mechanism that allows the model to weigh the relevance of different words to each other?",
+          "options": [
+            "Backpropagation",
+            "Gradient descent",
+            "Self-attention",
+            "Recurrent state"
+          ],
+          "answer": 2,
+          "funFact": "The 2017 paper 'Attention Is All You Need' introduced transformers and is now one of the most cited papers in the history of computer science."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Nerd Nite — Origin Story",
+      "speaker": "Justin Fritz",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "Where did the very first Nerd Nite take place?",
+          "options": [
+            "New York City",
+            "San Francisco",
+            "Boston",
+            "London"
+          ],
+          "answer": 2,
+          "funFact": "The first Nerd Nite was at The Midway bar in Boston in 2003, where scientist Chris Balakrishnan started sharing his field research stories with bar patrons."
+        },
+        {
+          "difficulty": 2,
+          "question": "According to Nerd Nite lore, why did the bartenders at The Midway suggest Chris start the event?",
+          "options": [
+            "They wanted to charge a cover on slow weeknights",
+            "A local university offered to sponsor the bar for science outreach",
+            "They were tired of overhearing him retell the same stories to different friends every night",
+            "Chris lost a bet and had to give a public lecture"
+          ],
+          "answer": 2,
+          "funFact": "Chris was studying indigo birds in Cameroon — a parasitic species — and would return each fall and spend weeks at The Midway retelling the same expedition stories."
+        },
+        {
+          "difficulty": 3,
+          "question": "How many cities worldwide currently host Nerd Nite events?",
+          "options": [
+            "Around 25",
+            "About 50",
+            "Over 100",
+            "Nearly 250"
+          ],
+          "answer": 2,
+          "funFact": "Nerd Nite has spread to over 100 cities on six continents, making it one of the most successful grassroots science communication formats ever created."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Star Trek Trivia — USS Cordilleran Edition",
+      "speaker": "USS Cordilleran",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "What is the Prime Directive in Star Trek?",
+          "options": [
+            "A Starfleet order to explore new worlds and expand Federation territory",
+            "A principle of non-interference with the natural development of alien civilizations",
+            "The command hierarchy aboard a Federation starship",
+            "A treaty between the Federation and the Klingon Empire"
+          ],
+          "answer": 1,
+          "funFact": "The Prime Directive has been violated by Captain Kirk alone so many times that Starfleet Command reportedly has a special file just for him."
+        },
+        {
+          "difficulty": 2,
+          "question": "What does the stardate system in Star Trek represent?",
+          "options": [
+            "A precise timekeeping system based on stellar positions relative to Earth",
+            "The number of days since the founding of the United Federation of Planets",
+            "A Vulcan calendar adopted by the Federation in the 22nd century",
+            "A deliberately vague fictional timekeeping system — intentionally undefined"
+          ],
+          "answer": 3,
+          "funFact": "Gene Roddenberry made stardates intentionally meaningless so the show wouldn't be tied to a fixed timeline. Different Trek series use completely incompatible numbering systems."
+        },
+        {
+          "difficulty": 3,
+          "question": "In a 1993 TNG episode, warp travel was established as environmentally damaging. What did it damage?",
+          "options": [
+            "The antimatter containment fields of nearby vessels",
+            "The subspace fabric of space itself",
+            "The gravitational stability of planetary systems",
+            "The dilithium deposits of inhabited worlds"
+          ],
+          "answer": 1,
+          "funFact": "The episode 'Force of Nature' set a warp speed limit of 9 to protect subspace — a plot point the writers quietly dropped and almost never mentioned again."
+        }
+      ]
+    }
+  ],
+  "originStory": [
+    {
+      "text": "Welcome to Nerdometer.\n\nTonight is a little different. There's no main stage talk — just a planning session, a community conversation, and this: a live demo of the trivia game I built for Nerd Nite Fort Collins.\n\nYou're the beta testers. We want to know what works, what doesn't, and what we should do more of.\n\nLet's play."
+    },
+    {
+      "text": "Nerd Nite Fort Collins runs on a small crew.\n\nJustin Fritz — that's me — Director and Executive Producer.\nSenne Van Loon — Producer and Talent Management.\nJamie Fritz — Brand Management and Treasurer.\nHannah Bauer — Host and Brand Ambassador.\n\nWe put this on because we believe Fort Collins deserves a place where curious people can come together, learn something weird, and talk to strangers about it over a beer.\n\nWolverine Farm is that place."
+    },
+    {
+      "text": "One thing we need to talk about tonight:\n\nWolverine Farm's Event Hall — where we run our show — is not ADA accessible.\n\nThat's not acceptable to us. We are launching a fundraising effort to fix it. We're calling it the Wolverine Farm Lift Fund.\n\nIf you have ideas, connections, grant writing experience, or just want to help — find us after the game. We are going to think about it. Then we are going to do it."
+    },
+    {
+      "text": "Thanks for playing Nerdometer.\n\nThis app is built for every Nerd Nite Fort Collins show. Real questions, about real talks, authored by the same people who put on the show.\n\nIf you liked it — or hated it — tell us. That's why we're here tonight.\n\nAnd if you want to be part of what happens next: come to a show, volunteer, present, or just keep showing up.\n\nSee you at the next one.\n\n— Justin Fritz, Nerd Nite Fort Collins Boss"
+    }
+  ]
+}
