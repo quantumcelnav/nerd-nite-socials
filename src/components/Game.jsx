@@ -89,7 +89,7 @@ export default function Game({ edition, onComplete }) {
       <OriginCard
         text={edition.originStory[edition.talks.length].text}
         label="— Nerd Nite —"
-        btnLabel="See My Score"
+        btnLabel="Bonus Round →"
         onNext={() => dispatch({ type: 'OUTRO_NEXT' })}
       />
     )
