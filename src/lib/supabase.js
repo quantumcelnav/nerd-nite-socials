@@ -3,9 +3,14 @@ import { createClient } from '@supabase/supabase-js'
 const url = import.meta.env.VITE_SUPABASE_URL
 const key = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-// Gracefully degrade when env vars aren't set (e.g. preview deploys without secrets)
-export const supabase = (url && key)
-  ? createClient(url, key)
-  : null
+let _client = null
+if (url && key) {
+  try {
+    _client = createClient(url, key)
+  } catch (e) {
+    console.error('Supabase init failed:', e.message)
+  }
+}
 
-export const supabaseReady = !!(url && key)
+export const supabase = _client
+export const supabaseReady = !!_client
