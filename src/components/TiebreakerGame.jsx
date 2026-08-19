@@ -8,12 +8,12 @@ const EASY_SPECS = [
   [96, 38, '-'], [37, 58, '+'], [107, 49, '-'],
 ]
 
-const EE_SPECS = [
-  { text: '12V ÷ 4Ω = ? A',      correct: '3',    inputMode: 'numeric' },
-  { text: '5V × 3A = ? W',        correct: '15',   inputMode: 'numeric' },
-  { text: '3Ω + 7Ω = ? Ω',       correct: '10',   inputMode: 'numeric' },
-  { text: '6Ω || 3Ω = ? Ω',      correct: '2',    inputMode: 'numeric' },
-  { text: '2^10 = ?',              correct: '1024', inputMode: 'numeric' },
+const ALGEBRA_SPECS = [
+  { text: '2x + 3 = 11,  x = ?',  correct: '4',  inputMode: 'numeric' },
+  { text: '3x − 5 = 16,  x = ?',  correct: '7',  inputMode: 'numeric' },
+  { text: '5x = 45,  x = ?',       correct: '9',  inputMode: 'numeric' },
+  { text: 'x/2 + 4 = 9,  x = ?',   correct: '10', inputMode: 'numeric' },
+  { text: '4x + 7 = 31,  x = ?',   correct: '6',  inputMode: 'numeric' },
 ]
 
 const QUESTION_COUNT = 4
@@ -32,10 +32,10 @@ function buildQuestions() {
     text: `${a} ${op} ${b} =`,
     correct: String(op === '+' ? a + b : a - b),
     inputMode: 'numeric',
-    isEE: false,
+    isAlgebra: false,
   }))
-  const ee = { ...shuffle(EE_SPECS)[0], isEE: true }
-  return [...easy, ee]
+  const algebra = { ...shuffle(ALGEBRA_SPECS)[0], isAlgebra: true }
+  return [...easy, algebra]
 }
 
 function isCorrect(question, value) {
@@ -117,7 +117,7 @@ export default function TiebreakerGame({ triviaScore, maxTriviaScore, onComplete
         <div className="tb-badge">BONUS ROUND</div>
         <div className="tb-intro-heading">Mental Math Sprint</div>
         <div className="tb-intro-body">
-          4 problems — 3 easy, 1 EE.<br />
+          4 problems — 3 easy, 1 algebra.<br />
           Score = correct &times; 25 &minus; seconds used.<br />
           Up to +{TIEBREAKER_MAX} bonus points.
         </div>
@@ -167,9 +167,9 @@ export default function TiebreakerGame({ triviaScore, maxTriviaScore, onComplete
 
       <div className="tb-questions">
         {questions.map((q, qi) => (
-          <div key={qi} className={`tb-qrow${solved[qi] ? ' tb-qrow--solved' : ''}${q.isEE ? ' tb-qrow--ee' : ''}`}>
+          <div key={qi} className={`tb-qrow${solved[qi] ? ' tb-qrow--solved' : ''}${q.isAlgebra ? ' tb-qrow--ee' : ''}`}>
             <div className="tb-qrow-left">
-              {q.isEE && <span className="tb-ee-pip">⚡</span>}
+              {q.isAlgebra && <span className="tb-ee-pip">🧮</span>}
               <span className="tb-qtext">{q.text}</span>
             </div>
             <div className="tb-qrow-right">
