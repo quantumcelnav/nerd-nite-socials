@@ -38,7 +38,7 @@ function EpisodeDropdown({ currentSlug, allEditions, isLiveMode }) {
 export default function Home({ onPlay, onLeaderboard, isLiveMode }) {
   const { edition, allEditions } = useEdition()
   const { showNonce: dbNonce } = useShowState(edition?.edition)
-  const activeNonce = dbNonce ?? edition?.nonce ?? null
+  const activeNonce = dbNonce ?? null
   const [topScores, setTopScores] = useState([])
 
   const posterImg = edition?.poster

@@ -4,9 +4,8 @@
   "venue": "Wolverine Farm Publick House",
   "doorsOpen": "6:00pm",
   "talksStart": "7:00pm",
-  "admission": "$8 · Students $4",
+  "admission": "$8 \u00b7 Students $4",
   "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2026e08",
-  "nonce": "b7a3e9",
   "talksLabel": "Tonight's Topics",
   "talks": [
     {
@@ -24,7 +23,7 @@
             "Random mimicry that can't really be taught"
           ],
           "answer": 1,
-          "funFact": "Dialect coaches routinely teach actors to master a new accent from scratch in a matter of weeks — strong evidence that 'having an ear' is mostly trained, not born."
+          "funFact": "Dialect coaches routinely teach actors to master a new accent from scratch in a matter of weeks \u2014 strong evidence that 'having an ear' is mostly trained, not born."
         },
         {
           "difficulty": 2,
@@ -36,7 +35,7 @@
             "A grapheme"
           ],
           "answer": 2,
-          "funFact": "English has about 44 phonemes but only 26 letters — which is exactly why English spelling and pronunciation argue with each other so often."
+          "funFact": "English has about 44 phonemes but only 26 letters \u2014 which is exactly why English spelling and pronunciation argue with each other so often."
         },
         {
           "difficulty": 3,
@@ -48,7 +47,7 @@
             "Assimilation"
           ],
           "answer": 1,
-          "funFact": "Shift your oral posture — where your tongue habitually rests — and dozens of individual sounds move at once, which is why it's often a coach's very first target."
+          "funFact": "Shift your oral posture \u2014 where your tongue habitually rests \u2014 and dozens of individual sounds move at once, which is why it's often a coach's very first target."
         }
       ]
     },
@@ -61,13 +60,13 @@
           "difficulty": 1,
           "question": "Roughly how much does the human gut microbiome weigh, according to the talk?",
           "options": [
-            "A few grams — barely noticeable",
+            "A few grams \u2014 barely noticeable",
             "About as much as your brain",
             "About as much as your entire skeleton",
             "Around 10 kilograms"
           ],
           "answer": 1,
-          "funFact": "Your gut hosts trillions of microbes weighing on the order of 1.5 kg — comparable to the mass of the human brain."
+          "funFact": "Your gut hosts trillions of microbes weighing on the order of 1.5 kg \u2014 comparable to the mass of the human brain."
         },
         {
           "difficulty": 2,
@@ -79,7 +78,7 @@
             "In the thyroid"
           ],
           "answer": 1,
-          "funFact": "Roughly 90% of the body's serotonin is made in the gut — a major reason researchers believe gut microbes can sway mood through the Gut-Brain Axis."
+          "funFact": "Roughly 90% of the body's serotonin is made in the gut \u2014 a major reason researchers believe gut microbes can sway mood through the Gut-Brain Axis."
         },
         {
           "difficulty": 3,
@@ -91,7 +90,7 @@
             "Survive freezing and freeze-drying"
           ],
           "answer": 1,
-          "funFact": "Their narrow 2013 definition — 'a live organism that, when ingested in adequate amounts, produces a health benefit in patients suffering from psychiatric illness' — has broadened a lot since."
+          "funFact": "Their narrow 2013 definition \u2014 'a live organism that, when ingested in adequate amounts, produces a health benefit in patients suffering from psychiatric illness' \u2014 has broadened a lot since."
         }
       ]
     },
@@ -122,7 +121,7 @@
             "\"Think while you drink\""
           ],
           "answer": 1,
-          "funFact": "\"Be there and be square\" has been the Nerd Nite tagline from the early days — nerdiness worn as a badge of honor."
+          "funFact": "\"Be there and be square\" has been the Nerd Nite tagline from the early days \u2014 nerdiness worn as a badge of honor."
         },
         {
           "difficulty": 3,
@@ -141,16 +140,16 @@
   ],
   "originStory": [
     {
-      "text": "Welcome to Nerdometer.\n\nHere's how it works: three rounds, one for each of tonight's topics. Questions get harder — and worth more — as you go. Answer on your phone. The leaderboard is live.\n\nBe there and be square. Let's play."
+      "text": "Welcome to Nerdometer.\n\nHere's how it works: three rounds, one for each of tonight's topics. Questions get harder \u2014 and worth more \u2014 as you go. Answer on your phone. The leaderboard is live.\n\nBe there and be square. Let's play."
     },
     {
-      "text": "A little history.\n\nNerd Nite started in Boston in 2003. A grad student named Chris Balakrishnan kept telling the same stories at his local bar — about studying parasitic birds in Cameroon. The bartenders finally said: just give a talk. He did. People came.\n\nTwenty years later it's in over 100 cities on six continents — and one of them is right here in Fort Collins."
+      "text": "A little history.\n\nNerd Nite started in Boston in 2003. A grad student named Chris Balakrishnan kept telling the same stories at his local bar \u2014 about studying parasitic birds in Cameroon. The bartenders finally said: just give a talk. He did. People came.\n\nTwenty years later it's in over 100 cities on six continents \u2014 and one of them is right here in Fort Collins."
     },
     {
       "text": "Why we do this:\n\nFort Collins deserves a place where curious people gather, learn something strange, and talk to a stranger about it over a beer. That's the whole idea. Thanks for being here and making it real."
     },
     {
-      "text": "Trivia's done — but you're not done yet.\n\nOne more round: the bonus round. Fast, different, and it can move you up the board. Your trivia score is locked. Let's see what else you've got."
+      "text": "Trivia's done \u2014 but you're not done yet.\n\nOne more round: the bonus round. Fast, different, and it can move you up the board. Your trivia score is locked. Let's see what else you've got."
     }
   ]
 }

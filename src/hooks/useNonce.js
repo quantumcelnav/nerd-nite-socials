@@ -28,16 +28,18 @@ export function useNonce() {
   }, [edition?.edition])
 
   return useMemo(() => {
-    // show_state nonce takes precedence; edition.nonce is the local dev fallback
-    const activeNonce = showNonce ?? edition?.nonce
+    // Single source of truth: the live nonce generated in the cockpit (show_state).
+    // No live nonce => nobody is in live mode => practice only. A URL nonce scores
+    // only when it matches the current live nonce.
+    const activeNonce = showNonce
     if (!activeNonce) return false
     const params = new URLSearchParams(window.location.search)
     return params.get('n')?.replace(/\W/g, '') === activeNonce
-  }, [showNonce, edition?.nonce])
+  }, [showNonce])
 }
 
 export function getLiveUrl(edition, showNonce) {
-  const activeNonce = showNonce ?? edition?.nonce
+  const activeNonce = showNonce
   if (!activeNonce) return null
   const base = `${window.location.origin}${window.location.pathname}`
   return `${base}?n=${activeNonce}`

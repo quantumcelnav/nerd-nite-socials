@@ -9,7 +9,7 @@ const MODE_LABEL = { trivia: 'Trivia', ontology: 'What Is It?' }
 export default function Leaderboard({ onHome }) {
   const { edition } = useEdition()
   const { frozen: isFrozen, showNonce: dbNonce } = useShowState(edition?.edition)
-  const showNonce = dbNonce ?? edition?.nonce ?? null
+  const showNonce = dbNonce ?? null
   const [scores, setScores] = useState([])
   const [loading, setLoading] = useState(true)
   const homeRef = useRef(null)
