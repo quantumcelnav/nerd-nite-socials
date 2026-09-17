@@ -252,6 +252,13 @@ Each test suite maps to a feature. Any push to main should run all suites. A bro
 - With wrong `?n=`: practice mode (not live)
 - After submit: score appears on leaderboard filtered to that nonce
 - Scores from a different nonce do NOT appear on leaderboard
+- **Regression (fixed S2026E09):** a nonce carrying trailing whitespace or a
+  fragment — `?n=<nonce>%20`, `?n=<nonce>#` — must pass the live gate AND land on
+  the leaderboard. The gate in `useNonce()` strips non-word characters; before the
+  fix `ScoreSubmit.jsx` stored the raw URL value, so these URLs submitted
+  successfully and were then invisible to the leaderboard's `.eq('nonce', …)`
+  filter. Both sides must sanitize identically. Test all three: bare, trailing
+  space, trailing fragment.
 
 **Suite C — Leaderboard**
 - Leaderboard shows only scores matching active nonce

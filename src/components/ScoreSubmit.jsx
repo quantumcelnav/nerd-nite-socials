@@ -67,7 +67,12 @@ export default function ScoreSubmit({ score, maxScore, mode, isLiveMode, onDone 
     setSubmitting(true)
     setSubmitError(null)
     if (supabaseReady) {
-      const urlNonce = new URLSearchParams(window.location.search).get('n') ?? null
+      // Must sanitize identically to useNonce(), which gates live mode on
+      // params.get('n').replace(/\W/g, '') === show_state.show_nonce. Writing the
+      // raw value let a URL like ?n=abc123%20 pass the gate but store a nonce the
+      // Leaderboard's .eq('nonce', showNonce) filter could never match — the player
+      // saw a successful submit and never appeared on the board.
+      const urlNonce = new URLSearchParams(window.location.search).get('n')?.replace(/\W/g, '') ?? null
       const { error } = await supabase.from('scores').insert({
         edition: edition.edition,
         name: name.trim(),
