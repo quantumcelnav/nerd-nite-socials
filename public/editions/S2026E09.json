@@ -1,0 +1,155 @@
+{
+  "edition": "S2026E09",
+  "date": "Thursday, September 17, 2026",
+  "venue": "Wolverine Farm Publick House",
+  "doorsOpen": "6:30pm",
+  "talksStart": "7:00pm",
+  "admission": "$8 · Students $4",
+  "ticketUrl": "https://events.humanitix.com/nerd-nite-fort-collins-s2026e09",
+  "talksLabel": "Tonight's Topics",
+  "talks": [
+    {
+      "id": 1,
+      "title": "Nerd Nite Fort Collins",
+      "speaker": "Justin Fritz",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "Nerd Nite has described itself for years with which one-line pitch?",
+          "options": [
+            "TED Talks for the rest of us",
+            "Science happy hour",
+            "It's like the Discovery Channel — with beer!",
+            "Lectures you're allowed to heckle"
+          ],
+          "answer": 2,
+          "funFact": "The line has stuck because it is honest about both halves. The learning is real and so is the bar tab."
+        },
+        {
+          "difficulty": 2,
+          "question": "A standard Nerd Nite talk is supposed to run how long?",
+          "options": [
+            "5 to 7 minutes",
+            "18 to 21 minutes",
+            "45 to 50 minutes",
+            "A strict 90 minutes"
+          ],
+          "answer": 1,
+          "funFact": "Long enough to actually teach you something, short enough that nobody's beer goes warm waiting for the conclusion."
+        },
+        {
+          "difficulty": 3,
+          "question": "Chris Balakrishnan started Nerd Nite in a Boston bar in 2003. Which co-founder took it global from New York in 2006 and has been the Big Boss ever since?",
+          "options": [
+            "Chris Balakrishnan",
+            "Marybeth Arcodia",
+            "Jamie Fritz",
+            "Matt Wasowski"
+          ],
+          "answer": 3,
+          "funFact": "Wasowski and Balakrishnan were college pals. Chris had the idea at the Midway Cafe, Matt turned it into more than 100 cities, and the two later co-wrote a Nerd Nite book together."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Don't Fear the Reaper: Tarot & Archetypes",
+      "speaker": "Hannah Bauer",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "In traditional tarot practice, the Death card is most often read as signifying what?",
+          "options": [
+            "A literal death in the near future",
+            "The end of one phase and the start of another",
+            "A warning against travel",
+            "Sudden financial loss"
+          ],
+          "answer": 1,
+          "funFact": "Readers have taken it this way for centuries, which is why the card turns up far more often in pop culture than in anybody's actual obituary."
+        },
+        {
+          "difficulty": 2,
+          "question": "Carl Jung used the word “shadow” for which part of the psyche?",
+          "options": [
+            "The public personality a person performs for others",
+            "Inherited imagery shared across all of humanity",
+            "The rational, decision-making centre of the mind",
+            "The traits a person represses or refuses to recognise in themselves"
+          ],
+          "answer": 3,
+          "funFact": "Jung held that the shadow is less evil than unexamined, and that refusing to look at it quietly hands it the steering wheel."
+        },
+        {
+          "difficulty": 3,
+          "question": "The Rider-Waite tarot is the most copied deck in the world. Who actually illustrated all 78 cards?",
+          "options": [
+            "Arthur Edward Waite",
+            "Pamela Colman Smith",
+            "Aleister Crowley",
+            "Éliphas Lévi"
+          ],
+          "answer": 1,
+          "funFact": "Smith painted every card in 1909 for a flat fee and no royalties. The deck carries Waite's name and made his reputation. Hers took most of a century to recover."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "What the hell is DND anyway?",
+      "speaker": "Al Marino",
+      "questions": [
+        {
+          "difficulty": 1,
+          "question": "In Dungeons & Dragons, which die do you roll to find out whether your character succeeds at most things?",
+          "options": [
+            "The four-sided die",
+            "The six-sided die",
+            "The twenty-sided die",
+            "The hundred-sided die"
+          ],
+          "answer": 2,
+          "funFact": "It is so central that the entire underlying rules engine is just called the d20 System."
+        },
+        {
+          "difficulty": 2,
+          "question": "Dungeons & Dragons was first published in 1974. Who co-created it?",
+          "options": [
+            "Gary Gygax and Dave Arneson",
+            "Richard Garfield and Peter Adkison",
+            "Steve Jackson and Ian Livingstone",
+            "Marc Miller and Frank Chadwick"
+          ],
+          "answer": 0,
+          "funFact": "The first run was 1,000 boxed sets, assembled by hand. It sold out inside a year."
+        },
+        {
+          "difficulty": 3,
+          "question": "D&D grew directly out of an earlier tabletop game co-written by Gygax and Jeff Perren. What was that game called?",
+          "options": [
+            "Chainmail",
+            "Diplomacy",
+            "Tactics II",
+            "Blackmoor"
+          ],
+          "answer": 0,
+          "funFact": "Chainmail was a medieval miniatures wargame, and its fantasy supplement added the trolls and dragons. Blackmoor is the trap answer: that was Arneson's campaign setting, not the game itself."
+        }
+      ]
+    }
+  ],
+  "originStory": [
+    {
+      "text": "Welcome to Nerdometer.\n\nThree rounds tonight, and we're playing all of them right now — in the middle of the show, between the two talks.\n\nRound one is Nerd Nite itself. Round two is the talk you just heard. Round three is the talk you haven't seen yet.\n\nThat last one is on purpose. Every question tonight was written from nothing but a title and an abstract, before either speaker took the stage. We want to know how much of a talk you can get from the title alone. You're not just playing. You're the data.\n\nQuestions get harder and worth more as you go. Answer on your phone. The leaderboard is live.\n\nBe there and be square. Let's play."
+    },
+    {
+      "text": "Round two: Hannah's talk, the one you just sat through.\n\nThis should be your best round of the night. You have the unfair advantage of having actually been paying attention.\n\nIf these questions feel like they match what Hannah covered, that's the system working. If they feel like they came from a parallel universe, that's useful too, and we'd like to hear about it at the bar afterward."
+    },
+    {
+      "text": "Round three: Al's talk on Dungeons & Dragons.\n\nYou haven't seen it yet. Nobody has. These questions were written from the title and a short abstract, aimed at what a person who knows the subject well would know.\n\nGuess from whatever you've got. This is the round we're actually studying, and your score here is the measurement.\n\nNo pressure. Roll well."
+    },
+    {
+      "text": "Trivia's done, and Al is still to come.\n\nOne more thing first: the bonus round. Fast, different, and it can move you up the board. Your trivia score is locked.\n\nLet's see what else you've got."
+    }
+  ]
+}
