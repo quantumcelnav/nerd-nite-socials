@@ -286,3 +286,94 @@ Each test suite maps to a feature. Any push to main should run all suites. A bro
 | All Deep Cuts correct only | ~69% | Certified Nerd |
 | Only Accessibles correct | ~23% | Apprentice Nerd |
 | All wrong | 0% | Curious Muggle |
+
+---
+
+## Question Authoring Methodology
+
+Adopted S2026E09 (17 Sep 2026). This section governs how Nerdometer questions get written, and defines the experiment the format is designed to run.
+
+### The three-round structure
+
+Every edition is three rounds, in this order:
+
+| Round | Subject | Role |
+|---|---|---|
+| 1 | Nerd Nite Fort Collins itself | House round. Control condition. Unrelated to either talk. |
+| 2 | Speaker 1's topic | Written pre-show. Audience has **already heard** this talk. |
+| 3 | Speaker 2's topic | Written pre-show. Audience has **not yet heard** this talk. |
+
+The house round carries the Nerd Nite origin story and keeps institutional knowledge in circulation. Check past editions before authoring it — Boston has been the answer three times (E06, E07, E08) and the motto twice. Do not repeat a question that has already run.
+
+### Mid-show placement
+
+Trivia runs **between the two talks**, not after both. Talk 1, then all three trivia rounds, then Talk 2.
+
+This placement is what makes the measurement possible. It puts the audience in two different epistemic states inside a single sitting: informed about Speaker 1, uninformed about Speaker 2, with the house round as a baseline for general engagement.
+
+### The experiment
+
+**Question under test:** how much of a talk's actual content can be predicted from its title and abstract alone?
+
+Every question is authored before either speaker takes the stage, from the title and abstract only. Round 2 and Round 3 are therefore written under identical information conditions. The only difference at play time is whether the audience has heard the talk.
+
+**Predicted result:** Round 2 scores materially above Round 3. The size of that gap estimates how well pre-written questions track what a speaker actually delivers.
+
+**Interpretation guide:**
+
+| Observation | Reading |
+|---|---|
+| Round 2 ≫ Round 3 | Questions tracked the delivered talk. The abstract was a good proxy. |
+| Round 2 ≈ Round 3 | Questions tested general domain knowledge, not talk content. Either the abstract was thin or the questions drifted off it. |
+| Round 3 ≫ Round 2 | Round 3's topic is more common knowledge than Round 2's. Calibration problem, not an alignment finding. |
+| Round 1 low across the board | Low general engagement. Discount the other two rounds accordingly. |
+
+### ⚠ Instrumentation gap — blocks the experiment
+
+**The database cannot currently answer the question above.** `ScoreSubmit.jsx` writes only `edition, name, score, max_score, mode, nonce`. There is no per-round breakdown, so a total score cannot be decomposed into Round 1 / Round 2 / Round 3.
+
+S2026E09 therefore runs as a **pilot of the format**, not of the hypothesis. It yields totals only.
+
+**To fix before S2026E10** — apply in this order, and do not deploy the code before the column exists, or every score insert will fail:
+
+1. Supabase, first and separately:
+   ```sql
+   ALTER TABLE scores ADD COLUMN round_scores jsonb;
+   ```
+2. `Game.jsx` — accumulate score per `talkIdx` instead of a single running total.
+3. `ScoreSubmit.jsx` — add `round_scores: [{round, subject, score, max}]` to the insert.
+4. Verify on staging with a throwaway nonce before show night.
+
+Until step 1 is confirmed in the live database, leave the code unchanged.
+
+### Future input: the speaker's slide deck
+
+From S2026E10 onward, Speaker 1's slide deck should be supplied to whoever authors the questions. This changes what the questions can reach, and it introduces a failure mode worth naming.
+
+**The rule: no magic values from the deck.**
+
+A question must never test whether the audience memorised a number, a name, or a figure that appeared on a slide. That measures attention to one slide, not understanding, and it is unanswerable for anyone who stepped out for a beer.
+
+**What the deck is for:** steering. The deck tells the author *where in the field* the talk actually lives — which sub-problem the speaker cares about, which assumption they are attacking, which corner they find interesting. The question is then written at domain-expert level, aimed at that corner.
+
+The target is the deep, dark epistemology of the matter at hand: what is genuinely known, how it came to be known, and where the knowledge runs out. Steered by the presentation, answerable without it.
+
+| | Bad (magic value) | Good (steered domain question) |
+|---|---|---|
+| Form | "What percentage did slide 12 give for X?" | "X is hard to measure because of which structural problem?" |
+| Tests | Did you read that slide | Do you understand the field |
+| Answerable by | Someone staring at the screen | Someone who knows the subject |
+
+A Deep Cut question should be answerable by a subject-matter nerd who never saw the talk, and should feel earned by anyone who did.
+
+### Standing rubric
+
+| Difficulty | Label | Points | Intent |
+|---|---|---|---|
+| 1 | Accessible | 100 | Anyone in the room gets this |
+| 2 | Nerdy | 300 | A curious, attentive audience member |
+| 3 | Deep Cut | 900 | Only a real subject-matter nerd |
+
+Mechanics: exactly 3 rounds, 3 questions each, ladder 1-2-3 per round, 4 plausible options, vary the correct position across all four slots, `funFact` on every question. Max 3,900. Boss tier is 97%.
+
+Send all speaker-round questions to the speaker for accuracy sign-off before the show.
