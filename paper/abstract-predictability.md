@@ -174,9 +174,16 @@ Three consequences:
   Pooling across shows averages this out; a single show does not.
 - **One author writes all questions.** Author effects and topic familiarity are
   fully confounded with condition at a single show.
-- **Order is fixed.** The heard talk is always first. Order effects, fatigue
-  and alcohol all load onto the heard round and are not separable without
-  alternating the running order between shows, which is worth doing.
+- **Position is confounded with condition.** The three rounds are played back
+  to back, and the unheard round always comes last, so it always carries the
+  most fatigue and the most beer. This is fixable by shuffling the order the
+  rounds are presented in and is the single cheapest improvement available.
+  Which talk is *heard* cannot be counterbalanced: it is whichever talk has
+  already been delivered.
+- **Subject is confounded with condition within a show.** At any one show, the
+  heard round is about one subject and the unheard round about another, so
+  "the talk landed" and "that subject was easier" cannot be separated. Only
+  pooling across shows, where different subjects land in each slot, breaks it.
 - **The unheard round does not measure the abstract.** It measures the abstract
   *plus whatever that player already knew about the subject*. The paired design
   differences out a player's general ability but not their being a D&D
@@ -189,12 +196,15 @@ Three consequences:
 
 ## 7. Next
 
-### 7.1 Finish the human instrument
+### 7.1 Finish the measurement
 
 1. Apply `001_round_scores.sql` and run three shows.
-2. **Alternate the running order** so the heard talk is not always first. Order,
-   fatigue and alcohol currently load entirely onto the heard round and are not
-   separable from it.
+2. **Randomise the order the three rounds are presented in.** All three are
+   played back to back, so position within the sitting is currently confounded
+   with condition: the unheard round is always last and therefore always the
+   most fatigued. Which *talk* is heard is not a choice — the heard talk is the
+   one already delivered, by definition — but the order the rounds appear in is
+   free, and it is the only part of this that can be counterbalanced.
 3. Re-run `analyze.mjs --supabase`. Every number in §4 is then measured, and
    this draft becomes a paper.
 
@@ -203,9 +213,10 @@ Three consequences:
 The natural extension is not more trivia. It is that this instrument measures
 *any* compression of a talk, and we happen to be building another one.
 
-`novel-to-vr` is, underneath, a media translator: it samples a video, has a
-model describe each frame including what is on the speaker's slides,
-transcribes the audio, and emits a digest that a language model can consume.
+TCAmatrix (CKW139) distils any input medium to a sufficient statistic. One of
+its bindings samples a video, has a model describe each frame including what is
+on the speaker's slides, transcribes the audio, and emits a digest a language
+model can consume.
 That digest is a compression of the talk, exactly as an abstract is.
 
 **The data processing inequality bounds what it can contain.** For the chain
@@ -240,7 +251,7 @@ conditions. Adding model arms turns it into a channel-capacity experiment.
 | Human, heard | Ceiling. What the talk conveyed to a person in the room. |
 | Human, unheard | The abstract, plus that player's prior knowledge. |
 | Model, abstract only | What is recoverable from the compression alone. |
-| Model, digest | What survived the `novel-to-vr` pipeline. |
+| Model, digest | What survived the TCAmatrix distiller. |
 | Model, verbatim transcript | The least-lossy digest available. |
 
 Digest minus abstract is what the pipeline added. Transcript minus digest is
