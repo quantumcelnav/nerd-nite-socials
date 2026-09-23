@@ -30,3 +30,6 @@ dist-ssr
 
 # simulator output: regenerate with tools/sim, seeds are fixed
 tools/sim/runs/
+
+# rendered paper: regenerate with paper/build.sh
+paper/*.pdf

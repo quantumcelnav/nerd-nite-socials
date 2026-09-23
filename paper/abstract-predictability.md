@@ -5,7 +5,7 @@
 Justin Fritz, The Canonical Art · Nerd Nite Fort Collins
 Draft 2026-09-23
 
-> **⚠ ALL RESULTS IN THIS DRAFT ARE SYNTHETIC.** No audience data has been
+> **ALL RESULTS IN THIS DRAFT ARE SYNTHETIC.** No audience data has been
 > collected under per-round scoring yet. Every number below comes from
 > `tools/sim/simulate.mjs`, a player model with a known ground-truth effect.
 > The purpose of this draft is to establish whether the instrument *could*
@@ -177,6 +177,11 @@ Three consequences:
 - **Order is fixed.** The heard talk is always first. Order effects, fatigue
   and alcohol all load onto the heard round and are not separable without
   alternating the running order between shows, which is worth doing.
+- **The unheard round does not measure the abstract.** It measures the abstract
+  *plus whatever that player already knew about the subject*. The paired design
+  differences out a player's general ability but not their being a D&D
+  specialist, and subject expertise is not balanced across rounds by anything.
+  This is the largest unaddressed confound in the design.
 - **Self-selection.** People who play are not a random sample of attendees,
   and roughly 8% do not finish.
 - **The house round controls for engagement, not for topic.** It cannot detect
@@ -184,13 +189,100 @@ Three consequences:
 
 ## 7. Next
 
+### 7.1 Finish the human instrument
+
 1. Apply `001_round_scores.sql` and run three shows.
-2. Alternate the running order so the heard talk is not always first.
-3. Re-run `analyze.mjs --supabase`. Every number in §4 is then replaced by a
-   measured one, and this draft becomes a paper.
-4. If the effect survives, the interesting follow-up is whether a language
-   model predicts the gap from the abstract alone — which is the
-   compressibility criterion stated as an experiment.
+2. **Alternate the running order** so the heard talk is not always first. Order,
+   fatigue and alcohol currently load entirely onto the heard round and are not
+   separable from it.
+3. Re-run `analyze.mjs --supabase`. Every number in §4 is then measured, and
+   this draft becomes a paper.
+
+### 7.2 The same instrument, pointed at a lossy channel
+
+The natural extension is not more trivia. It is that this instrument measures
+*any* compression of a talk, and we happen to be building another one.
+
+`novel-to-vr` is, underneath, a media translator: it samples a video, has a
+model describe each frame including what is on the speaker's slides,
+transcribes the audio, and emits a digest that a language model can consume.
+That digest is a compression of the talk, exactly as an abstract is.
+
+**The data processing inequality bounds what it can contain.** For the chain
+talk, then video, then digest, I(talk; digest) ≤ I(talk; video). Processing cannot
+manufacture information about the source. The digest can only lose.
+
+**Unless the narrator injects, at which point the chain is broken.** A model
+describing a frame writes from the video *and* from its own parameters. The
+digest stops being a function of the video alone, and the inequality stops
+bounding it, because the extra content never came through the channel.
+
+The operational consequence is the part worth stating plainly. **Injected
+material is information about the world, not information about this talk.** A
+narrator that writes "the speaker is showing a standard Kalman filter block
+diagram" may be entirely correct about Kalman filters and entirely wrong about
+that slide. The digest becomes more useful and less faithful simultaneously,
+and on the page those are indistinguishable.
+
+This is a known failure mode in this organisation, not a hypothetical. A lossy
+restatement that reads as complete becomes the reference precisely *because* it
+is the legible one, and the divergence surfaces only at first contact with
+hardware. A per-frame narrator is that failure automated, with a sampling rate.
+
+### 7.3 The measurement
+
+The Nerdometer already produces the scarce half: question sets authored from an
+abstract before delivery, with a measured human baseline under two known
+conditions. Adding model arms turns it into a channel-capacity experiment.
+
+| Condition | What it measures |
+|---|---|
+| Human, heard | Ceiling. What the talk conveyed to a person in the room. |
+| Human, unheard | The abstract, plus that player's prior knowledge. |
+| Model, abstract only | What is recoverable from the compression alone. |
+| Model, digest | What survived the `novel-to-vr` pipeline. |
+| Model, verbatim transcript | The least-lossy digest available. |
+
+Digest minus abstract is what the pipeline added. Transcript minus digest is
+what it discarded. Neither quantity is currently known for any video-to-text
+pipeline we are aware of, and both are obtainable within one show cycle.
+
+### 7.4 Detecting injection without ground truth
+
+The interesting quantity — how much of the digest came from the model rather
+than the video — has no ground truth to check against, because nobody
+transcribes what was actually on every slide.
+
+A workable proxy: **run the narrator twice on identical frames with different
+seeds.** Content that arrived through the channel is stable across runs.
+Content drawn from the model's priors varies. Variance localises injection
+without requiring anyone to know what the slide truly said. This is the
+`stylometric-fingerprint` approach — detect drift from output text alone —
+turned on our own pipeline rather than on a vendor's model.
+
+### 7.5 Two cautions on the model arms
+
+**Contamination.** If a talk is public, the model may have seen it. "Abstract
+only" then measures retrieval rather than predictability, and the result is
+worthless in the exact way it appears strongest. This is precisely the problem
+`canonical-bench` exists to address, which argues the model arms belong there
+rather than bolted onto this paper.
+
+**Asymmetric priors.** Models do not have uniform prior knowledge across
+subjects any more than audiences do. A model arm on tarot and a model arm on
+D&D are not comparable without a baseline condition, which is what the
+abstract-only arm is for.
+
+### 7.6 The question underneath
+
+If the effect survives, the follow-up is whether a language model can predict
+the gap *from the abstract alone* — that is, estimate how much of a talk its
+own abstract fails to convey, without seeing the talk.
+
+That is the compressibility criterion stated as an experiment. A trajectory is
+compressible exactly when a validated model of the domain can be built without
+possessing the results the trajectory produced. An abstract claims to be such a
+model. Measuring the residual is measuring the claim.
 
 ---
 

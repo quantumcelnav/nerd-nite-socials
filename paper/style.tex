@@ -1,0 +1,25 @@
+% Typography for reading on paper and on screen at arm's length.
+% 12pt base, generous leading, a measure near 70 characters.
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{longtable}
+\linespread{1.15}
+\setlength{\parskip}{0.55em}
+\setlength{\parindent}{0pt}
+\usepackage{sectsty}
+\allsectionsfont{\sffamily}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily Nerdometer — abstract predictability}
+\fancyhead[R]{\footnotesize\sffamily Draft, synthetic results}
+\fancyfoot[C]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\usepackage{xcolor}
+\definecolor{warn}{HTML}{8A3800}
+\usepackage{mdframed}
+\renewenvironment{quote}
+  {\begin{mdframed}[linewidth=2pt,linecolor=warn,topline=false,bottomline=false,%
+    rightline=false,innerleftmargin=12pt,innertopmargin=8pt,innerbottommargin=8pt,%
+    skipabove=10pt,skipbelow=10pt]\color{warn}\small}
+  {\end{mdframed}}
