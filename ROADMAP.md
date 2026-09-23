@@ -89,6 +89,41 @@ What "ready to hand over" means:
 
 Failing to prepare this turns a distribution event back into a talk.
 
+## 3.5 The big picture — what is actually being measured
+
+Worth stating before the horizons, because it changes what they are for.
+
+**Live events sell presence. Nobody has ever measured what presence delivers.**
+Every conference, every lecture series, every venue rests on an unmeasured
+assertion that being in the room does something a summary cannot. The entire
+economics of showing up depends on that gap, and it has never had a number.
+
+Irreducibility is that number, and Nerd Nite Fort Collins is sitting in a bar
+with the instrument already built.
+
+**That makes it a key performance indicator, not a report card.** If the product
+is the experience, then the fraction of a talk that exists only in the room is
+not a side effect of programming. It is the thing being sold. We would be the
+first event we are aware of that can say what its own product delivered, in a
+number, on the night.
+
+**The timing is not incidental.** The anxiety everywhere is that summarisation
+got cheap, so why attend anything. The answer is not to argue. It is to measure
+which content survives compression and which does not, then programme for the
+part that does not. High-irreducibility content is resistant to summary by
+construction. That is the compressibility criterion from `tca-trilogy` pointed
+at an audience instead of at a trajectory.
+
+For a programme committee this changes the question from "is this a good talk"
+to "will anyone need to be here for it" — which is the question they are
+actually trying to answer and currently answer by feel.
+
+**The honest limit.** None of this is true yet. It is a good story resting on
+123 questions and zero rounds of per-round data. It becomes real after three
+shows and not before. If the effect turns out small, the finding is that Nerd
+Nite talks compress better than anyone wanted to believe, and publishing that
+would take more nerve than publishing the flattering version.
+
 ## 4. Horizon 3 — the corpus becomes the asset (months)
 
 Once per-round scoring lands, every show produces a row of real data: an expert
