@@ -138,6 +138,6 @@ guess at.
 2. Melbourne handover pack, before 14 October. **Has a hard date.**
 3. One outside chapter running a fork successfully.
 4. Three shows of clean per-round data.
-5. Write up the abstract-predictability result. That is a paper, and
+5. Write up the you-had-to-be-there result. That is a paper, and
    `tca-publications` is where it goes.
 6. Only then consider whether this is a product or stays an instrument.

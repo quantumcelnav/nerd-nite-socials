@@ -1,6 +1,7 @@
-# How Much of a Talk Is Predictable From Its Abstract?
+# You Had to Be There
 
-**A live-audience instrument, and a simulation study of whether it can measure anything.**
+**Measuring the part of a talk its abstract cannot carry — and a simulation
+study of whether the measurement works.**
 
 Justin Fritz, The Canonical Art · Nerd Nite Fort Collins
 Draft 2026-09-23
@@ -18,12 +19,18 @@ Draft 2026-09-23
 
 ## Abstract
 
-A conference abstract is a lossy compression of a talk. How lossy is an open
-question that programme committees, reviewers and science communicators answer
-by intuition. We describe a live instrument that measures it directly: trivia
-questions written from a talk's abstract *before* delivery, played by an
-audience that has heard one talk and not yet heard another, inside a single
-sitting. Each player is their own control. A simulation study shows the design
+An abstract is a lossy compression of a talk. Some subjects survive that
+compression nearly intact; others lose almost everything, and you genuinely had
+to be in the room. We call the difference **irreducibility**, and we measure it
+directly: trivia questions written from a talk's abstract *before* delivery,
+played by an audience that has heard one talk and not yet heard another, inside
+a single sitting. Each player is their own control.
+
+**This measures the subject, not the speaker.** A large gap means the talk
+carried something no abstract could have carried, which is the best thing that
+can be said about a talk. A small gap means the topic compresses well. Neither
+is a verdict on the person at the microphone, and §1.1 explains why that is a
+requirement of the method rather than a courtesy. A simulation study shows the design
 is well calibrated (false-positive rate 2.0% against a nominal 5% across 200
 null runs) and adequately powered for a large effect at a single show's
 attendance (96.7% power at 50 players for a 0.28 effect), but badly
@@ -35,14 +42,47 @@ cannot rule one out.
 
 ## 1. The question
 
-If a talk were fully predictable from its abstract, attending it would add no
-information. If it were wholly unpredictable, the abstract would be decoration.
-Real talks sit somewhere between, and nobody measures where.
+If a talk were fully recoverable from its abstract, attending would add
+nothing. If none of it were, the abstract would be decoration. Real talks sit
+somewhere between, and nobody measures where.
 
-This matters in three places. Programme committees select talks from abstracts.
-Reviewers score work they have not seen delivered. Anyone commissioning science
-communication is buying a gap between promise and delivery that nobody has
-sized.
+The quantity of interest is the part that does **not** survive compression. A
+subject with high irreducibility cannot be handed over in three hundred words;
+it has to be delivered by a person, in a room, to people who are there. A
+subject with low irreducibility can be read about instead. Both are honest
+descriptions of a topic and neither is better than the other.
+
+This matters wherever a decision is made from an abstract alone. Programme
+committees choose talks that way. Reviewers score work they have not seen
+delivered. Anyone commissioning science communication is buying an unmeasured
+quantity.
+
+### 1.1 Why this is not a grade, and why that is a methods problem
+
+The obvious misreading of this instrument is that it scores speakers. It does
+not, and it must not, for three reasons.
+
+**It would measure the wrong thing.** Irreducibility is a property of a
+subject's information structure. Tarot history and computational irreversibility
+compress differently no matter who presents them. Attributing that to the
+speaker is a category error.
+
+**It would break the instrument.** A speaker who knows a number is coming will
+pitch differently, and reasonably so. Then the measurement reflects the
+existence of the measurement. An instrument that changes what it observes is
+not an instrument, and this is the standard reason evaluative framing is
+avoided in observational work.
+
+**It would end the supply of speakers.** Nerd Nite runs on volunteers who do
+this for fun, in a bar, about something they love. The light-hearted register is
+not a coating over the real work; it is the condition that makes the real work
+possible. An event that graded its speakers would stop getting speakers, and
+then there would be nothing to measure.
+
+So the number belongs to the topic and reads as a compliment when it is high.
+"You had to be there" is the finding, and it is also the nicest thing anyone
+says about a talk. Speakers see their questions before the show; no speaker is
+ranked against another; and there is no leaderboard of talks, only of players.
 
 Framed for The Canonical Art's own thesis, this is the compressibility
 criterion from *art-of-art* with an audience attached: a trajectory is
@@ -149,6 +189,9 @@ Detection rate at *p*<0.05, by attendance and true effect size:
 | 110 | 28.0% | 90.0% | 100.0% |
 
 ## 5. What this means operationally
+
+Read every figure below as a property of the subject on the night, not of the
+person who presented it.
 
 **A single Nerd Nite show is adequately powered for a large effect and
 underpowered for a modest one.** At a typical Fort Collins attendance of
@@ -287,8 +330,10 @@ abstract-only arm is for.
 ### 7.6 The question underneath
 
 If the effect survives, the follow-up is whether a language model can predict
-the gap *from the abstract alone* — that is, estimate how much of a talk its
-own abstract fails to convey, without seeing the talk.
+irreducibility *from the abstract alone* — that is, estimate how much of a
+subject an abstract cannot carry, without seeing the talk. A programme
+committee would find that useful; a speaker would find it flattering when the
+number came back high.
 
 That is the compressibility criterion stated as an experiment. A trajectory is
 compressible exactly when a validated model of the domain can be built without

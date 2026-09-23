@@ -7,9 +7,9 @@
 # drops em-dashes and curly quotes.
 set -e
 cd ${0:A:h}
-pandoc abstract-predictability.md -o abstract-predictability.pdf \
+pandoc you-had-to-be-there.md -o you-had-to-be-there.pdf \
   --pdf-engine=xelatex -V geometry:margin=1.1in -V fontsize=12pt \
   -V mainfont="Palatino" -V sansfont="Helvetica Neue" -V monofont="Menlo" \
   -V colorlinks=true -V linkcolor=Maroon -V urlcolor=Maroon \
   --toc --toc-depth=2 -H style.tex
-echo "abstract-predictability.pdf  $(pdfinfo abstract-predictability.pdf | awk '/Pages/{print $2}') pages"
+echo "you-had-to-be-there.pdf  $(pdfinfo you-had-to-be-there.pdf | awk '/Pages/{print $2}') pages"
