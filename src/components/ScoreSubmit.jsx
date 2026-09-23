@@ -32,7 +32,7 @@ function fireConfetti() {
   setTimeout(() => confetti({ particleCount: 80, angle: 120, spread: 60, origin: { x: 1 }, colors }), 600)
 }
 
-export default function ScoreSubmit({ score, maxScore, mode, isLiveMode, onDone }) {
+export default function ScoreSubmit({ score, maxScore, mode, roundScores = null, isLiveMode, onDone }) {
   const { edition } = useEdition()
   const { frozen } = useShowState(edition?.edition)
   const [name, setName] = useState('')
@@ -73,14 +73,30 @@ export default function ScoreSubmit({ score, maxScore, mode, isLiveMode, onDone 
       // Leaderboard's .eq('nonce', showNonce) filter could never match — the player
       // saw a successful submit and never appeared on the board.
       const urlNonce = new URLSearchParams(window.location.search).get('n')?.replace(/\W/g, '') ?? null
-      const { error } = await supabase.from('scores').insert({
+      const row = {
         edition: edition.edition,
         name: name.trim(),
         score,
         max_score: maxScore,
         mode,
         nonce: urlNonce,
-      })
+      }
+      // Per-round detail rides along when the game produced it. Sent as a
+      // separate first attempt so a database that has not had
+      // supabase/migrations/001_round_scores.sql applied yet still records the
+      // score instead of failing the whole insert. Deploy order therefore does
+      // not matter, which is the point -- the previous plan required the column
+      // first and getting it wrong lost every score silently.
+      let error = null
+      if (roundScores) {
+        ({ error } = await supabase.from('scores').insert({ ...row, round_scores: roundScores }))
+        if (error) {
+          console.warn('round_scores rejected, retrying without it:', error.message)
+          ;({ error } = await supabase.from('scores').insert(row))
+        }
+      } else {
+        ({ error } = await supabase.from('scores').insert(row))
+      }
       if (error) {
         setSubmitError('Could not save score — try again.')
         setSubmitting(false)

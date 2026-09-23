@@ -9,6 +9,23 @@ function vibrate(pattern) {
   if (navigator.vibrate) navigator.vibrate(pattern)
 }
 
+/** Derive the per-round breakdown submitted alongside the total.
+ *  Shape is documented in supabase/migrations/001_round_scores.sql. */
+export function buildRoundScores(edition, answers, tiebreakerBonus = 0) {
+  const rounds = edition.talks.map((talk, i) => {
+    const mine = answers.filter(a => a.talkIdx === i)
+    return {
+      round: i + 1,
+      subject: talk.title,
+      speaker: talk.speaker,
+      score: mine.reduce((s, a) => s + (a.correct ? POINTS[a.difficulty] : 0), 0),
+      max: talk.questions.reduce((s, q) => s + POINTS[q.difficulty], 0),
+      questions: mine.map(a => ({ difficulty: a.difficulty, correct: a.correct })),
+    }
+  })
+  return { rounds, tiebreaker: { score: tiebreakerBonus, max: TIEBREAKER_MAX } }
+}
+
 export default function Game({ edition, onComplete }) {
   const MAX_SCORE = useMemo(() => calcMaxScore(edition.talks), [edition])
 
@@ -27,6 +44,17 @@ export default function Game({ edition, onComplete }) {
           isCorrect: correct,
           reactionGif: action.gif,
           score: correct ? state.score + POINTS[question.difficulty] : state.score,
+          // Per-answer log. The experiment compares a talk the audience heard
+          // against one they had not, and difficulty is a confound -- a round
+          // can look strong because its Accessible question was easy rather
+          // than because the talk landed. Only per-question data separates
+          // those, so record the atom and derive the rest at submit time.
+          answers: [...state.answers, {
+            talkIdx: state.talkIdx,
+            questionIdx: state.questionIdx,
+            difficulty: question.difficulty,
+            correct,
+          }],
         }
       }
       case 'NEXT': {
@@ -68,9 +96,10 @@ export default function Game({ edition, onComplete }) {
     selected: null,
     isCorrect: false,
     reactionGif: null,
+    answers: [],
   })
 
-  const { phase, talkIdx, questionIdx, score, selected, isCorrect, reactionGif } = state
+  const { phase, talkIdx, questionIdx, score, selected, isCorrect, reactionGif, answers } = state
   const talk = edition.talks[talkIdx]
   const question = talk?.questions[questionIdx]
   const totalQuestions = edition.talks.reduce((s, t) => s + t.questions.length, 0)
@@ -110,7 +139,11 @@ export default function Game({ edition, onComplete }) {
     <TiebreakerGame
       triviaScore={score}
       maxTriviaScore={MAX_SCORE}
-      onComplete={(bonus) => onComplete(score + bonus, MAX_SCORE + TIEBREAKER_MAX)}
+      onComplete={(bonus) => onComplete(
+        score + bonus,
+        MAX_SCORE + TIEBREAKER_MAX,
+        buildRoundScores(edition, answers, bonus),
+      )}
     />
   )
 

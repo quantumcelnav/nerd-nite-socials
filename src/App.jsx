@@ -29,6 +29,7 @@ function AppInner() {
   const [screen, setScreen] = useState('home')
   const [finalScore, setFinalScore] = useState(0)
   const [maxScore, setMaxScore] = useState(0)
+  const [roundScores, setRoundScores] = useState(null)
   const [gameMode, setGameMode] = useState('trivia')
   const isLiveMode = useNonce()
 
@@ -41,9 +42,10 @@ function AppInner() {
   if (loading) return <div className="app-loading">Loading…</div>
   if (!edition) return <div className="app-loading">Edition not found.</div>
 
-  function handleGameComplete(score, max) {
+  function handleGameComplete(score, max, rounds = null) {
     setFinalScore(score)
     setMaxScore(max)
+    setRoundScores(rounds)
     setScreen('submit')
   }
 
@@ -74,6 +76,7 @@ function AppInner() {
           <ScoreSubmit
             score={finalScore}
             maxScore={maxScore}
+            roundScores={roundScores}
             mode={gameMode}
             isLiveMode={isLiveMode}
             onDone={() => setScreen('postgame')}
