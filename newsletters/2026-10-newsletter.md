@@ -1,0 +1,74 @@
+# Nerd Nite Fort Collins — October 2026 Newsletter
+
+**Status:** draft for Mailchimp. Copy the body below.
+
+**Subject:** No talks in October (and a Marine I flew with just left the planet)
+**Preview text:** Singles Night on the 15th, a dark sky weekend, and Crew-13.
+
+---
+
+Hello << First Name >>!
+
+October is different. No talks this month — we're handing the whole room over to **Jennie Agin**, who runs Nerd Nite Colorado Springs and Storyfull Matchmaking, and she's putting on a Singles Night. Come solo or bring a friend, grab a drink, settle in. There's a light icebreaker to loosen everybody up, then rotations — groups of four or five, ten or twenty minutes, then you move — with card games and conversation prompts built to get you past "so what do you do," and then an open social to let the night go wherever it wants to go. If you hit it off with somebody there's a way to match and swap contact info at the end. Structured enough that you actually meet people, loose enough that you enjoy it.
+
+**Thursday, October 15. Doors at 6, we start at 6:30, done by 8:30. Wolverine Farm Publick House, 316 Willow Street.**
+
+Solo tickets are $20 and Bring a Friend is $35 for the two of you, and 20% of every ticket goes to Wolverine Farm's fundraiser to put an elevator in the building. Our space is up the stairs and only up the stairs right now, and they're working on it, and it is a big undertaking as you may imagine.
+
+**And a note for our regulars — no Loyalty Libations at this one.** Different show, different house rules.
+
+**GET YOUR TICKETS HERE!**
+https://www.eventbrite.com/e/nerd-nite-fort-collins-presents-singles-event-tickets-1999705802887
+
+> `[EMBED: Singles Night poster — "Nerd Nite Singles Event.jpg"]`
+
+Then — **Joe Izen** is hosting the NCAS Dark Sky Weekend at his place in Centennial, Wyoming, **October 9 through 11**, and he's expanded it this time to cover both the 9th and the 10th. It's a genuinely dark site and the long range forecast is looking mostly clear. Indoor sleeping spots are limited and they need an RSVP, so **contact Joe directly at joe@utdallas.edu**. I'll be on a plane and won't be watching this inbox, so please don't reply here — go straight to Joe. His address, directions and the rest of the details are in his invitation below.
+
+> `[EMBED: "Joe Izen NCAS Oct2026 Event.pdf" — same treatment as September, pages as images]`
+
+And one more thing. This morning at 11:10 Eastern, **SpaceX Crew-13** lifted off for the space station, and the pilot was **Luke Delaney**.
+
+Two navigators came out of that schoolhouse. The job never changes — figure out where you are, decide where you're going, commit before you can see it. I did mine at twenty thousand feet and then went to college. Luke is doing his at seventeen thousand miles an hour.
+
+NASA asked the crew what advice they'd give their younger selves. Luke's answer is **here** (https://www.instagram.com/reel/Dd60k6_h-sU/), and it's interesting, because I agree with him… sort of. I had to have that attitude to fly. You have to believe in tomorrow to plan for it. In reality, things don't work out for a lot of people. But if you despair and worry and don't take your shot, then you seal your fate. If you believe, then maybe. If you don't, then probably not.
+
+Meanwhile I'll be in Australia. I'm presenting at **Nerd Nite Melbourne #71** on October 14, at Howler in Brunswick — same show, other hemisphere. We'll take pictures and bring them home.
+
+See you all at the November show.
+
+Warm regards,
+
+Justin
+
+---
+
+**Upcoming Nerd Nite Fort Collins Schedule**
+
+**October 15:** *Singles Night — in partnership with Storyfull Matchmaking*
+
+**November 19:** *Sourdough and Croissants — stay tuned.*
+
+---
+
+*(standing Call For Speakers block follows, unchanged from September)*
+
+---
+
+## Production notes — not for the newsletter
+
+**Assets to embed**
+- `~/Downloads/Nerd Nite Singles Event.jpg` — Jennie's poster
+- `Joe Izen NCAS Oct2026 Event.pdf` — attached to the NCAS list email of 27 Sep 2026, subject "[Members] Oct 9-11 NCAS Dark Sky Weekend". September's newsletter embedded Joe's deck as five images; do the same here.
+
+**Joe's event is newsletter-only.** His instruction of 30 Aug 2026, verbatim: *"Since my name/add/ress/email/phone are in the invitation, please don't post to social media. If you want to make a social media announcement, I suggest asking interested members to provide an email to receive further details and then email this file to them."* He confirmed *"Yes to email newsletter distribution!"* on 31 Aug.
+
+So: **Singles Night goes in the October social campaign. The Dark Sky Weekend does not.**
+
+**Title discrepancy.** The poster reads "Singles Night"; the Eventbrite listing reads "Nerd Nite Fort Collins Presents: Singles Event". The copy above uses the poster wording, so readers land on a page titled slightly differently.
+
+**Not included, deliberately.** Jennie's Eventbrite copy offers a $5 discount for bringing a friend of the opposite sex. Left out of the newsletter — add it back if you want parity with the ticket page.
+
+**Sources**
+- Singles Night: Jennie Agin thread, 3–4 Sep 2026; poster; Eventbrite listing verified live 1 Oct 2026.
+- Dark Sky Weekend: NCAS members list, 27 Sep 2026; Joe Izen thread, 30–31 Aug 2026.
+- Crew-13: NASA and Space.com, launch 1 Oct 2026, 11:10 EDT. Luke Delaney, pilot.
