@@ -1,11 +1,49 @@
 # Newsletter playbook
 
-Written 1 Oct 2026 after building the October issue. Things to fix, and how to
+Written 1 Oct 2026 after the October issue shipped. Things to fix, and how to
 make next month faster than this month.
 
 ---
 
-## ⚠ Fix now — the Call For Speakers button is broken
+## What shipped in October with known defects
+
+The October issue went out before this review was finished. Three things are in
+the wild and cannot be recalled:
+
+1. **The Call For Speakers button does not work** — see below. Third consecutive
+   send with a dead speaker CTA.
+2. **No alt text on any image**, and the Dark Sky Weekend's address, dates and
+   times exist only inside slide images, so readers with images blocked got
+   nothing for that event.
+3. **Physical mailing address** not visible in the sent HTML — unverified whether
+   Mailchimp injected it.
+
+None of this is fatal and none of it is worth a correction email. It is written
+down so November does not repeat it.
+
+**One thing worth doing anyway:** the speaker form link is dead in the live
+archive and in the "view this email in your browser" copy for as long as those
+exist. If a speaker push matters this month, post the correct link to Instagram
+and Facebook rather than waiting for the November issue.
+
+---
+
+## Do now, not next month — three template-level fixes
+
+These live in the Mailchimp template, so fixing them once carries into every
+future issue. Roughly ten minutes, and far cheaper now than rediscovering them
+in four weeks.
+
+1. **Repoint the SIGN UP TO SPEAK! button** to the form's public `/viewform` or
+   `forms.gle` link.
+2. **Set Courier as the template's global font** in design settings, so text
+   blocks inherit it and ordinary paste stops fighting the template.
+3. **Confirm the audience's physical mailing address** is set and rendering in
+   the footer.
+
+---
+
+## ⚠ The Call For Speakers button is broken
 
 The **SIGN UP TO SPEAK!** button points at:
 
@@ -21,7 +59,8 @@ the September issue, so it has been dead for at least two sends to ~550 people.
 link instead. Then click it from a logged-out browser before shipping.
 
 If speaker submissions have felt thin, this is a candidate explanation and it is
-cheap to rule out.
+cheap to rule out. Note the October issue shipped with it still broken, so the
+count is now at least three sends.
 
 ---
 
@@ -35,7 +74,7 @@ now, with images off, a reader gets **nothing** about the Dark Sky Weekend — n
 address, no dates, no times — because all of it lives only inside the slide
 images. Same for the Singles Night poster.
 
-**Two things for next month:**
+**Two things for November:**
 
 1. Write real alt text on every image. One honest sentence: "Poster: Nerd Nite
    Singles Night, Thursday October 15, 6:30pm, Wolverine Farm."
