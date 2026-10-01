@@ -154,6 +154,92 @@ Sell the instrument, not the game. The instrument answers "did this talk deliver
 what it promised", which is a question institutions already pay consultants to
 guess at.
 
+## 5.5 The show pipeline — one source, many renders
+
+Added 2026-10-01, after the October newsletter took an afternoon of hand-editing
+HTML inside Mailchimp. The build notes are in
+[`newsletters/NEWSLETTER-PLAYBOOK.md`](newsletters/NEWSLETTER-PLAYBOOK.md).
+
+### The observation
+
+The same facts about one show — date, venue, doors, start, admission, ticket URL,
+talk titles, speakers, abstracts — get typed by hand into **five** places:
+the poster, the newsletter, the website, the socials, and the Nerdometer edition.
+Five chances to typo a date, and five things to update when a detail moves.
+
+The posters already escaped this: they are LaTeX, compiled by
+`_compile_poster.sh`. Nobody hand-sets a poster. The newsletter is the odd one
+out, and it is the one that costs the most hours.
+
+### The source of truth already exists
+
+`public/editions/S2026EXX.json` already carries almost everything a newsletter
+needs:
+
+```
+edition · date · venue · doorsOpen · talksStart · admission · ticketUrl
+talks[] → id, title, speaker
+```
+
+Missing: **`abstract`** per talk, and optionally `speakerBio`. September's
+newsletter was essentially those abstracts in prose. Add one field and the
+edition file covers the whole month.
+
+**The edition JSON is the ground truth. Everything else is a render target.**
+Not the HTML — HTML is an output. Making HTML the source means hand-editing
+markup in a different editor, which is the problem rather than the fix.
+
+### Render targets, in order of pain removed
+
+| Target | Status today | Effort |
+|---|---|---|
+| **Newsletter HTML** | hand-built in Mailchimp, hours | highest value |
+| Website event entry | hand-entered WordPress | medium |
+| Social copy | hand-written per platform | medium |
+| Poster LaTeX | **already generated** | done |
+| Nerdometer edition | **already the source** | done |
+
+### Scheduling, and one correction
+
+MCP is the wrong primitive for "runs on the first of the month" — MCP exposes
+tools to a model, it does not schedule anything. The trigger is **cron or a
+GitHub Action**. An MCP server for Mailchimp is still worth having, because it
+lets a model draft a campaign on request, but the monthly run is CI.
+
+### The rule that does not bend
+
+**Generate a Mailchimp *draft*. Never send.** The send is what reaches 550
+people and it stays a human pressing a button. Everything upstream of the button
+is grunt work worth killing; the button itself is not.
+
+Same for socials: generate the copy, queue nothing.
+
+### Build order
+
+1. **Link checker in CI. Build this first and separately.** Fetch every URL in
+   the rendered newsletter, fail on non-200 and on a Google Forms `/edit`
+   pattern. Roughly twenty lines. **It would have caught the dead speaker-form
+   link three sends ago**, which is more value than the rest of the pipeline
+   combined, because it catches the class of error that humans reliably miss by
+   the twelfth read of their own copy.
+2. Add `abstract` and `speakerBio` to the edition schema.
+3. Render newsletter HTML from the edition JSON. Keep the personal section — the
+   bit that is actually Justin writing — as a hand-authored markdown fragment the
+   renderer includes. **That part should never be generated.**
+4. Mailchimp draft via API.
+5. Website and social renders.
+6. Only then consider a scheduled trigger.
+
+### Timing, honestly
+
+This competes with the ANZ trip from 9 Oct, the Melbourne talk, and the TCA
+wind-down, which needs Nerd Nite assets separated before dissolution. The
+sequencing that respects that: **write this down now, build the link checker now
+because it is twenty minutes, build the renderer in December** with the January
+issue as the first target.
+
+---
+
 ## 6. What not to do
 
 - **Do not chase platforms.** PWA already gives install without a storefront.
@@ -176,3 +262,6 @@ guess at.
 5. Write up the you-had-to-be-there result. That is a paper, and
    `tca-publications` is where it goes.
 6. Only then consider whether this is a product or stays an instrument.
+
+**Running alongside, not gating:** the newsletter link checker (§5.5), which is
+small, independent, and fixes a defect that has shipped three times.
