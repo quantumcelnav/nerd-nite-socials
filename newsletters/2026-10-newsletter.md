@@ -26,9 +26,9 @@ Then — **Joe Izen** is hosting the NCAS Dark Sky Weekend at his place in Cente
 
 > `[EMBED: "Joe Izen NCAS Oct2026 Event.pdf" — same treatment as September, pages as images]`
 
-And one more thing. This morning at 11:10 Eastern, **SpaceX Crew-13** lifted off for the space station, and the pilot was **Luke Delaney**.
+And one more thing. This morning at 11:10 Eastern, **SpaceX Crew-13** lifted off for the space station, and the pilot was **Luke Delaney**. Luke and I came out of the same schoolhouse — Marine Aerial Navigation School — and we flew together after that at VMGR-352.
 
-Two navigators came out of that schoolhouse. The job never changes — figure out where you are, decide where you're going, commit before you can see it. I did mine at twenty thousand feet and then went to college. Luke is doing his at seventeen thousand miles an hour.
+They teach you one job there and the job never changes: figure out where you are, decide where you're going, and commit before you can see it. I did mine at twenty thousand feet and then went to college. Luke is doing his at seventeen thousand miles an hour.
 
 NASA asked the crew what advice they'd give their younger selves. Luke's answer is **here** (https://www.instagram.com/reel/Dd60k6_h-sU/), and it's interesting, because I agree with him… sort of. I had to have that attitude to fly. You have to believe in tomorrow to plan for it. In reality, things don't work out for a lot of people. But if you despair and worry and don't take your shot, then you seal your fate. If you believe, then maybe. If you don't, then probably not.
 
