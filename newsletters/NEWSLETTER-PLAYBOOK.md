@@ -36,6 +36,13 @@ in four weeks.
 
 1. **Repoint the SIGN UP TO SPEAK! button** to the form's public `/viewform` or
    `forms.gle` link.
+
+   **A checker now exists for this**, built 1 Oct and verified against the real
+   bug: `python3 tools/newsletter/check_links.py newsletters/<issue>.html`. It
+   fetches every link and separately flags URLs that return 200 but are still
+   wrong — Google Form `/edit` paths, Eventbrite creator previews, and Eventbrite
+   copy-link params that misattribute newsletter sales as social. Exits 1, so it
+   drops straight into CI.
 2. **Set Courier as the template's global font** in design settings, so text
    blocks inherit it and ordinary paste stops fighting the template.
 3. **Confirm the audience's physical mailing address** is set and rendering in
