@@ -104,7 +104,7 @@ speaker did, not what the talk was about.** "He brought a pipe" beats "he
 explained pipe organ construction." The Berlioz title is read aloud and nothing
 is added to it.
 
-### Item 4, talk one of three — LOCKED. Hannah Bauer, the Donner Party.
+### Item 4 — LOCKED. Hannah Bauer, the Donner Party. The catalogue, and the laugh.
 
 **NNFC S2025E01, Thursday 30 January 2025, Wolverine Farm Publick House.**
 *"Worst Party Ever: Everything You Didn't Know About the Donner Party."*
@@ -136,22 +136,20 @@ and they do not want to be in the other order.
 
 **Two caveats, so neither becomes fact by repetition.**
 
-1. **"He brought a pipe" was never a claim about Joel Bacon.** It was written
-   into the beat file as an illustration of the *form* the detail should take.
-   Whether Joel brought anything into that room is unverified and is not to be
-   said on stage unless he remembers it himself.
+1. **"He brought a pipe" was never a claim about Joel Bacon** — it was an
+   illustration of the *form* a detail should take, written into the beat file
+   and left sitting there looking like a memory. Moot now: the real Joel detail
+   is far better and came from him. Struck so it cannot resurface.
 2. **There is no `public/editions/S2025E01.json`.** The editions directory jumps
    from S2024E11 to S2025E06, so Hannah's Donner edition is not in the repo and
    the date above comes from his message and the Humanitix slug
    (`nerd-nite-fort-collins-s2025e01`), not from a record. Fine for the talk.
    Worth filling in after Melbourne, not before.
 
-**Still needed: talks two and three, and the doing, not the subject.** Hannah's
-is a *point-of-view* move. For range, the other two should not also be
-point-of-view moves — one physical thing that happened in the room, and one case
-of something unglamorous made to matter. Worms is the obvious second on the
-second count. The pipe organ is the obvious candidate on the first, if there is
-a real physical memory attached to it.
+**All three talks are now in and each does different work.** Hannah is the
+point of view, John is the editorial decision, Joel is the felt proof. Nothing
+in item 4 needs a third entry — Berlioz is 30 seconds of title and that is all
+the catalogue still wants.
 
 **5) Name the recursion.** (0:45)
 Out loud, deliberately, as the joke it is. You weren't at any of those. Often the
@@ -188,7 +186,51 @@ The KC-130 is the optional second, and if it goes in it goes in as mechanism:
 a fix was a crew act, not one man's. Past tense, never the opening. **One
 example is enough. Two is the ceiling. His call.**
 
-### Item 7 — RESTRUCTURED. Joel's organ is the landing, not one of the catalogue.
+### Item 7 — NEW. "The abstract we didn't fix." John Anderson, Worm Majix.
+
+**NNFC S2025E08, Thursday 18 September 2025, Wolverine Farm Publick House.**
+*"Worm Majix"* — John Anderson. Shared the bill with Jenny Morse on poetry.
+
+**What happened** — his account, 11 Oct. John is a long-time friend of Wolverine
+Farm who used to watch the Nerd Nite crowd assemble. He approached Senne one
+evening and was soon on the calendar. The abstract he sent was rough and hard to
+follow. **Jamie started to edit it and he stopped her.** It ran exactly as
+offered. John then gave a great talk — unfiltered John, dressed as he dresses for
+any other evening at the Wolverine, speaking as himself.
+
+His reason, verbatim: *"We want to platform people who want to talk. We want to
+connect speakers and audience, not filter them."*
+
+**This is the third kind of proof and the talk needs all three.** Hannah is the
+*point of view*. The organ is the *felt* proof. This one is the *editorial*
+proof, and it is the only beat where the thesis shows up as a decision somebody
+had to make rather than an experience somebody had.
+
+**Why it belongs between Mars and the organ.** Mars says the chronicle is
+incomplete without the hypothesis of the builder and the model of the reader.
+The obvious response to that is *so transmit better* — clean it up, smooth it,
+make it portable. **This beat is the counter-example: the edit that would have
+made the abstract clearer would have removed John from it.** The version that
+read worse was the version that carried the person. He stopped the edit on
+instinct and the talk proved him right.
+
+*An interpretation, offered as one and not as a fact about him:* that is the same
+mechanism as the HoloLens spec bug he carries from his own career — a legible
+restatement silently becomes the reference, and clarity manufactures confidence
+nobody earned. Same failure, opposite stakes, found in a bar. He may want it and
+he may not; it is one sentence either way and the beat does not need it.
+
+**Strong recommendation: do not read John's abstract aloud.** It is the one move
+that turns this beat cruel. Read out a rough paragraph to a room primed to laugh
+and John becomes the joke, in front of an audience that includes other Nerd Nite
+bosses. The beat does not need the exhibit. *It was rough. Jamie started fixing
+it. I stopped her. We ran it as he sent it.* That is the whole thing, and the
+roughness is the virtue rather than the punchline.
+
+**What this beat is not:** a policy statement about curation. One line of reason,
+past tense, then John on stage dressed exactly as he dresses, and move.
+
+### Item 8 — RESTRUCTURED. Joel's organ is the landing, not one of the catalogue.
 
 **NNFC S2026E06, Thursday 18 June 2026, Wolverine Farm Publick House.**
 *"Let's Build a Pipe Organ!"* — Joel Bacon. From the listing: *"we'll assemble
@@ -230,21 +272,26 @@ contain the one thing that moved him.
    before the turn were the only lines that could not be scaffolded — the ones
    that carry the room from laughing to sitting still. This beat is that bridge,
    and the material is already his.
-3. **Item 4 shrinks to 3:30** and the third talk becomes optional. Hannah plus
-   Berlioz may be the whole catalogue. Worms is now the cut-first item, not a
-   requirement.
+3. **Item 4 shrinks to 3:00** — Hannah at 2:30, Berlioz at 0:30. Worms left the catalogue entirely and became item 7 on its own merits.
 
 **Revised budget:**
 
 | | |
 |---|---|
+| 1) Introduction, trajectories, thank you | 2:30 |
+| 2) What the talk covers | 0:45 |
 | 3) The flip | 1:30 |
-| 4) The catalogue — Hannah first, Berlioz last | 3:30 |
+| 4) The catalogue — Hannah, then Berlioz | 3:00 |
 | 5) Name the recursion. Ask why. Do not answer | 0:45 |
-| 6) Mars | 2:00 |
-| 7) The night we built the organ | 2:00 |
-| 8) The turn, the close | 0:30 |
-| | **10:15 + intro 2:30 + outline 0:45 = 13:30** |
+| 6) Mars | 1:45 |
+| 7) The abstract we didn't fix | 1:30 |
+| 8) The night we built the organ | 2:00 |
+| 9) The turn, the close | 0:30 |
+| | **14:15 against a 15-minute slot, 20 ceiling** |
+
+Forty-five seconds of margin. **First cut if it runs long: Berlioz, which is
+30 seconds.** Second cut: trim the intro, which is the only item nobody will
+miss. Never items 5, 7 or 8 — those three are the spine now.
 
 **The two ways item 7 fails.**
 
@@ -256,12 +303,18 @@ kills it. The pause does the work.
 room, not once, and that sentence would be the explanation that undoes the whole
 beat eight seconds before the close.
 
-**One question for him, and it may be the best fact in the talk.** A hand-pumped
-organ cannot make a sound unless a person is physically there supplying the air.
-If somebody was pumping while Joel played, **the instrument literally could not
-have spoken without a human being in the room** — and that is not an analogy, it
-is the mechanism. This recruit does not know whether anyone was pumping and will
-not assert it. If he remembers, it needs no gloss at all.
+**ANSWERED 11 Oct, and it is the best fact in the talk.** *"Yes, we needed a
+volunteer to pump. Yes, that's right, that was part of what made it special."*
+
+A hand-pumped organ cannot make a sound unless a person is physically standing
+there supplying the air. **That instrument could not speak without a human being
+in the room.** Not an analogy — the mechanism, by design, built in Roman
+antiquity and still true in a bar in Fort Collins in June.
+
+So the chain into the close writes itself and needs no gloss:
+the organ needed somebody to breathe for it → *you had to be there* → *you are.*
+
+**Say "a volunteer." Not "an audience member."** Somebody put their hand up.
 
 **8) The turn, and the close.** (0:30)
 
@@ -338,14 +391,17 @@ extemporaneous and bullets would commit him to a script he does not want.
 
 ## Still his, in priority order
 
-1. **Which three talks, and one sensory detail each.** Biggest gap, ~4 of the 15.
-2. **The opening twenty seconds** — an instance of the phrase failing.
-3. **The twenty seconds before the turn.** The only lines that cannot be
-   scaffolded: they carry the room from laughing at worms to sitting still.
-4. **One own-example or two**, and which. The NASA voice radio is the
-   recommendation; the KC-130 is the optional second.
-5. The exact wording of the question at the end of item 5, which must not
-   contain its own answer.
+All three talks are closed and the pumping volunteer is confirmed. What remains:
+
+1. **The opening twenty seconds** — an instance of the phrase failing.
+2. **The exact wording of the question that ends item 5.** It must not contain
+   its own answer, or Mars becomes a restatement and the middle goes flat.
+3. **Whether the HoloLens parallel goes into item 7.** One sentence either way.
+4. **Whether the NASA voice radio appears at all.** Optional grace note now
+   that the abstract's debt is paid by the Nerd Nite material.
+
+The twenty seconds before the turn are no longer on this list. Item 8 is that
+bridge.
 
 
 ## Constraints, restated because they are easy to lose at midnight
