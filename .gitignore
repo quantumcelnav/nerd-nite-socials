@@ -33,3 +33,6 @@ tools/sim/runs/
 
 # rendered paper: regenerate with paper/build.sh
 paper/*.pdf
+
+# melbourne deck build artefacts
+talks/melbourne-nn71/build/
