@@ -1,7 +1,7 @@
 # "You Had to be There" — three trajectories for items 4–x
 
 Companion to `NN_Melbourn_Oct26_YHTBT_talk_outline`. Scaffolding, not script.
-Pick one trajectory and throw the other two away; they do not mix, because each
+Trajectory B is chosen as of 11 Oct. A and C are kept for their material only; they do not mix, because each
 one buys its close with a different setup.
 
 Source of facts: `tca-ops/correspondence/melbourne_nn71_submission.md` ("As sent"
@@ -34,7 +34,35 @@ One minute of slack against the 15. Any first run-through of this will land near
 
 ---
 
-## Trajectory A — "The Midway Cafe"
+## THE THESIS — his, 11 Oct 2026. Trajectory B is chosen and rebuilt around it.
+
+In his words: **"for us people it is where the people are that the cognition
+happens."** We have not sent people to Mars. We have sent probes, rovers and
+instruments. A chronicle of those instruments' findings is incomplete without
+the hypothesis of the people who built the probe and the understanding of the
+people interpreting the data.
+
+He also named the recursion himself: a talk called "You Had to be There", about
+talks the Melbourne audience was not at, which were often about events that
+*those* audiences were not at either.
+
+**The recursion is not a problem to hide. It is the proof, and it is the laugh.**
+A retelling fails when it carries only the data. It survives when a person who
+was there carries the frame — the hypothesis going in, the interpretation coming
+out. "You had to be there" is what people say when they transmitted the events
+and left the cognition behind.
+
+His own covering note to Melbourne already said the same thing without knowing
+it: *"Chris talking about indigo birds at the Midway Cafe turned that bar into
+Cameroon for twenty minutes, and that is the only reliable magic trick I know."*
+Chris was not in Cameroon that night either. The room got Cameroon anyway.
+
+And it collects on the abstract: a map is a model, not a data stream. *You cannot
+plot a course without one.*
+
+---
+
+## Trajectory A — "The Midway Cafe" (not chosen; its material now feeds B)
 
 The institution hands over its own argument.
 
@@ -64,47 +92,69 @@ from him, and the Midway Cafe story is first-hand.
 
 ---
 
-## Trajectory B — "Nobody arrives caring about worms"  ← recommended
+## Trajectory B — chosen, rebuilt on the thesis
 
-The laughs come first and the argument falls out of them. No sentence anywhere
-has to claim that any of this matters.
+The laughs come first, the recursion gets named out loud, and then Mars does the
+argument so that no sentence has to claim any of this matters.
 
 **4) Three talks, as things that happened in a room.** (4:00)
-The longest beat, and it is the catalogue. The pack's three are well chosen —
-pipe organs, worms, Berlioz: one absurdly ambitious, one unglamorous, one funny.
-**What this beat needs is one sensory detail each — what the speaker *did*, not
-what the talk was about.** "He brought a pipe" beats "he explained pipe organ
-construction." The Berlioz title is read aloud and then nothing is added to it.
+Unchanged, and still the engine. Pipe organs, worms, Berlioz — one absurdly
+ambitious, one unglamorous, one funny. **One sensory detail each: what the
+speaker did, not what the talk was about.** "He brought a pipe" beats "he
+explained pipe organ construction." The Berlioz title is read aloud and nothing
+is added to it.
 
-**5) The thing hiding in the list.** (1:45)
-Not one of those is a topic anyone walked in caring about. Nobody goes to a bar
-wanting to know about worms. They leave caring about worms. Said once, flat, as
-an observation about the list he just read — not as a thesis, which item 3
-already did.
+**5) Name the recursion.** (0:45)
+Out loud, deliberately, as the joke it is. You weren't at any of those. Often the
+speaker wasn't at the thing either — Berlioz has been dead since 1869. So a talk
+called "You Had to be There" has just spent four minutes on second-hand
+material, and it worked. **Ask why, and do not answer yet.** That question is the
+hinge of the whole talk and it buys the next two items outright.
 
-**6) The same content, flattened.** (1:15)
-A recording of the worm talk is worms. The medium is what gets named here, never
-the machine — the machine is the one thing that can never be there and it is not
-in this talk.
+**6) Mars.** (2:00)
+We have not sent people. We have sent probes and rovers and instruments, and they
+have returned more data than anyone can read. The telemetry is complete. The
+chronicle is not. Someone had a hypothesis before that probe ever launched, and
+someone else has a model in their head while they read what came back, and
+neither of those is in the data stream.
 
-**7) His own two, briefly.** (1:15)
-Past tense, fourth in line on purpose, evidence rather than biography.
+This beat replaces the old item 6 ("the same content, flattened"), which was the
+weak link and is now cut. Mars is better because it is vivid, everyone already
+knows it, and **it never has to mention the machine** — probes are instruments,
+full stop. The constraint holds for free.
+
+**7) Where the cognition happens, and the debt paid.** (1:30)
+The thesis, once, flat: it is where the people are that the cognition happens.
+
+The abstract owes the room *"a few remarkable things I was in the room for,"* and
+under this thesis those stop being biography and become the evidence. **The
+strongest candidate is his own:** his first engineering job built the FEC and
+digital physical layer for the NASA radio that carried voice between the Shuttle
+and astronauts on spacewalks. An instrument whose entire job was carrying
+*presence* — not telemetry, not findings, people talking to people. That pays the
+abstract's debt and proves item 6 in the same breath, which no separate
+biography beat can do.
+
+The KC-130 is the optional second, and if it goes in it goes in as mechanism:
+a fix was a crew act, not one man's. Past tense, never the opening. **One
+example is enough. Two is the ceiling. His call.**
 
 **8) The turn, and the close.** (0:30)
 
-**Where it goes wrong:** five items in 8:45 is the tightest of the three, and
-item 6 is one careless sentence away from arguing for the point instead of
-showing it. If the laughs in item 4 run hot — and they should — item 6 is the one
-to drop whole. Cutting it costs the talk nothing; item 5 already carries the
-load.
+**Budget:** items 4–7 are 8:15 against the 8:45 the body gets. Thirty seconds of
+slack on top of the minute already held back.
 
-**Strongest if:** the room is loose and the three sensory details are good. This
-is the trajectory that puts the joy in the texture and keeps the argument
-invisible.
+**Where it goes wrong:** item 5 answering its own question. If the "why" gets
+resolved in item 5, Mars becomes a restatement and the talk goes flat for two
+minutes in the middle. Ask it and move on.
+
+**What to drop if the laughs run hot in item 4:** the KC-130 out of item 7, then
+the third talk out of item 4. Never Mars, and never item 5 — those two are now
+the spine.
 
 ---
 
-## Trajectory C — "You cannot plot a course without one"
+## Trajectory C — "You cannot plot a course without one" (not chosen)
 
 The abstract already promised this one, nearly word for word: *a map between us,
 an understanding of the world we are in. You cannot plot a course without one.*
@@ -164,14 +214,15 @@ extemporaneous and bullets would commit him to a script he does not want.
 
 ## Still his, in priority order
 
-1. **Which three talks, and one sensory detail each.** Biggest gap in all three
-   trajectories, and roughly 3–4 of the 15 minutes.
-2. **Trajectory A, B or C.**
-3. **The opening twenty seconds** — an instance of the phrase failing.
-4. **The twenty seconds before the turn.** The only lines that cannot be
+1. **Which three talks, and one sensory detail each.** Biggest gap, ~4 of the 15.
+2. **The opening twenty seconds** — an instance of the phrase failing.
+3. **The twenty seconds before the turn.** The only lines that cannot be
    scaffolded: they carry the room from laughing at worms to sitting still.
-5. **Luke Delaney: in or out** (Trajectory C only).
-6. **Midway Cafe: first-hand or second-hand** (Trajectory A only).
+4. **One own-example or two**, and which. The NASA voice radio is the
+   recommendation; the KC-130 is the optional second.
+5. The exact wording of the question at the end of item 5, which must not
+   contain its own answer.
+
 
 ## Constraints, restated because they are easy to lose at midnight
 
