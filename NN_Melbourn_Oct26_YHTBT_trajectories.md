@@ -104,6 +104,55 @@ speaker did, not what the talk was about.** "He brought a pipe" beats "he
 explained pipe organ construction." The Berlioz title is read aloud and nothing
 is added to it.
 
+### Item 4, talk one of three — LOCKED. Hannah Bauer, the Donner Party.
+
+**NNFC S2025E01, Thursday 30 January 2025, Wolverine Farm Publick House.**
+*"Worst Party Ever: Everything You Didn't Know About the Donner Party."*
+
+**What she did** — his account, 11 Oct: she presented a genuinely horrible
+situation and made it funny by *momentarily putting the room into the mindset of
+the people involved*, with some humorous perspectives.
+
+**This is the strongest possible opening for item 4 and it should lead.** Not
+because it is the funniest, but because it is the thesis performed live, on his
+own stage, with a stopwatch on it:
+
+- The Donner Party is the purest case of a chronicle with the people removed.
+  The data is diaries, a body count, and a mountain pass. Complete, and inert.
+- Hannah did not hand the room the data. She handed over the *point of view* —
+  the hypothesis going in, to use the Mars framing — and **the room laughed about
+  the Donner Party.** Nobody in that bar was in the Sierra Nevada in 1846, and
+  for a moment they were.
+- Her own hook does his title flip for him: *"Most people hear 'Donner Party'
+  and think 'cannibalism.' Valid — but that only scratches the surface."* Same
+  move as the talk's own opening, made by somebody else, three years earlier.
+- And her closing promise — *why it should be called something other than the
+  Donner Party* — is a line that can be read aloud and left alone, the way the
+  Berlioz title is.
+
+**Running order inside item 4, if both go in:** Hannah first, Berlioz last. Her
+hook is a setup and that title is a punchline, so they do not want to be adjacent
+and they do not want to be in the other order.
+
+**Two caveats, so neither becomes fact by repetition.**
+
+1. **"He brought a pipe" was never a claim about Joel Bacon.** It was written
+   into the beat file as an illustration of the *form* the detail should take.
+   Whether Joel brought anything into that room is unverified and is not to be
+   said on stage unless he remembers it himself.
+2. **There is no `public/editions/S2025E01.json`.** The editions directory jumps
+   from S2024E11 to S2025E06, so Hannah's Donner edition is not in the repo and
+   the date above comes from his message and the Humanitix slug
+   (`nerd-nite-fort-collins-s2025e01`), not from a record. Fine for the talk.
+   Worth filling in after Melbourne, not before.
+
+**Still needed: talks two and three, and the doing, not the subject.** Hannah's
+is a *point-of-view* move. For range, the other two should not also be
+point-of-view moves — one physical thing that happened in the room, and one case
+of something unglamorous made to matter. Worms is the obvious second on the
+second count. The pipe organ is the obvious candidate on the first, if there is
+a real physical memory attached to it.
+
 **5) Name the recursion.** (0:45)
 Out loud, deliberately, as the joke it is. You weren't at any of those. Often the
 speaker wasn't at the thing either — Berlioz has been dead since 1869. So a talk
