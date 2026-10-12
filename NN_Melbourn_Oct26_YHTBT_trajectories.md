@@ -188,6 +188,81 @@ The KC-130 is the optional second, and if it goes in it goes in as mechanism:
 a fix was a crew act, not one man's. Past tense, never the opening. **One
 example is enough. Two is the ceiling. His call.**
 
+### Item 7 — RESTRUCTURED. Joel's organ is the landing, not one of the catalogue.
+
+**NNFC S2026E06, Thursday 18 June 2026, Wolverine Farm Publick House.**
+*"Let's Build a Pipe Organ!"* — Joel Bacon. From the listing: *"we'll assemble
+hundreds of parts to form a fully functional, 2-octave, hand pumped, mechanical
+action pipe organ."* (The mail blurb calls it "our May show." The edition record
+says 18 June. The record is right.)
+
+**What happened** — his account, 11 Oct: as Joel discussed the parts of the
+instrument, his assistants and **the audience** assembled a working organ out of
+them. Joel — professor, composer, professional musician — then brought it to
+life. *"It connected me to the music in a way that I have never felt before. I
+was personally moved when I heard a very talented musician work on the instrument
+that we, as the audience, had just assembled."*
+
+**This does not belong in item 4 and putting it there would waste it.** Item 4 is
+the catalogue and the laugh. This is the only moment of genuine feeling in the
+talk, and it is the answer to the question item 5 asks. It goes at the end.
+
+**Why it is the keystone:** it is Mars, inverted, in a bar in Fort Collins.
+
+On Mars we send the instrument and the people stay home, and the chronicle comes
+back incomplete. That night the people built the instrument **and stayed in the
+room**, and what happened to him is not available in any recording of organ
+music ever made. Same notes. Same physics. Identical data. The difference was
+that he had helped put it together and was sitting there when it first spoke.
+
+A recording of Joel playing that organ would contain every note and would not
+contain the one thing that moved him.
+
+**Consequences for the rest of the talk, all of them simplifications:**
+
+1. **The abstract's debt is paid here, not by his career.** *"I have been lucky
+   enough to be in the room for a few remarkable things. I will bring what I can
+   of them."* The Donner talk and the organ night **are** remarkable things he
+   was in the room for. The NASA voice radio drops to an optional one-sentence
+   grace note and the KC-130 can come out entirely. Nothing in the talk now needs
+   a career in it.
+2. **It solves the hardest open item.** The standing note said the twenty seconds
+   before the turn were the only lines that could not be scaffolded — the ones
+   that carry the room from laughing to sitting still. This beat is that bridge,
+   and the material is already his.
+3. **Item 4 shrinks to 3:30** and the third talk becomes optional. Hannah plus
+   Berlioz may be the whole catalogue. Worms is now the cut-first item, not a
+   requirement.
+
+**Revised budget:**
+
+| | |
+|---|---|
+| 3) The flip | 1:30 |
+| 4) The catalogue — Hannah first, Berlioz last | 3:30 |
+| 5) Name the recursion. Ask why. Do not answer | 0:45 |
+| 6) Mars | 2:00 |
+| 7) The night we built the organ | 2:00 |
+| 8) The turn, the close | 0:30 |
+| | **10:15 + intro 2:30 + outline 0:45 = 13:30** |
+
+**The two ways item 7 fails.**
+
+*Explaining it.* "I have never been connected to music like that" said once,
+flat, is the right amount. A second sentence about why is the sentimentality that
+kills it. The pause does the work.
+
+*Generalising it.* Not "and that's what Nerd Nite does." No instruction to the
+room, not once, and that sentence would be the explanation that undoes the whole
+beat eight seconds before the close.
+
+**One question for him, and it may be the best fact in the talk.** A hand-pumped
+organ cannot make a sound unless a person is physically there supplying the air.
+If somebody was pumping while Joel played, **the instrument literally could not
+have spoken without a human being in the room** — and that is not an analogy, it
+is the mechanism. This recruit does not know whether anyone was pumping and will
+not assert it. If he remembers, it needs no gloss at all.
+
 **8) The turn, and the close.** (0:30)
 
 **Budget:** items 4–7 are 8:15 against the 8:45 the body gets. Thirty seconds of
