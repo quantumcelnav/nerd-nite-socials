@@ -1,0 +1,108 @@
+% ---------------------------------------------------------------------------
+% Nerd Nite Fort Collins house style for beamer.
+%
+% Palette and typeface lifted from the real poster source,
+% ~/Documents/NerdNiteFortCollins/git/NerdNiteFortCollins/POSTERS/S2025E08.tex
+% Do not invent brand colours here; if the poster changes, change this.
+% ---------------------------------------------------------------------------
+\usepackage{fontspec}
+\usepackage{tikz,graphicx,xcolor}
+\usetikzlibrary{calc}
+
+\definecolor{NNblue}{RGB}{0, 42, 55}
+\definecolor{NNred}{RGB}{237, 28, 37}
+\definecolor{NNLblue}{RGB}{19, 218, 249}
+\definecolor{NNpink}{RGB}{248, 164, 167}
+\definecolor{NNorange}{RGB}{255, 97, 27}
+\definecolor{NNpaper}{RGB}{245, 243, 238}
+
+\setsansfont[Ligatures=TeX]{Courier New}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usetheme{default}
+\setbeamercolor{background canvas}{bg=NNblue}
+\setbeamercolor{normal text}{fg=white}
+\setbeamercolor{structure}{fg=NNLblue}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+\setbeamertemplate{headline}{}
+\beamertemplatenavigationsymbolsempty
+\setlength{\parindent}{0pt}
+
+% --- furniture -------------------------------------------------------------
+% Logo bug + show mark, bottom right. On every frame but the close.
+\newcommand{\bug}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=south east,inner sep=0]
+      at ($(current page.south east)+(-6mm,5mm)$)
+      {\includegraphics[height=7mm]{assets/NNFoCoLogo.pdf}};
+    \node[anchor=south east,inner sep=0,text=NNLblue,font=\tiny]
+      at ($(current page.south east)+(-16mm,8mm)$)
+      {Nerd Nite Fort Collins};
+  \end{tikzpicture}}
+
+% Cyan rule under a heading, the poster's banner idea at slide scale.
+\newcommand{\nnrule}{{\color{NNLblue}\rule{\linewidth}{1.2pt}}}
+
+% Slide heading.
+\newcommand{\nnhead}[1]{%
+  {\color{NNLblue}\large\bfseries #1}\\[1.5mm]\nnrule\\[4mm]}
+
+% --- image slots -----------------------------------------------------------
+% \slot{name}{width}{height}{what photograph belongs here}
+%
+% Drops in img/<name>.jpg or img/<name>.png the moment the file exists.
+% Until then it draws a labelled placeholder box of exactly the same size, so
+% the layout you are looking at now is the layout you get with the real photo.
+% \slot{name}{width}{height}{what photograph belongs here}
+%
+% WIDTH AND HEIGHT ARE BARE NUMBERS IN CM -- {6.2}{4.4}, never {6.2cm}.
+% The first version took dimensions with units and then did arithmetic on
+% them ("4.4cm-1.25"), which tikz accepted and placed the labels outside the
+% box. The picture sets x=1cm,y=1cm so plain numbers are centimetres.
+%
+% Drops in img/<name>.jpg|png|jpeg the moment the file exists. Until then it
+% draws a labelled box of exactly the same size, so the layout on screen now
+% is the layout you get with the real photograph in it.
+\newcommand{\slotreal}[3]{%
+  \begin{tikzpicture}[x=1cm,y=1cm]
+    \useasboundingbox (0,0) rectangle (#2,#3);
+    \fill[black!90] (0,0) rectangle (#2,#3);
+    \begin{scope}
+      \clip (0,0) rectangle (#2,#3);
+      \node[inner sep=0] at (#2/2,#3/2)
+        {\includegraphics[width=#2 cm,height=#3 cm,keepaspectratio]{#1}};
+    \end{scope}
+    \draw[NNLblue,line width=0.8pt] (0,0) rectangle (#2,#3);
+  \end{tikzpicture}}
+
+\newcommand{\slotph}[4]{%
+  \begin{tikzpicture}[x=1cm,y=1cm]
+    \useasboundingbox (0,0) rectangle (#2,#3);
+    \fill[NNblue!65!black] (0,0) rectangle (#2,#3);
+    \draw[NNLblue,dashed,line width=0.7pt] (0,0) rectangle (#2,#3);
+    \draw[NNorange,line width=1.6pt] (0,#3-0.55) -- (0,#3) -- (0.55,#3);
+    \draw[NNorange,line width=1.6pt] (#2-0.55,0) -- (#2,0) -- (#2,0.55);
+    \node[anchor=north west,text=NNorange,font=\tiny,inner sep=0]
+      at (0.28,#3-0.3) {PHOTO};
+    \node[anchor=north east,text=NNLblue,font=\tiny,inner sep=0]
+      at (#2-0.15,#3-0.3) {img/#1};
+    \node[anchor=north west,text=white,font=\tiny,align=left,
+          text width=#2 cm-0.6cm,inner sep=0] at (0.28,#3-0.75) {#4};
+  \end{tikzpicture}}
+
+\newcommand{\slot}[4]{%
+  \IfFileExists{img/#1.jpg}{\slotreal{img/#1.jpg}{#2}{#3}}{%
+   \IfFileExists{img/#1.png}{\slotreal{img/#1.png}{#2}{#3}}{%
+    \IfFileExists{img/#1.jpeg}{\slotreal{img/#1.jpeg}{#2}{#3}}{%
+     \slotph{#1}{#2}{#3}{#4}}}}}
+
+% --- slide skeletons -------------------------------------------------------
+% Two-column frames use beamer's columns, not minipages. The first version
+% used minipages at 0.50 + 0.46 of \textwidth plus 8mm margins either side,
+% which overflowed and silently dropped the photo below the text.
+\newenvironment{nnframe}{%
+  \begin{frame}[plain]\bug\vspace*{3mm}}{\end{frame}}
+
+\newcommand{\nntext}{0.54\textwidth}
+\newcommand{\nnphoto}{0.42\textwidth}

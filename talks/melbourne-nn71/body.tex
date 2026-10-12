@@ -2,185 +2,318 @@
 % "You Had to be There" -- Nerd Nite Melbourne #71
 % Wed 14 Oct 2026, Howler, Brunswick.  15 min target, 20 ceiling, then Q&A.
 %
-% Shared body. Build slides.tex for the deck, notes.tex for the lectern copy.
+% House style: Nerd Nite Fort Collins. Palette, typeface and logo come from
+% the real poster source; see nnfc.tex. He is on this stage as himself and as
+% the NNFC boss, so the deck wears the show's colours.
 %
-% NB: beamer reserves the colour names "bg" and "fg" internally. Defining our
-%     own collided silently -- text frames rendered white-on-orange while the
-%     image frames looked fine because the images are dark. Palette is nn*.
+% Build with xelatex (fontspec / Courier New). slides.tex -> the deck,
+% notes.tex -> the lectern copy with every beat, timing and warning.
 %
-% THE DECK IS NOT THE TALK. Every frame is one image or one line, because the
-% delivery is extemporaneous and a bulleted slide becomes a teleprompter. If a
-% frame ever needs a second line, the beat is wrong, not the slide.
+% THE DECK IS NOT THE SCRIPT. Delivery is extemporaneous. Text on a slide is a
+% handrail, never a paragraph to read out.
+%
+% Photographs are \slot{...} boxes. Drop img/<name>.jpg or .png in and it
+% appears at the same size, same place, no edit here.
 %
 % Structure and reasoning: ../../NN_Melbourn_Oct26_YHTBT_trajectories.md
 % ---------------------------------------------------------------------------
-\usepackage[T1]{fontenc}
-\usepackage{helvet,inconsolata,graphicx,xcolor,tikz}
-\renewcommand{\familydefault}{\sfdefault}
-\usetikzlibrary{calc}
-\graphicspath{{img/}}
-
-\definecolor{nnbg}{HTML}{14161A}
-\definecolor{nnfg}{HTML}{E8E6E1}
-\definecolor{nndim}{HTML}{8A9199}
-\definecolor{nnacc}{HTML}{E0A33E}
-
-\usetheme{default}
-\usecolortheme{default}
-\setbeamercolor{background canvas}{bg=nnbg}
-\setbeamercolor{normal text}{fg=nnfg}
-\setbeamercolor{structure}{fg=nnacc}
-\setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{footline}{}
-\setbeamertemplate{headline}{}
-\setbeamerfont{frametitle}{size=\large}
-\beamertemplatenavigationsymbolsempty
-
-% A full-bleed image. No caption, no frame title, no border.
-\newcommand{\fullimage}[1]{%
-  \begin{frame}[plain]
-    \begin{tikzpicture}[remember picture,overlay]
-      \node at (current page.center)
-        {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}};
-    \end{tikzpicture}
-  \end{frame}}
-
-% One line, centred, nothing else on screen.
-\newcommand{\oneline}[1]{%
-  \begin{frame}[plain]
-    \vfill\centering{\Huge #1}\vfill
-  \end{frame}}
-
-\newcommand{\quietline}[1]{%
-  \begin{frame}[plain]
-    \vfill\centering{\LARGE\color{nndim} #1}\vfill
-  \end{frame}}
+\input{nnfc.tex}
 
 \begin{document}
 
-% === 1. TITLE ============================================= cumulative 0:00 ==
-% Up while the room settles. Say the title, do not explain it yet.
+% === 1. TITLE ======================================================= 0:00 ==
 \begin{frame}[plain]
-  \begin{tikzpicture}[remember picture,overlay]
-    \node at (current page.center)
-      {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{p01-room}};
-    % scrim: the title has to stay legible over whatever photograph lands here
-    \fill[black,opacity=0.60]
-      ($(current page.south west)$) rectangle
-      ($(current page.south east)+(0,34mm)$);
-    \node[anchor=south west, align=left, text=nnfg]
-      at ($(current page.south west)+(12mm,12mm)$)
-      {{\Huge\bfseries You Had to be There}\\[3mm]
-       {\large\color{nndim} Justin Fritz \quad\textbullet\quad Nerd Nite Melbourne \#71}};
+  \begin{tikzpicture}[remember picture,overlay,x=1cm,y=1cm]
+    % masthead
+    \node[anchor=north west,inner sep=0] at ($(current page.north west)+(9mm,-7mm)$)
+      {\includegraphics[height=13mm]{assets/NNFoCoLogo.pdf}};
+    \node[anchor=north west,align=left,inner sep=0]
+      at ($(current page.north west)+(26mm,-9mm)$)
+      {{\color{NNLblue}\bfseries Nerd Nite Fort Collins}};
+    \node[anchor=north west,align=left,inner sep=0]
+      at ($(current page.north west)+(26mm,-15mm)$)
+      {{\color{white}\small\itshape Be there and be square}};
+    \fill[NNLblue] ($(current page.north west)+(9mm,-25mm)$) rectangle
+                   ($(current page.north east)+(-9mm,-26mm)$);
+    % title block, left half only
+    \node[anchor=north west,align=left,inner sep=0,text width=8.4cm]
+      at ($(current page.north west)+(9mm,-33mm)$)
+      {{\color{white}\fontsize{27}{31}\selectfont\bfseries You Had\\ to be There}};
+    \node[anchor=north west,align=left,inner sep=0]
+      at ($(current page.north west)+(9mm,-60mm)$)
+      {{\color{NNorange}\large Justin Fritz}};
+    \node[anchor=north west,align=left,inner sep=0]
+      at ($(current page.north west)+(9mm,-67mm)$)
+      {{\color{white}\small Boss, Nerd Nite Fort Collins}};
+    % photograph, right half only
+    \node[anchor=north east,inner sep=0] at ($(current page.north east)+(-9mm,-33mm)$)
+      {\slot{p01-room}{7.4}{4.4}{The Fort Collins room mid-talk, audience faces
+       lit by the screen. The room is the subject, not the speaker.}};
+    % footer
+    \node[anchor=south west,align=left,inner sep=0]
+      at ($(current page.south west)+(9mm,7mm)$)
+      {{\color{NNLblue}\scriptsize Nerd Nite Melbourne \#71 \quad\textbullet\quad
+        Howler, Brunswick \quad\textbullet\quad 14 October 2026}};
   \end{tikzpicture}
 \end{frame}
-\note{TITLE. Say it, let it sit. Do not flip it yet -- that is item 3.}
+\note{TITLE. Say it, let it sit. Do NOT flip it yet -- that is slide 7.
+The tagline is doing quiet work: "Be there and be square" is the close,
+already on the wall, ten minutes early. Nobody needs to notice.}
 
-% === 2. INTRODUCTION ================================= 2:30 ==> cum 2:30 ======
-\fullimage{p02-justin}
-\note{ITEM 1, part one (of 2:30 total for items 1).
-Who is talking. History, and education -- NOT meaning schools and
-universities. The field. The lab. Nerd Nites. Keep it short; the credential
-reading is the failure mode here and the room did not ask for a career.}
+% === 2. WHO IS TALKING ============================ item 1, 2:30 total ======
+\begin{nnframe}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{\nntext}
+    \nnhead{Hi. I'm Justin Fritz.}
+    {\Large\color{white} And I'm a Nerd Nite Boss.}\\[4mm]
+    {\small\color{NNpink}That is a real title. They gave it to me. I take it very seriously.}
+    \end{column}
+    \begin{column}{\nnphoto}
+    \slot{p02-justin}{5.4}{4.6}{Justin at the NNFC mic, mid-sentence,
+    hands moving. A frame grab off a show video beats anything posed.}
+    \end{column}
+  \end{columns}
+\end{nnframe}
+\note{ITEM 1a. His own opening line from the Nerdometer origin story. It is
+already written and it already works. Warm, fast, do not linger.}
 
-\fullimage{p03-trajectories}
-\note{ITEM 1, part two. The turn in the introduction.
-Everything just listed is a sampling of one trajectory. Everyone in this room
-has a rich history of their own, and tonight those trajectories crossed.
-END ON: *Thank you.* Grateful to all who want to share, all who facilitate,
-all who come to experience. Let the thank-you land before moving.}
+% === 3. THE ROLES =============================================== item 1 ====
+\begin{frame}[plain]\bug
+  \vspace{4mm}\hspace{8mm}%
+  \begin{minipage}{0.90\textwidth}
+    \nnhead{I have had a lot of roles}
+    \vspace{1mm}
+    {\large\color{white}
+     Marine \quad\textbullet\quad navigator \quad\textbullet\quad instructor\\[2mm]
+     chip designer \quad\textbullet\quad founder \quad\textbullet\quad host}\\[7mm]
+    {\large\color{NNorange}As an American, I tend to conflate\\ the person with the job.}\\[6mm]
+    {\large\color{white}Tonight I am here as myself.\\[1mm]
+     And as a Nerd Nite boss.}
+  \end{minipage}
+\end{frame}
+\note{ITEM 1b. His own observation, 12 Oct, and it is the thesis in miniature:
+a job title is the data, the person is the cognition. Get the laugh on the
+"as an American" line, then land the last two lines straight.
+Past tense on the Marine material and it is NOT in the opening position --
+it is one item in a list that exists to be undercut by the next line.}
 
-% === 3. WHAT THIS COVERS ============================= 0:45 ==> cum 3:15 ======
-\oneline{Talks. Mars. An abstract. An organ.}
-\note{ITEM 2, 0:45. The outline, in four words, delivered fast.
-Do not expand any of them. The point of this slide is that it will make sense
-in retrospect, not now.}
+% === 4. EDUCATION =============================================== item 1 ====
+\begin{nnframe}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{\nntext}
+    \nnhead{The relevant education}
+    {\large\color{white}Not the classrooms.}\\[5mm]
+    {\large\color{NNLblue}In the field.\\[2mm] In the lab.\\[2mm]
+    Frankly --- at Nerd Nites.}
+    \end{column}
+    \begin{column}{\nnphoto}
+    \slot{p04-field}{6.2}{4.4}{One image for "the field or the lab" --
+    a bench, a flight deck, a probe card, anything with his hands in it.
+    Candid and specific beats illustrative.}
+    \end{column}
+  \end{columns}
+\end{nnframe}
+\note{ITEM 1c. Short. The biggest lessons were not in schools or universities.
+Do not inventory the career here -- the list already happened on slide 3.}
 
-% === 4. THE FLIP ===================================== 1:30 ==> cum 4:45 ======
-\oneline{\bfseries ``You had to be there.''}
-\note{ITEM 3, 1:30. The flip, and the thesis.
-What people say when a story dies on retelling -- the apology you make when the
-telling failed. Turn it over: tonight it is not an apology, it is the
-condition. NEEDS FROM HIM: the opening twenty seconds, an instance of the
-phrase actually failing. Still open as of 12 Oct.}
+% === 5. TRAJECTORIES ============================================ item 1 ====
+\begin{nnframe}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{\nnphoto}
+    \slot{p03-trajectories}{6.2}{4.4}{Many separate tracks arriving at one
+    point. Hand-drawn pencil lines on a chart, or long-exposure light trails.
+    Flown, not plotted -- not a tidy infographic.}
+    \end{column}
+    \begin{column}{\nntext}
+    \nnhead{Trajectories}
+    {\large\color{white}Everything I just listed is a sampling of one trajectory.}\\[4mm]
+    {\large\color{white}Everyone in this room has a rich history.}\\[4mm]
+    {\large\color{NNorange}Tonight ours came together here.}\\[6mm]
+    {\Large\color{NNLblue}\bfseries Thank you.}
+    \end{column}
+  \end{columns}
+\end{nnframe}
+\note{ITEM 1d, the end of the introduction. Grateful to all who want to share,
+all who facilitate, all who come to experience.
+LET THE THANK-YOU LAND. Pause before moving. It is the warmest moment in the
+first half and rushing it costs the rest.}
 
-% === 5. THE CATALOGUE ================================ 3:00 ==> cum 7:45 ======
-\fullimage{p04-donner}
-\note{ITEM 4a, 2:30. Hannah Bauer, "Worst Party Ever: Everything You Didn't
-Know About the Donner Party." NNFC S2025E01, 30 Jan 2025.
-WHAT SHE DID: took a genuinely horrible situation and made it funny by putting
-the room, momentarily, into the mindset of the people involved.
-Her own hook does this talk's flip three years early: most people hear Donner
-Party and think cannibalism -- valid, but that only scratches the surface.
-Nobody in that bar was in the Sierra Nevada in 1846. For a moment they were.
-Do not explain why that matters. It gets explained at Mars.}
-
-\begin{frame}[plain]
+% === 6. WHAT THIS COVERS ========================================== 0:45 ====
+\begin{frame}[plain]\bug
   \vfill\centering
-  {\LARGE Hector Berlioz Was a Visionary Composer\\[2mm] and also a Creepy Stalker}\\[6mm]
-  {\large\color{nndim} Matt Browne}
+  {\fontsize{15}{20}\selectfont\color{white}Talks.\quad
+   {\color{NNorange}Mars.}\quad An abstract.\quad
+   {\color{NNLblue}An organ.}}
   \vfill
 \end{frame}
-\note{ITEM 4b, 0:30. Read the title aloud. Stop. Add nothing.
-It is already funnier than any gloss. FIRST CUT IF RUNNING LONG -- this whole
-frame is 30 seconds and it is the only genuinely optional beat in the talk.}
+\note{ITEM 2, 0:45. The outline in four words, delivered fast.
+Do NOT expand any of them. It is supposed to make sense in retrospect.}
 
-% === 6. THE RECURSION ================================ 0:45 ==> cum 8:30 ======
-\oneline{Why did that just work?}
-\note{ITEM 5, 0:45. THE HINGE. Name the recursion out loud, as the joke it is.
-You were not at any of those. Often the speaker was not at the thing either --
-Berlioz has been dead since 1869. So a talk called You Had to be There has just
-spent three minutes on second- and third-hand material, and it worked.
-*** ASK THE QUESTION AND DO NOT ANSWER IT. ***
-If the why gets resolved here, Mars becomes a restatement and the middle of the
-talk goes flat for two minutes. Ask, pause, move.
+% === 7. THE FLIP ================================================== 1:30 ====
+\begin{frame}[plain]\bug
+  \vfill\centering
+  {\fontsize{30}{36}\selectfont\color{white}\bfseries ``You had to be there.''}\\[10mm]
+  {\large\color{NNpink}the thing people say when the telling failed}
+  \vfill
+\end{frame}
+\note{ITEM 3, 1:30. The flip, and the thesis.
+It is an apology -- the story died on the way over. Turn it: tonight it is not
+an apology, it is the condition of the room.
+NEEDS FROM HIM: the opening twenty seconds, an instance of the phrase actually
+failing. Still open.}
+
+% === 8. HANNAH ===================================== item 4, 3:00 total =====
+\begin{nnframe}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{\nntext}
+    \nnhead{Worst Party Ever}
+    {\large\color{white}Everything You Didn't Know\\ About the Donner Party}\\[4mm]
+    {\color{NNorange}\large Hannah Bauer}\\[1mm]
+    {\small\color{NNpink}NNFC S2025E01 \quad 30 January 2025}\\[6mm]
+    {\large\color{NNLblue}Nobody in that bar was in the Sierra Nevada in 1846.}\\[2mm]
+    {\large\color{white}For a moment they were.}
+    \end{column}
+    \begin{column}{\nnphoto}
+    \slot{p05-donner}{6.2}{4.4}{Hannah on stage at the Wolverine with her
+    own Donner slide behind her -- ideally mid-laugh, or the room mid-laugh.
+    Second choice: her S2025E01 poster art.}
+    \end{column}
+  \end{columns}
+\end{nnframe}
+\note{ITEM 4a, 2:30. WHAT SHE DID: took a genuinely horrible situation and made
+it funny by putting the room, momentarily, inside the heads of the people
+involved. Her own hook does this talk's flip three years early -- most people
+hear Donner Party and think cannibalism, valid, but that only scratches the
+surface. Do not explain why it matters. That happens at Mars.}
+
+% === 9. BERLIOZ ================================================= item 4 ====
+\begin{frame}[plain]\bug
+  \vfill\centering
+  {\fontsize{22}{28}\selectfont\color{white}Hector Berlioz Was a Visionary
+   Composer\\[3mm] and also a Creepy Stalker}\\[9mm]
+  {\color{NNorange}\large Matt Browne}\\[1mm]
+  {\small\color{NNpink}NNFC S2024E04 \quad April 2024}
+  \vfill
+\end{frame}
+\note{ITEM 4b, 0:30. Read the title aloud. Stop. Add nothing -- it is already
+funnier than any gloss.
+FIRST CUT IF RUNNING LONG. One frame, thirty seconds, the only genuinely
+optional beat in the talk.}
+
+% === 10. THE HINGE ================================================ 0:45 ====
+\begin{frame}[plain]\bug
+  \vfill\centering
+  {\fontsize{30}{36}\selectfont\color{NNLblue}\bfseries Why did that just work?}
+  \vfill
+\end{frame}
+\note{ITEM 5, 0:45. THE HINGE.
+Name the recursion out loud, as the joke it is: you were not at any of those.
+Often the speaker was not at the thing either -- Berlioz has been dead since
+1869. A talk called You Had to be There just spent three minutes on second-
+and third-hand material, and it worked.
+*** ASK IT AND DO NOT ANSWER IT. *** Resolve the why here and Mars becomes a
+restatement and the middle of the talk goes flat for two minutes.
 NEEDS FROM HIM: exact wording, which must not contain its own answer.}
 
-% === 7. MARS ========================================= 1:45 ==> cum 10:15 =====
-\fullimage{p05-mars}
-\note{ITEM 6a. We have not sent people to Mars. We have sent probes, rovers,
-instruments, and they have returned more data than anyone can read.
-Somebody had a hypothesis before that thing ever launched. Somebody else has a
-model in their head while reading what came back. Neither is in the data
-stream.}
+% === 11. MARS ===================================================== 1:45 ====
+\begin{nnframe}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{\nnphoto}
+    \slot{p06-mars}{6.2}{4.4}{A rover alone on Mars, empty horizon, no
+    people and no Earth in frame. The emptiness is the argument -- pick the
+    loneliest public-domain NASA/JPL frame available.}
+    \end{column}
+    \begin{column}{\nntext}
+    \nnhead{We have not sent people}
+    {\normalsize\color{white}We sent probes. Rovers. Instruments.}\\[4mm]
+    {\normalsize\color{white}They returned more data than anyone can read.}\\[5mm]
+    {\normalsize\color{NNorange}Somebody had a hypothesis before it ever launched.}\\[4mm]
+    {\normalsize\color{NNorange}Somebody else is reading it back.}
+    \end{column}
+  \end{columns}
+\end{nnframe}
+\note{ITEM 6a. Neither of those is in the data stream. Do not rush this one --
+it is the only abstract beat in the talk and it buys both of the next two.}
 
-\begin{frame}[plain]
+% === 12. THE LINE ================================================= item 6 ==
+\begin{frame}[plain]\bug
   \vfill\centering
-  {\LARGE The telemetry is complete.}\\[5mm]
-  {\LARGE\color{nnacc} The chronicle is not.}
+  {\fontsize{26}{32}\selectfont\color{white}The telemetry is complete.}\\[8mm]
+  {\fontsize{26}{32}\selectfont\color{NNorange}\bfseries The chronicle is not.}
   \vfill
 \end{frame}
-\note{ITEM 6b. The thesis as mechanism, said once, flat.
-It is where the people are that the cognition happens.
-Do not say the word "cognition" twice and do not elaborate. Next beat.}
+\note{ITEM 6b. The thesis as mechanism, said once, flat:
+it is where the people are that the cognition happens.
+Say it once. Do not elaborate. Next beat.}
 
-% === 8. THE ABSTRACT WE DIDN'T FIX =================== 1:30 ==> cum 11:45 =====
-\fullimage{p06-john}
-\note{ITEM 7, 1:30. John Anderson, "Worm Majix." NNFC S2025E08, 18 Sep 2025.
-Long-time friend of Wolverine Farm who used to watch the Nerd Nite crowd
-assemble. Approached Senne one evening, was soon on the calendar.
-The abstract arrived rough and hard to follow. Jamie started to edit it. I
-stopped her. We ran it exactly as offered.
+% === 13. JOHN ===================================================== 1:30 ====
+\begin{nnframe}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{\nntext}
+    \nnhead{Worm Majix}
+    {\color{NNorange}\large John Anderson}\\[1mm]
+    {\small\color{NNpink}NNFC S2025E08 \quad 18 September 2025}\\[6mm]
+    {\large\color{white}The abstract arrived rough.}\\[3mm]
+    {\large\color{white}Jamie started to fix it.}\\[3mm]
+    {\large\color{NNLblue}\bfseries I stopped her.}\\[5mm]
+    {\small\color{NNpink}We ran it exactly as offered.}
+    \end{column}
+    \begin{column}{\nnphoto}
+    \slot{p07-john}{6.2}{4.4}{John at the Wolverine, dressed exactly as he
+    dresses for any other evening there, talking with his hands.
+    The slide is the man, never the paragraph.}
+    \end{column}
+  \end{columns}
+\end{nnframe}
+\note{ITEM 7, 1:30. Long-time friend of Wolverine Farm who used to watch the
+Nerd Nite crowd assemble. Approached Senne one evening, was soon on the
+calendar.
 REASON, ONE LINE, PAST TENSE: we want to platform people who want to talk --
-to connect speakers and audience, not filter them.
-Then John on stage, dressed as he dresses for any other evening at the
-Wolverine, speaking as himself. Great talk.
+connect speakers and audience, not filter them.
+Then John on stage as himself. Great talk.
 *** DO NOT READ HIS ABSTRACT ALOUD. *** That makes John the joke in front of
 other bosses. The beat needs the decision, not the exhibit.
-WHY IT IS HERE: Mars invites the response "so transmit better." This is the
-counter-example. The edit that would have made it clearer would have removed
-John from it. The version that read worse carried the person.
-OPTIONAL, ONE SENTENCE, HIS CALL: same mechanism as the HoloLens spec bug -- a
-legible restatement silently becomes the reference.}
+WHY HERE: Mars invites "so transmit better." This is the counter-example. The
+edit that would have made it clearer would have removed John from it.
+OPTIONAL, ONE SENTENCE, HIS CALL: same mechanism as the HoloLens spec bug --
+a legible restatement silently becomes the reference.}
 
-% === 9. THE ORGAN ==================================== 2:00 ==> cum 13:45 =====
-\fullimage{p07-organ-build}
-\note{ITEM 8a. Joel Bacon, "Let's Build a Pipe Organ!" NNFC S2026E06,
-18 Jun 2026. As he talked through the parts -- wind supply, keys, pipes -- his
-assistants and THE AUDIENCE assembled hundreds of them into a working
-two-octave, hand-pumped, mechanical-action pipe organ.}
+% === 14. THE BUILD ================================================ 2:00 ====
+\begin{nnframe}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{\nnphoto}
+    \slot{p08-organ-build}{6.2}{4.4}{Hands. Audience members at tables with
+    organ parts spread out, mid-assembly. Faces optional, hands mandatory.}
+    \end{column}
+    \begin{column}{\nntext}
+    \nnhead{Let's Build a Pipe Organ!}
+    {\color{NNorange}\large Joel Bacon}\\[1mm]
+    {\small\color{NNpink}NNFC S2026E06 \quad 18 June 2026}\\[6mm]
+    {\large\color{white}Hundreds of parts.}\\[3mm]
+    {\large\color{white}Two octaves. Hand pumped. Mechanical action.}\\[5mm]
+    {\large\color{NNLblue}The audience built it.}
+    \end{column}
+  \end{columns}
+\end{nnframe}
+\note{ITEM 8a. As Joel talked through the parts -- wind supply, keys, pipes --
+his assistants and THE AUDIENCE assembled them into a working instrument.}
 
-\fullimage{p08-organ-play}
+% === 15. THE VOLUNTEER ========================================== item 8 ====
+\begin{nnframe}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{\nntext}
+    \nnhead{Then he played it}
+    {\large\color{white}A hand-pumped organ cannot make a sound unless somebody is standing there supplying the air.}\\[5mm]
+    {\Large\color{NNorange}\bfseries We needed a volunteer.}\\[4mm]
+    {\large\color{NNLblue}Somebody put their hand up.}
+    \end{column}
+    \begin{column}{\nnphoto}
+    \slot{p09-organ-play}{6.2}{4.4}{Joel at the keyboard AND the volunteer
+    on the pump handle, both in one frame. Without the volunteer visible this
+    beat loses its evidence. This is the most important photo in the deck.}
+    \end{column}
+  \end{columns}
+\end{nnframe}
 \note{ITEM 8b. THE LANDING. The only moment of real feeling in the talk.
 Joel is a professor, a composer, a working musician. He sat down and brought
 it to life.
@@ -190,23 +323,21 @@ felt before.
 it. The pause does the work.
 *** DO NOT GENERALISE. *** Not "and that's what Nerd Nite does." No
 instruction to the room, not once.
-THE VOLUNTEER: that organ is hand pumped. It cannot make a sound unless a
-person is standing there supplying the air. We needed a volunteer. Somebody
-put their hand up. Say "a volunteer," not "an audience member."
+Say "a volunteer," not "an audience member."
 Mars inverted: there the instrument goes and the people stay home, and the
 chronicle comes back incomplete. Here the people built the instrument and
 stayed in the room. Same notes. Same physics. Identical data.}
 
-% === 10. THE CLOSE =================================== 0:30 ==> cum 14:15 =====
+% === 16. THE CLOSE ================================================ 0:30 ====
 \begin{frame}[plain]\end{frame}
-\note{ITEM 9, 0:30. THE CLOSE. Screen is deliberately empty -- no slide does
-this for you, and a slide reading "You are." would rob it.
-NEEDS FROM HIM: the twenty seconds before the turn. Carry the room from the
+\note{ITEM 9, 0:30. THE CLOSE. Screen deliberately empty -- no logo, no bug,
+nothing. A slide reading "You are." would do the work for him and rob it.
+NEEDS FROM HIM: the twenty seconds before the turn, carrying the room from the
 organ to stillness.
 THEN:
-    You had to be there.
-    You are.
-NOTHING AFTER IT. No thank-you inside the talk (that was item 1), no call to
-action, no "next time you're at a show." Stop talking.}
+      You had to be there.
+      You are.
+NOTHING AFTER IT. No thank-you inside the talk -- that was slide 5. No call to
+action. Stop talking.}
 
 \end{document}

@@ -2,92 +2,119 @@
 
 Wed 14 Oct 2026, Howler, Brunswick. 15 min target, 20 ceiling, then 5–10 of Q&A.
 
+Sixteen slides, 16:9, in **Nerd Nite Fort Collins house style** — he is on that
+stage as himself and as the NNFC boss, so the deck wears the show's colours.
+
 ```
-make            slides.pdf   the deck, 14 frames, 16:9
+make            slides.pdf   the deck
 make notes      notes.pdf    lectern copy: every beat, timing and warning
-make images     regenerate the placeholder meta-images
-make clean      drop build/, keep img/ and the PDFs
+make clean      drop build/
 ```
 
-## The images are placeholders and are meant to be swapped
+**Builds with xelatex**, not pdflatex — the brand face is Courier New via
+fontspec.
 
-Every photograph in the deck is currently a **meta-image**: a rendered PNG that
-describes the picture that belongs in that slot. To replace one:
+## Adding the photographs
 
-1. Overwrite `img/<name>.png` with the real photograph.
-2. Delete `img/<name>.placeholder`.
-3. `make`.
+Every picture in the deck is a `\slot{}` inside the slide layout. Each one
+currently draws a labelled box saying what belongs there. **Drop the file in
+and it appears** — same size, same position, no edit to `body.tex`:
 
-Nothing in `body.tex` changes. `make images` will never overwrite a file whose
-`.placeholder` marker is gone, so swapped-in photographs survive a regeneration.
+```
+img/p05-donner.jpg      ← just put it there, then `make`
+```
 
-| slot | wants |
+`.jpg`, `.png` and `.jpeg` are all picked up. The box dimensions are fixed, so
+what you are looking at now is the layout you get with real photographs in it.
+
+| slide | file | wants |
+|---|---|---|
+| 1 | `img/p01-room` | the Fort Collins room mid-talk, audience faces lit |
+| 2 | `img/p02-justin` | him at the NNFC mic, mid-sentence, not posed |
+| 4 | `img/p04-field` | the field or the lab — his hands in it |
+| 5 | `img/p03-trajectories` | many tracks arriving at one point |
+| 8 | `img/p05-donner` | Hannah on stage, or her S2025E01 poster |
+| 11 | `img/p06-mars` | a rover alone, empty horizon, no people |
+| 13 | `img/p07-john` | John at the Wolverine, dressed as himself |
+| 14 | `img/p08-organ-build` | audience hands assembling organ parts |
+| 15 | `img/p09-organ-play` | **Joel at the keyboard and the volunteer pumping** |
+
+`p09` is the most important photograph in the deck. Without the volunteer
+visible, the last beat loses its evidence.
+
+## Brand
+
+Palette, typeface and logo are lifted from the real poster source
+(`NerdNiteFortCollins/POSTERS/S2025E08.tex`) and live in `nnfc.tex`. Do not
+invent brand colours; if the poster changes, change `nnfc.tex`.
+
+| | |
 |---|---|
-| `p01-room` | the Fort Collins room mid-talk, audience faces lit |
-| `p02-justin` | him at the mic, mid-sentence, not a headshot |
-| `p03-trajectories` | many tracks arriving at one point |
-| `p04-donner` | Hannah on stage, or her S2025E01 poster |
-| `p05-mars` | a rover alone, empty horizon, no people |
-| `p06-john` | John at the Wolverine, dressed as himself |
-| `p07-organ-build` | audience hands assembling organ parts |
-| `p08-organ-play` | Joel at the keyboard **and** the volunteer pumping |
+| `NNblue` | `0,42,55` — the ground |
+| `NNLblue` | `19,218,249` — headings, rules, the signature |
+| `NNorange` | `255,97,27` — names and the one line that matters per slide |
+| `NNred` `NNpink` | `237,28,37` · `248,164,167` |
+| face | Courier New |
+| logo | `assets/NNFoCoLogo.pdf`, bottom right on every slide but the close |
 
-`p08` is the one that matters most. Without the volunteer in frame the last
-beat loses its evidence.
+**"Be there and be square" is on the title slide on purpose.** The house
+tagline is the talk's closing line, already on the wall ten minutes early.
+Nobody needs to notice.
 
 ## Structure
 
 | | | |
 |---|---|---|
-| 1 | Introduction, trajectories, thank you | 2:30 |
-| 2 | What the talk covers | 0:45 |
-| 3 | The flip | 1:30 |
-| 4 | The catalogue — Hannah, then Berlioz | 3:00 |
-| 5 | Name the recursion. Ask why. **Don't answer** | 0:45 |
-| 6 | Mars | 1:45 |
-| 7 | The abstract we didn't fix | 1:30 |
-| 8 | The night we built the organ | 2:00 |
-| 9 | The turn, the close | 0:30 |
+| 1–5 | Introduction, the roles, education, trajectories, **thank you** | 2:30 |
+| 6 | What the talk covers | 0:45 |
+| 7 | The flip | 1:30 |
+| 8–9 | Hannah, then Berlioz | 3:00 |
+| 10 | Why did that just work? **Don't answer** | 0:45 |
+| 11–12 | Mars | 1:45 |
+| 13 | The abstract we didn't fix | 1:30 |
+| 14–15 | The night we built the organ | 2:00 |
+| 16 | The turn, the close | 0:30 |
 | | | **14:15** |
 
-Forty-five seconds of margin. **First cut: Berlioz** (one frame, 0:30). Second:
-trim the introduction. **Items 5, 7 and 8 are the spine and never get cut.**
+Forty-five seconds of margin. **First cut: Berlioz** (slide 9, 0:30). Second:
+trim the introduction. **Slides 10, 13 and 15 are the spine and never get cut.**
 
-Reasoning, alternatives and the material behind each beat:
+Reasoning and the material behind each beat:
 [`../../NN_Melbourn_Oct26_YHTBT_trajectories.md`](../../NN_Melbourn_Oct26_YHTBT_trajectories.md)
 
 ## Hard rules, all of them paid for
 
-- **One image or one line per frame.** The delivery is extemporaneous; a
-  bulleted slide becomes a teleprompter and flattens it.
-- **Item 5 asks a question and does not answer it.** Resolve the "why" there
+- **Slide 10 asks a question and does not answer it.** Resolve the "why" there
   and Mars becomes a restatement and the middle goes flat.
 - **Do not read John's abstract aloud.** It makes John the joke in front of
   other bosses. The beat needs the decision, not the exhibit.
-- **Item 8: one flat sentence about being moved, then stop.** The second
+- **Slide 15: one flat sentence about being moved, then stop.** The second
   sentence is the sentimentality that kills it.
-- **Do not generalise item 8.** Not "and that's what Nerd Nite does." No
+- **Do not generalise it.** Not "and that's what Nerd Nite does." No
   instruction to the room, not once.
 - **Say "a volunteer," not "an audience member."** Somebody put their hand up.
-- **The close has no slide.** Frame 14 is deliberately empty. A slide reading
-  "You are." does the work for him and robs it.
-- Military past tense, never the opening position.
+- **The close has no slide.** Slide 16 is deliberately empty — no logo, no
+  furniture. A slide reading "You are." would rob it.
+- Military past tense, and it sits inside a list on slide 3 that exists to be
+  undercut by the next line. Never the opening position.
 
 ## Still his
 
 1. The opening twenty seconds — an instance of the phrase failing.
-2. The exact wording of the question ending item 5.
-3. Whether the HoloLens parallel goes into item 7. One sentence either way.
-4. Whether the NASA voice radio appears at all — optional now that the
-   abstract's debt is paid by the Nerd Nite material itself.
+2. The exact wording of the question on slide 10.
+3. Whether the HoloLens parallel goes into slide 13. One sentence either way.
+4. Whether the NASA voice radio appears at all.
 
 ## Build notes
 
-- **Beamer reserves the colour names `bg` and `fg`.** Defining our own
-  collided silently: the text frames rendered white-on-orange while the image
-  frames looked fine, because the images are dark. The palette is `nn*`.
-- 16:9 (`aspectratio=169`). **AV is still unconfirmed with Howler.** 16:9
-  letterboxes safely on a 4:3 projector; the reverse does not.
-- `notes.pdf` is the lectern copy. Print it or keep it on a phone. It carries
-  the timings, the cumulative clock, and every warning above at the frame it
-  applies to.
+- **xelatex required.** fontspec + Courier New.
+- Two-column slides use beamer `columns`, not minipages. The first version used
+  minipages at `0.50 + 0.46` of `\textwidth` plus margins, which overflowed and
+  silently dropped the photograph below the text instead of beside it.
+- `\slot` takes **bare numbers in cm**, `{6.2}{4.4}`. The first version took
+  dimensions with units and did arithmetic on them (`4.4cm-1.25`), which tikz
+  accepted and placed the labels outside the box.
+- Courier New is a wide face. `\large` in a `0.54\textwidth` column overflows
+  into the logo bug; `\normalsize` is the safe body size there.
+- 16:9. **AV still unconfirmed with Howler** — 16:9 letterboxes safely on a 4:3
+  projector, the reverse does not.
