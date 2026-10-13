@@ -4,7 +4,7 @@
 #   make notes      notes.pdf  (lectern copy: the beats, timings and warnings)
 #   make small      slides-small.pdf, JPEG-encoded, for email
 #   make pptx       slides.pptx, for a venue that wants PowerPoint
-#                   (also writes slides-keynote.pptx, stripped, if Keynote balks)
+#                   no speaker notes in it, deliberately -- see make-pptx.py
 #   make clean      drop build artefacts, keep img/ and the PDFs
 #
 # To add a photograph: drop img/<name>.jpg or .png in, then `make`. The slot

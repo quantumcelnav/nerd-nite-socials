@@ -1,14 +1,27 @@
 #!/usr/bin/env python3
 """slides.pptx — the deck as PowerPoint, for a venue that wants .pptx.
 
+NO SPEAKER NOTES, DELIBERATELY. Two reasons, and both were learned the hard
+way on 13 Oct.
+
+1. COMPATIBILITY. A build carrying notes slides opened in Google Slides and
+   was refused by Keynote outright. Stripping the notes slides, the notes
+   master, the notesSz element and the docProps thumbnail produced a file
+   Keynote opens. (Which of those four was the actual culprit is unknown --
+   they were removed together and it did not seem worth his time to bisect.)
+   A Google Slides round-trip was tried as an alternative and was WORSE: the
+   file Google exports does not open in Keynote at all.
+
+2. PRIVACY, which matters independently. The notes are his stage directions --
+   "do not read his abstract aloud", "one sentence then stop", "ask it and do
+   not answer it". Those belong to him, not to the venue running the deck.
+   notes.pdf is the lectern copy and does not leave his machine.
+
 WHY IMAGES AND NOT TEXT BOXES. Converting LaTeX layout into native PowerPoint
 shapes means PowerPoint re-flows it: fonts substitute, line breaks move, and
 a slide that was checked for orphans on this machine is not the slide that
 appears on theirs. One full-bleed image per slide cannot re-flow. It is not
 editable, which for a deck that gets shown and not edited is the right trade.
-
-Speaker notes are carried across into the PowerPoint notes field, so presenter
-view works on their laptop.
 
 Needs: python-pptx, pdftoppm (poppler).
 """
@@ -54,7 +67,6 @@ def notes_from_body():
 
 def main():
     if not PDF.exists(): sys.exit("build slides.pdf first (make)")
-    notes = notes_from_body()
     with tempfile.TemporaryDirectory() as td:
         subprocess.run(["pdftoppm", "-jpeg", "-r", str(DPI), "-jpegopt", "quality=88",
                         str(PDF), f"{td}/s"], check=True)
@@ -63,18 +75,16 @@ def main():
         prs = Presentation()
         prs.slide_width, prs.slide_height = Emu(W_EMU), Emu(H_EMU)
         blank = prs.slide_layouts[6]           # 6 is the blank layout
-        for i, img in enumerate(pages):
+        for img in pages:
             sl = prs.slides.add_slide(blank)
             sl.shapes.add_picture(str(img), Emu(0), Emu(0),
                                   width=prs.slide_width, height=prs.slide_height)
-            if i < len(notes) and notes[i]:
-                sl.notes_slide.notes_text_frame.text = notes[i]
         prs.save(OUT)
     _keynote_fixups(OUT)
     mb = OUT.stat().st_size / 1e6
     print(f"slides.pptx  {len(pages)} slides, {mb:.1f} MB, "
           f"{W_EMU/914400:.4f}x{H_EMU/914400:.1f} in, "
-          f"notes on {sum(1 for n in notes if n)} of them")
+          f"no notes slides (see docstring)")
 
 def _keynote_fixups(path):
     """Make the file acceptable to Keynote as well as PowerPoint.
@@ -99,20 +109,27 @@ def _keynote_fixups(path):
     with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as out:
         for info, data in items:
             n = info.filename
-            if n.startswith("ppt/printerSettings/"):
+            if any(n.startswith(d) or n == d for d in
+                   ("ppt/printerSettings/", "ppt/notesSlides/",
+                    "ppt/notesMasters/", "docProps/thumbnail.jpeg")):
                 continue
             if n == "ppt/presentation.xml":
                 t = data.decode("utf-8")
                 t = re.sub(r'(<p:sldSz[^>]*?)\s*type="[^"]*"', r'\1', t)
                 t = t.replace("<p:sldSz ", '<p:sldSz type="screen16x9" ', 1)
+                t = re.sub(r'<p:notesSz[^>]*/>', '', t)
                 data = t.encode("utf-8")
-            if n == "ppt/_rels/presentation.xml.rels":
+            if n.endswith(".rels"):
                 t = data.decode("utf-8")
-                t = re.sub(r'<Relationship[^>]*printerSettings[^>]*/>', '', t)
+                t = re.sub(r'<Relationship[^>]*'
+                           r'(printerSettings|notesSlide|notesMaster)[^>]*/>',
+                           '', t)
                 data = t.encode("utf-8")
             if n == "[Content_Types].xml":
                 t = data.decode("utf-8")
                 t = re.sub(r'<Default Extension="bin"[^>]*/>', '', t)
+                t = re.sub(r'<Override[^>]*'
+                           r'(notesSlide|notesMaster|thumbnail)[^>]*/>', '', t)
                 data = t.encode("utf-8")
             out.writestr(info, data)
     shutil.move(tmp, path)

@@ -7,6 +7,7 @@ stage as himself and as the NNFC boss, so the deck wears the show's colours.
 
 ```
 make            slides.pdf   the deck
+make pptx       slides.pptx  for the venue (no notes - see make-pptx.py)
 make notes      notes.pdf    lectern copy: every beat, timing and warning
 make clean      drop build/
 ```
