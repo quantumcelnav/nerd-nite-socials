@@ -58,10 +58,34 @@
 % --- image slots -----------------------------------------------------------
 % \slot{name}{width}{height}{what photograph belongs here}
 %
+% SIZING, settled 13 Oct. The slide is 16.0 x 9.0 cm and the text block is
+% ~14.5 cm, so a two-column photo box is capped by its COLUMN, not by the
+% page height -- every landscape image here has 2-4 cm of unused vertical.
+% Each box is therefore set to its image's own aspect ratio at the widest the
+% column allows, which is why the numbers look arbitrary:
+%   1.777 (16:9)  -> 6.8 x 3.83      1.333 (4:3) -> 6.8 x 5.10
+%   1.641 (mars)  -> 6.8 x 4.14      1.359 (collage, wider column) -> 8.1 x 5.96
+% p03-trajectories is the one exception: it is portrait (0.751) and therefore
+% HEIGHT-limited, maxed at 5.6 x 7.45 with ~6 mm of page left under it.
+% nntext + nnphoto deliberately sum under 1.0; at 0.97 beamer's column
+% separation pushed the pair ~2 mm past the text block on every frame.
+%
 % Drops in img/<name>.jpg or img/<name>.png the moment the file exists.
 % Until then it draws a labelled placeholder box of exactly the same size, so
 % the layout you are looking at now is the layout you get with the real photo.
 % \slot{name}{width}{height}{what photograph belongs here}
+%
+% SIZING, settled 13 Oct. The slide is 16.0 x 9.0 cm and the text block is
+% ~14.5 cm, so a two-column photo box is capped by its COLUMN, not by the
+% page height -- every landscape image here has 2-4 cm of unused vertical.
+% Each box is therefore set to its image's own aspect ratio at the widest the
+% column allows, which is why the numbers look arbitrary:
+%   1.777 (16:9)  -> 6.8 x 3.83      1.333 (4:3) -> 6.8 x 5.10
+%   1.641 (mars)  -> 6.8 x 4.14      1.359 (collage, wider column) -> 8.1 x 5.96
+% p03-trajectories is the one exception: it is portrait (0.751) and therefore
+% HEIGHT-limited, maxed at 5.6 x 7.45 with ~6 mm of page left under it.
+% nntext + nnphoto deliberately sum under 1.0; at 0.97 beamer's column
+% separation pushed the pair ~2 mm past the text block on every frame.
 %
 % WIDTH AND HEIGHT ARE BARE NUMBERS IN CM -- {6.2}{4.4}, never {6.2cm}.
 % The first version took dimensions with units and then did arithmetic on
@@ -111,5 +135,5 @@
 \newenvironment{nnframe}{%
   \begin{frame}[plain]\bug\vspace*{3mm}}{\end{frame}}
 
-\newcommand{\nntext}{0.58\textwidth}
-\newcommand{\nnphoto}{0.38\textwidth}
+\newcommand{\nntext}{0.49\textwidth}
+\newcommand{\nnphoto}{0.47\textwidth}
