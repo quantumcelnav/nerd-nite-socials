@@ -69,6 +69,58 @@ plot a course without one.*
 
 ---
 
+## THE REFACTOR — his, 13 Oct. The thesis word is now ENERGY.
+
+He sharpened it: *"you had to be there" is what someone says when their
+description does not convey the **energy** of actually being there* — and for
+something long ago or far away, it also means **you had to be at the talk about
+the thing.**
+
+**That turns the recursion into a ladder**, and the ladder is the argument:
+
+| rung | |
+|---|---|
+| **living it** | the Donner Party, 1846. Worms in the soil. The organ being built. |
+| **retelling it** | Hannah. John. Joel. |
+| **talking about the retelling** | this talk, Wednesday, in Brunswick. |
+
+His claim: wherever a human animates the room, there is energy — at **every**
+rung. That is why a talk about a talk still works, and it is the strongest
+evidence available, because rung three is the most degraded copy in the chain.
+
+**Why energy beats the old framing.** The deck used to answer "why did that
+work?" with an information argument: the hypothesis and the interpretation are
+not in the data stream. True, and bloodless. Energy explains why a recording
+fails **even when it contains every bit of the data** — because energy is not
+in the data at all. It has to be made again, in a room, by a person, every time.
+
+**Why the spoken word is "energy" and not "cognition."** Decision taken 13 Oct
+on his authority. Energy is physical, needs no definition in a room, and the
+organ makes it literal. Cognition requires the audience to accept a frame
+before they can follow, which is one hurdle too many at minute nine in a
+publick house. *Cognition stays out of the talk entirely.*
+
+### Four slides changed. Mars, the photographs, the close and the timing did not.
+
+| slide | was | is |
+|---|---|---|
+| **7** the flip | "the thing people say when the telling failed" | "when the description doesn't carry the energy" |
+| **10** the hinge | "Why did that just work?" | the three-rung ladder, then "So why does it still work?" |
+| **12** the line | "The telemetry is complete / The chronicle is not" | "The data came back. The people stayed home. **Energy does not transmit.**" |
+| **15** the organ | the volunteer | adds "**No person. No air. No sound.**" |
+
+**Slide 12 is the load-bearing change.** "The people stayed home" is literally
+true of Mars — we have never sent any — and the whole argument sits in the gap
+between that line and "the data came back."
+
+**Slide 15 stops being an illustration.** Air *is* energy. A person puts
+physical work into an instrument or there is no sound. The volunteer is not a
+metaphor for the thesis; the volunteer is the thesis, in wood and leather,
+unchanged since Roman antiquity.
+
+
+---
+
 ## Trajectory A — "The Midway Cafe" (not chosen; its material now feeds B)
 
 The institution hands over its own argument.
