@@ -29,6 +29,13 @@
 \beamertemplatenavigationsymbolsempty
 \setlength{\parindent}{0pt}
 
+% Slides must never hyphenate. "wire-less" across two lines on slide 3 is how
+% this was found; a broken word on a projector reads as a typo from row ten.
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\tolerance=2000
+\emergencystretch=3em
+
 % --- furniture -------------------------------------------------------------
 % Logo bug + show mark, bottom right. On every frame but the close.
 \newcommand{\bug}{%
