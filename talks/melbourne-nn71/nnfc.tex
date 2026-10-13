@@ -67,7 +67,7 @@
 \newcommand{\slotreal}[3]{%
   \begin{tikzpicture}[x=1cm,y=1cm]
     \useasboundingbox (0,0) rectangle (#2,#3);
-    \fill[black!90] (0,0) rectangle (#2,#3);
+    \fill[NNblue] (0,0) rectangle (#2,#3);  % letterbox blends into the ground
     \begin{scope}
       \clip (0,0) rectangle (#2,#3);
       \node[inner sep=0] at (#2/2,#3/2)
