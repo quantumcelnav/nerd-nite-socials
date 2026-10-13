@@ -2,6 +2,7 @@
 #
 #   make            slides.pdf (the deck)
 #   make notes      notes.pdf  (lectern copy: the beats, timings and warnings)
+#   make small      slides-small.pdf, JPEG-encoded, for email
 #   make clean      drop build artefacts, keep img/ and the PDFs
 #
 # To add a photograph: drop img/<name>.jpg or .png in, then `make`. The slot
@@ -10,9 +11,10 @@
 LATEX = xelatex -interaction=nonstopmode -halt-on-error -output-directory=build
 IMGS  = $(wildcard img/*) nnfc.tex assets/NNFoCoLogo.pdf
 
-.PHONY: all notes clean
+.PHONY: all notes small clean
 all: slides.pdf
 notes: notes.pdf
+small: slides-small.pdf
 
 slides.pdf: slides.tex body.tex $(IMGS)
 	@mkdir -p build
@@ -27,5 +29,8 @@ notes.pdf: notes.tex body.tex nnfc.tex
 	@echo "notes.pdf   lectern copy"
 
 
+slides-small.pdf: slides.tex body.tex nnfc.tex $(IMGS)
+	@./make-small.sh
+
 clean:
-	@rm -rf build
+	@rm -rf build small

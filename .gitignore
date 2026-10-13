@@ -37,3 +37,5 @@ paper/*.pdf
 
 # deck build artefacts
 talks/melbourne-nn71/build/
+
+talks/melbourne-nn71/small/

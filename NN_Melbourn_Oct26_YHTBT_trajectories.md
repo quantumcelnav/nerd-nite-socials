@@ -60,6 +60,13 @@ Chris was not in Cameroon that night either. The room got Cameroon anyway.
 And it collects on the abstract: a map is a model, not a data stream. *You cannot
 plot a course without one.*
 
+> **Venue, corrected 13 Oct.** The Fort Collins venue is the **Wolverine Farm
+> Publick House**, not "a bar". His correction, and it is not pedantry — the
+> talk's entire argument is that specific places and specific people are what
+> survive retelling, so getting the venue wrong in the room would undercut it.
+> The **Midway Cafe in Boston** genuinely was a bar and stays described that way.
+
+
 ---
 
 ## Trajectory A — "The Midway Cafe" (not chosen; its material now feeds B)
@@ -76,8 +83,8 @@ cannot afford the audience wondering.
 **5) The same room, twenty-odd years later, eight thousand miles away.** (3:00)
 Three talks off the Fort Collins stage. This is the laugh.
 
-**6) One example from outside a bar.** (2:00)
-Either of his own two, past tense, as evidence that the effect is not a bar
+**6) One example from outside the room.** (2:00)
+Either of his own two, past tense, as evidence that the effect is not a venue
 effect. Short. Two is evidence; five is a CV.
 
 **7) The turn, and the close.** (0:45)
@@ -121,7 +128,7 @@ own stage, with a stopwatch on it:
   The data is diaries, a body count, and a mountain pass. Complete, and inert.
 - Hannah did not hand the room the data. She handed over the *point of view* —
   the hypothesis going in, to use the Mars framing — and **the room laughed about
-  the Donner Party.** Nobody in that bar was in the Sierra Nevada in 1846, and
+  the Donner Party.** Nobody at Wolverine Farm was in the Sierra Nevada in 1846, and
   for a moment they were.
 - Her own hook does his title flip for him: *"Most people hear 'Donner Party'
   and think 'cannibalism.' Valid — but that only scratches the surface."* Same
@@ -217,7 +224,7 @@ instinct and the talk proved him right.
 *An interpretation, offered as one and not as a fact about him:* that is the same
 mechanism as the HoloLens spec bug he carries from his own career — a legible
 restatement silently becomes the reference, and clarity manufactures confidence
-nobody earned. Same failure, opposite stakes, found in a bar. He may want it and
+nobody earned. Same failure, opposite stakes, found at Wolverine Farm. He may want it and
 he may not; it is one sentence either way and the beat does not need it.
 
 **Strong recommendation: do not read John's abstract aloud.** It is the one move
@@ -249,7 +256,7 @@ that we, as the audience, had just assembled."*
 the catalogue and the laugh. This is the only moment of genuine feeling in the
 talk, and it is the answer to the question item 5 asks. It goes at the end.
 
-**Why it is the keystone:** it is Mars, inverted, in a bar in Fort Collins.
+**Why it is the keystone:** it is Mars, inverted, at Wolverine Farm in Fort Collins.
 
 On Mars we send the instrument and the people stay home, and the chronicle comes
 back incomplete. That night the people built the instrument **and stayed in the
@@ -309,7 +316,7 @@ volunteer to pump. Yes, that's right, that was part of what made it special."*
 A hand-pumped organ cannot make a sound unless a person is physically standing
 there supplying the air. **That instrument could not speak without a human being
 in the room.** Not an analogy — the mechanism, by design, built in Roman
-antiquity and still true in a bar in Fort Collins in June.
+antiquity and still true at Wolverine Farm in June.
 
 So the chain into the close writes itself and needs no gloss:
 the organ needed somebody to breathe for it → *you had to be there* → *you are.*
