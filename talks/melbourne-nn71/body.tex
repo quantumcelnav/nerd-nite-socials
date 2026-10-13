@@ -22,39 +22,33 @@
 \begin{document}
 
 % === 1. TITLE ======================================================= 0:00 ==
+% NB: this slide used to place \slot inside a node of a remember-picture/
+% overlay tikzpicture. The nested picture rendered the photograph small and
+% offset inside its own frame -- \slot is correct in isolation, the nesting
+% was not. Built from the same plain column layout as every other slide now.
 \begin{frame}[plain]
-  \begin{tikzpicture}[remember picture,overlay,x=1cm,y=1cm]
-    % masthead
-    \node[anchor=north west,inner sep=0] at ($(current page.north west)+(9mm,-7mm)$)
-      {\includegraphics[height=13mm]{assets/NNFoCoLogo.pdf}};
-    \node[anchor=north west,align=left,inner sep=0]
-      at ($(current page.north west)+(26mm,-9mm)$)
-      {{\color{NNLblue}\bfseries Nerd Nite Fort Collins}};
-    \node[anchor=north west,align=left,inner sep=0]
-      at ($(current page.north west)+(26mm,-15mm)$)
-      {{\color{white}\small\itshape Be there and be square}};
-    \fill[NNLblue] ($(current page.north west)+(9mm,-25mm)$) rectangle
-                   ($(current page.north east)+(-9mm,-26mm)$);
-    % title block, left half only
-    \node[anchor=north west,align=left,inner sep=0,text width=8.4cm]
-      at ($(current page.north west)+(9mm,-33mm)$)
-      {{\color{white}\fontsize{27}{31}\selectfont\bfseries You Had\\ to be There}};
-    \node[anchor=north west,align=left,inner sep=0]
-      at ($(current page.north west)+(9mm,-60mm)$)
-      {{\color{NNorange}\large Justin Fritz}};
-    \node[anchor=north west,align=left,inner sep=0]
-      at ($(current page.north west)+(9mm,-67mm)$)
-      {{\color{white}\small Boss, Nerd Nite Fort Collins}};
-    % photograph, right half only
-    \node[anchor=north east,inner sep=0] at ($(current page.north east)+(-9mm,-33mm)$)
-      {\slot{p01-room}{7.4}{4.4}{The Fort Collins room mid-talk, audience faces
-       lit by the screen. The room is the subject, not the speaker.}};
-    % footer
-    \node[anchor=south west,align=left,inner sep=0]
-      at ($(current page.south west)+(9mm,7mm)$)
-      {{\color{NNLblue}\scriptsize Nerd Nite Melbourne \#71 \quad\textbullet\quad
-        Howler, Brunswick \quad\textbullet\quad 14 October 2026}};
-  \end{tikzpicture}
+  \vspace*{2mm}
+  \hspace*{2mm}\raisebox{-4mm}{\includegraphics[height=13mm]{assets/NNFoCoLogo.pdf}}%
+  \hspace{3mm}%
+  \begin{minipage}[b]{0.7\textwidth}
+    {\color{NNLblue}\bfseries Nerd Nite Fort Collins}\\[1mm]
+    {\color{white}\small\itshape Be there and be square}
+  \end{minipage}\\[3mm]
+  {\color{NNLblue}\rule{\textwidth}{1.2pt}}\\[6mm]
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{0.50\textwidth}
+      {\color{white}\fontsize{25}{29}\selectfont\bfseries You Had\\ to be There}\\[7mm]
+      {\color{NNorange}\large Justin Fritz}\\[1.5mm]
+      {\color{white}\small Boss, Nerd Nite Fort Collins}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \slot{p01-room}{6.4}{3.6}{The Fort Collins room mid-talk, audience faces
+       lit by the screen. The room is the subject, not the speaker.}
+    \end{column}
+  \end{columns}
+  \vfill
+  {\color{NNLblue}\scriptsize Nerd Nite Melbourne \#71 \quad\textbullet\quad
+   Howler, Brunswick \quad\textbullet\quad 14 October 2026}
 \end{frame}
 \note{TITLE. Say it, let it sit. Do NOT flip it yet -- that is slide 7.
 The tagline is doing quiet work: "Be there and be square" is the close,
@@ -120,7 +114,7 @@ Do not inventory the career here -- the list already happened on slide 3.}
 \begin{nnframe}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{\nnphoto}
-    \slot{p03-trajectories}{6.2}{4.4}{Many separate tracks arriving at one
+    \slot{p03-trajectories}{3.5}{4.6}{Many separate tracks arriving at one
     point. Hand-drawn pencil lines on a chart, or long-exposure light trails.
     Flown, not plotted -- not a tidy infographic.}
     \end{column}
