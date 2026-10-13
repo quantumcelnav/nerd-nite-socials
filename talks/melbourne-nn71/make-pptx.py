@@ -14,13 +14,13 @@ Needs: python-pptx, pdftoppm (poppler).
 """
 import re, subprocess, sys, tempfile, pathlib
 from pptx import Presentation
-from pptx.util import Inches, Emu
+from pptx.util import Emu
 
 HERE = pathlib.Path(__file__).parent
 PDF  = HERE / "slides.pdf"
 OUT  = HERE / "slides.pptx"
 DPI  = 150
-W_IN, H_IN = 13.3333, 7.5          # PowerPoint's own 16:9, not LaTeX's
+W_EMU, H_EMU = 12192000, 6858000   # PowerPoint's canonical 16:9, exactly
 
 def notes_from_body():
     """Pull each \\note{...} out of body.tex and flatten it to plain text."""
@@ -61,7 +61,7 @@ def main():
         pages = sorted(pathlib.Path(td).glob("s-*.jpg"))
         if not pages: sys.exit("pdftoppm produced nothing")
         prs = Presentation()
-        prs.slide_width, prs.slide_height = Inches(W_IN), Inches(H_IN)
+        prs.slide_width, prs.slide_height = Emu(W_EMU), Emu(H_EMU)
         blank = prs.slide_layouts[6]           # 6 is the blank layout
         for i, img in enumerate(pages):
             sl = prs.slides.add_slide(blank)
@@ -70,9 +70,53 @@ def main():
             if i < len(notes) and notes[i]:
                 sl.notes_slide.notes_text_frame.text = notes[i]
         prs.save(OUT)
+    _keynote_fixups(OUT)
     mb = OUT.stat().st_size / 1e6
-    print(f"slides.pptx  {len(pages)} slides, {mb:.1f} MB, {W_IN}x{H_IN} in, "
+    print(f"slides.pptx  {len(pages)} slides, {mb:.1f} MB, "
+          f"{W_EMU/914400:.4f}x{H_EMU/914400:.1f} in, "
           f"notes on {sum(1 for n in notes if n)} of them")
+
+def _keynote_fixups(path):
+    """Make the file acceptable to Keynote as well as PowerPoint.
+
+    Keynote rejected the first build outright -- "the file format is invalid"
+    -- while the zip was intact and every XML part well-formed. Two causes,
+    both inherited from python-pptx's default template:
+
+    1. THE FATAL ONE. Setting slide_width/height changes cx and cy but leaves
+       the sldSz type attribute alone, so the file declared 13.33x7.5 inches
+       AND type="screen4x3" at the same time. PowerPoint tolerates the
+       contradiction; Keynote does not.
+    2. ppt/printerSettings/printerSettings1.bin, a binary part Keynote has no
+       use for. Dropped along with its relationship and its content-type
+       default.
+    """
+    import zipfile, re, shutil, tempfile, os
+    src = zipfile.ZipFile(path)
+    items = [(i, src.read(i.filename)) for i in src.infolist()]
+    src.close()
+    tmp = tempfile.mktemp(suffix=".pptx")
+    with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as out:
+        for info, data in items:
+            n = info.filename
+            if n.startswith("ppt/printerSettings/"):
+                continue
+            if n == "ppt/presentation.xml":
+                t = data.decode("utf-8")
+                t = re.sub(r'(<p:sldSz[^>]*?)\s*type="[^"]*"', r'\1', t)
+                t = t.replace("<p:sldSz ", '<p:sldSz type="screen16x9" ', 1)
+                data = t.encode("utf-8")
+            if n == "ppt/_rels/presentation.xml.rels":
+                t = data.decode("utf-8")
+                t = re.sub(r'<Relationship[^>]*printerSettings[^>]*/>', '', t)
+                data = t.encode("utf-8")
+            if n == "[Content_Types].xml":
+                t = data.decode("utf-8")
+                t = re.sub(r'<Default Extension="bin"[^>]*/>', '', t)
+                data = t.encode("utf-8")
+            out.writestr(info, data)
+    shutil.move(tmp, path)
+
 
 if __name__ == "__main__":
     main()
